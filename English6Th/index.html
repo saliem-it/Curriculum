@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منهاج اللغة الإنجليزية (Student’s Book) - الصف السادس الابتدائي</title>
+
+    <!-- الملفات المحلية للمشروع -->
+    <link rel="stylesheet" href="Assets/bootstrap-5.3.8-dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="Assets/css/fontawesome.min.css">
+    <link rel="stylesheet" href="Assets/css/all.min.css">
+    <link rel="stylesheet" href="Assets/css/style.css">
+
+    <style>
+        :root {
+            --eng-primary: #0284c7;
+            --eng-gradient: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #0f172a 100%);
+            --sidebar-bg: #0f172a;
+            --sidebar-hover: #1e293b;
+            --card-radius: 18px;
+        }
+
+        body {
+            background-color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #0f172a;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .app-sidebar {
+            width: 290px;
+            background: var(--sidebar-bg);
+            color: white;
+            padding: 24px 16px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            overflow-y: auto;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.12);
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            text-align: center;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+            .sidebar-header i {
+                color: #38bdf8;
+            }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .sidebar-nav li {
+                margin-bottom: 10px;
+            }
+
+        .nav-item-link {
+            color: #cbd5e1;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+            .nav-item-link:hover, .nav-item-link.active {
+                background: var(--sidebar-hover);
+                color: #ffffff;
+                transform: translateX(-4px);
+                font-weight: 700;
+            }
+
+        .quiz-btn-link {
+            background: rgba(245, 158, 11, 0.15) !important;
+            border: 1px dashed #f59e0b !important;
+            color: #fbbf24 !important;
+        }
+
+        .app-main-content {
+            margin-right: 290px;
+            flex: 1;
+            padding: 35px;
+            max-width: 1150px;
+        }
+
+        .app-hero-header {
+            background: var(--eng-gradient);
+            color: white;
+            padding: 32px 35px;
+            border-radius: var(--card-radius);
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(2, 132, 199, 0.25);
+        }
+
+        .alert-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 22px;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .unit-card-view {
+            display: none;
+            background: #ffffff;
+            border-radius: var(--card-radius);
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+            .unit-card-view.active {
+                display: block;
+                animation: slideUp 0.35s ease;
+            }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .unit-card-header {
+            padding: 22px 30px;
+        }
+
+        .unit-card-body {
+            padding: 30px;
+        }
+
+        .book-section-box {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+            .book-section-box:hover {
+                border-color: var(--eng-primary);
+                box-shadow: 0 8px 20px rgba(2, 132, 199, 0.1);
+            }
+
+        .reading-text {
+            background: #f0f9ff;
+            border-left: 4px solid #0284c7;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-style: italic;
+            color: #334155;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .grammar-box {
+            background-color: #f0fdf4;
+            border-right: 5px solid #16a34a;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        /* النوافذ المنبثقة */
+        .custom-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            padding: 15px;
+        }
+
+            .custom-modal-overlay.active {
+                display: flex !important;
+            }
+
+        .custom-modal-box {
+            background-color: #ffffff;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 650px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .custom-modal-header {
+            padding: 20px 28px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .custom-modal-close {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        .custom-modal-body {
+            padding: 28px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 991px) {
+            body {
+                flex-direction: column;
+            }
+
+            .app-sidebar {
+                width: 100%;
+                position: relative;
+            }
+
+            .app-main-content {
+                margin-right: 0;
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- القائمة الجانبية -->
+    <nav class="app-sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-book-open fs-1 mb-2"></i>
+            <h5 class="fw-bold m-0 text-white">English Student’s Book</h5>
+            <small class="text-white-50">الصف السادس الابتدائي</small>
+        </div>
+        <ul class="sidebar-nav">
+            <li><a href="#" onclick="showUnit('u1', this); return false;" class="nav-item-link active"><i class="fas fa-plane ms-2"></i> Unit 1: Holiday Memories</a></li>
+            <li><a href="#" onclick="showUnit('u2', this); return false;" class="nav-item-link"><i class="fas fa-utensils ms-2"></i> Unit 2: Healthy Eating</a></li>
+            <li><a href="#" onclick="showUnit('u3', this); return false;" class="nav-item-link"><i class="fas fa-landmark ms-2"></i> Unit 3: Historic Places</a></li>
+            <li><a href="#" onclick="showUnit('u4', this); return false;" class="nav-item-link"><i class="fas fa-globe ms-2"></i> Unit 4: The Environment</a></li>
+            <li><a href="#" onclick="showUnit('u5', this); return false;" class="nav-item-link"><i class="fas fa-rocket ms-2"></i> Unit 5: Inventions & Future</a></li>
+            <li class="mt-3"><a href="#" onclick="showUnit('quiz-game', this); return false;" class="nav-item-link quiz-btn-link"><i class="fas fa-trophy text-warning ms-2"></i> Student's Book Quiz</a></li>
+        </ul>
+    </nav>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="app-main-content">
+
+        <header class="app-hero-header">
+            <h1 class="fw-bold h2 mb-2">English Student’s Book - Grade 6</h1>
+            <p class="mb-2 opacity-90">النصوص الرسمية، الحوارات، القواعد، والتمارين من الكتاب المدرسي (يعمل بدون إنترنت)</p>
+            <div class="alert-badge"><i class="fas fa-info-circle me-1"></i> انقر على الحوارات والقطع لقراءة الترجمة والشرح التفصيلي.</div>
+        </header>
+
+        <!-- Unit 1 -->
+        <section id="u1" class="unit-card-view active">
+            <div class="unit-card-header bg-primary text-white">
+                <h3 class="h4 m-0"><i class="fas fa-plane-departure me-2"></i> Unit 1: Holiday Memories (ذكريات العطلة)</h3>
+            </div>
+            <div class="unit-card-body">
+                <div class="book-section-box" onclick="openModal('mod1')">
+                    <h5 class="fw-bold text-primary"><i class="fas fa-comments me-2"></i> Lesson 1 & 2: Reading & Dialogue (قراءة وحوار الكتاب)</h5>
+                    <p class="text-secondary mb-2">استمع واقرأ محادثة رامي وتامر عن عطلة الصيف وكيف قضياها في اللاذقية وتدمر.</p>
+                    <div class="reading-text">
+                        "Hello, Tamer! Where did you go on your summer holiday?"<br>
+                        "Hi, Rami! I went to Lattakia with my family. We swam in the sea and visited the citadel."<br>
+                        "That sounds amazing! I went to Palmyra with my uncle. The ruins were magnificent."
+                    </div>
+                    <span class="badge bg-primary">انقر هنا لعرض الترجمة والشرح التفصيلي</span>
+                </div>
+
+                <div class="grammar-box">
+                    <h5 class="fw-bold text-success mb-2"><i class="fas fa-pen-nib me-2"></i> Grammar Focus: Past Simple Tense (الماضي البسيط)</h5>
+                    <p>نستخدم صيغة الماضي البسيط للتحدث عن أحداث انتهت في الماضي:</p>
+                    <ul class="mb-0">
+                        <li><strong>الأفعال المنتظمة:</strong> نضيف ed (مثل: <i>visit ➔ visited</i>, <i>play ➔ played</i>).</li>
+                        <li><strong>الأفعال الشاذة:</strong> يتغير شكلها (مثل: <i>go ➔ went</i>, <i>see ➔ saw</i>, <i>eat ➔ ate</i>).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Unit 2 -->
+        <section id="u2" class="unit-card-view">
+            <div class="unit-card-header bg-success text-white">
+                <h3 class="h4 m-0"><i class="fas fa-utensils me-2"></i> Unit 2: Healthy Eating & Living (الغذاء الصحي)</h3>
+            </div>
+            <div class="unit-card-body">
+                <div class="book-section-box">
+                    <h5 class="fw-bold text-success"><i class="fas fa-apple-alt me-2"></i> Lesson 3: Food Groups & Quantities</h5>
+                    <p class="text-secondary">نتعلم في هذا الدرس عن الطعام الصحي وأسماء المعدود وغير المعدود (Countable & Uncountable Nouns).</p>
+                    <ul class="mb-2">
+                        <li><strong>Countable (معدود):</strong> apple, banana, biscuit (تجمع بحرف s).</li>
+                        <li><strong>Uncountable (غير معدود):</strong> water, milk, rice, sugar (لا تُجمع).</li>
+                    </ul>
+                    <div class="alert alert-success m-0">
+                        <strong>استخدام أدوات الكمية:</strong> نستخدم <code>some</code> في الجمل المثبتة، و <code>any</code> في النفي والسؤال.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Unit 3 -->
+        <section id="u3" class="unit-card-view">
+            <div class="unit-card-header bg-info text-white">
+                <h3 class="h4 m-0"><i class="fas fa-landmark me-2"></i> Unit 3: Historic Places (أماكن تاريخية)</h3>
+            </div>
+            <div class="unit-card-body">
+                <div class="book-section-box">
+                    <h5 class="fw-bold text-info"><i class="fas fa-map-marked-alt me-2"></i> Lesson 1: Famous Landmarks in Syria</h5>
+                    <p class="text-secondary">تعرف على المعالم الأثرية مثل قلعة حلب، الجامع الأموي، وبصرى الشام.</p>
+                    <p class="mb-0"><strong>القاعدة المرتبطة:</strong> المقارنة والتفضيل (Comparatives & Superlatives) مثل: <i>old ➔ older than ➔ the oldest</i>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Unit 4 -->
+        <section id="u4" class="unit-card-view">
+            <div class="unit-card-header bg-warning text-dark">
+                <h3 class="h4 m-0"><i class="fas fa-globe me-2"></i> Unit 4: The Environment (حماية البيئة)</h3>
+            </div>
+            <div class="unit-card-body">
+                <div class="book-section-box">
+                    <h5 class="fw-bold text-dark"><i class="fas fa-recycle me-2"></i> Lesson 2: Saving Our Planet</h5>
+                    <p class="text-secondary">كيف نحافظ على نظافة البيئة ونعيد تدوير النفايات (Recycling, Plastic, Paper).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Unit 5 -->
+        <section id="u5" class="unit-card-view">
+            <div class="unit-card-header bg-danger text-white">
+                <h3 class="h4 m-0"><i class="fas fa-rocket me-2"></i> Unit 5: Inventions & Future (الاختراعات والمستقبل)</h3>
+            </div>
+            <div class="unit-card-body">
+                <div class="book-section-box">
+                    <h5 class="fw-bold text-danger"><i class="fas fa-lightbulb me-2"></i> Lesson 1: Great Inventions</h5>
+                    <p class="text-secondary">الحديث عن الاختراعات العظيمة (مثل التلفاز، الهاتف، الحاسوب) واستخدام المستقبل بـ <code>will</code>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- مسابقة الكتاب المدرسي -->
+        <section id="quiz-game" class="unit-card-view">
+            <div class="card shadow border-warning rounded-3">
+                <div class="card-header bg-warning text-dark p-3 d-flex justify-content-between align-items-center">
+                    <h3 class="h4 mb-0"><i class="fas fa-gamepad me-2"></i> Student’s Book Quiz Game</h3>
+                    <span class="badge bg-dark fs-6" id="score-badge">Score: 0</span>
+                </div>
+                <div class="card-body p-4 text-center">
+                    <div id="question-container">
+                        <h5 class="mb-4" id="quiz-question">Loading...</h5>
+                        <div class="row g-3 max-w-600 mx-auto" id="quiz-options"></div>
+                    </div>
+                    <div id="quiz-result" class="d-none mt-3">
+                        <div class="alert" id="result-alert"></div>
+                        <button class="btn btn-primary btn-lg mt-2" onclick="nextQuestion()">Next Question <i class="fas fa-arrow-left ms-2"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- نافذة منبثقة لشرح الحوار -->
+    <div class="custom-modal-overlay" id="mod1">
+        <div class="custom-modal-box">
+            <div class="custom-modal-header bg-primary">
+                <h5 class="m-0"><i class="fas fa-book-reader me-2"></i> ترجمة وشرح الحوار (Unit 1)</h5>
+                <button class="custom-modal-close" onclick="closeModal('mod1')">&times;</button>
+            </div>
+            <div class="custom-modal-body">
+                <h6 class="fw-bold text-primary">الترجمة العربية للحوار:</h6>
+                <p>
+                    <strong>رامي:</strong> أهلاً يا تامر! إلى أين ذهبت في عطلة الصيف؟<br>
+                    <strong>تامر:</strong> أهلاً يا رامي! ذهبت إلى اللاذقية مع عائلتي. سبحنا في البحر وزرنا القلعة.<br>
+                    <strong>رامي:</strong> هذا يبدو رائعاً! لقد ذهبت إلى تدمر مع عيبي (عمي). كانت الآثار مذهلة.
+                </p>
+                <hr>
+                <h6 class="fw-bold text-success">ملاحظات لغوية هامة:</h6>
+                <ul>
+                    <li>استخدام الفعل المساعد <code>did</code> في السؤال بالماضي (<i>Where did you go?</i>).</li>
+                    <li>تحول الفعل الأساسي إلى الماضي (<i>go ➔ went</i>, <i>swim ➔ swam</i>).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- السكربتات -->
+    <script>
+        function showUnit(unitId, element) {
+            document.querySelectorAll('.unit-card-view').forEach(u => u.classList.remove('active'));
+            document.querySelectorAll('.nav-item-link').forEach(l => l.classList.remove('active'));
+            document.getElementById(unitId).classList.add('active');
+            if (element) element.classList.add('active');
+        }
+
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        window.onclick = function (e) {
+            if (e.target.classList.contains('custom-modal-overlay')) {
+                e.target.classList.remove('active');
+            }
+        };
+
+        const questions = [
+            { q: "Where did Tamer go on his summer holiday?", options: ["Damascus", "Lattakia", "Aleppo", "Homs"], correct: 1 },
+            { q: "Choose the correct past form: 'She ________ to school yesterday.'", options: ["go", "goes", "went", "going"], correct: 2 },
+            { q: "Which one is an uncountable noun?", options: ["Apple", "Water", "Banana", "Biscuit"], correct: 1 }
+        ];
+
+        let currentQ = 0, score = 0;
+
+        function loadQuestion() {
+            const q = questions[currentQ];
+            const qEl = document.getElementById('quiz-question');
+            if (!qEl) return;
+            qEl.innerText = `Question ${currentQ + 1}: ${q.q}`;
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            document.getElementById('quiz-result').classList.add('d-none');
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'btn btn-outline-primary btn-lg w-100 mb-2';
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(idx);
+
+                const col = document.createElement('div');
+                col.className = 'col-6';
+                col.appendChild(btn);
+                optionsContainer.appendChild(col);
+            });
+        }
+
+        function checkAnswer(selected) {
+            const q = questions[currentQ];
+            const alertBox = document.getElementById('result-alert');
+            if (selected === q.correct) {
+                score += 10;
+                alertBox.className = "alert alert-success fw-bold";
+                alertBox.innerHTML = "Correct Answer! Excellent 🎉";
+            } else {
+                alertBox.className = "alert alert-danger fw-bold";
+                alertBox.innerHTML = `Wrong Answer! Correct is: ${q.options[q.correct]}`;
+            }
+            document.getElementById('score-badge').innerText = `Score: ${score}`;
+            document.getElementById('quiz-result').classList.remove('d-none');
+            document.querySelectorAll('#quiz-options button').forEach(b => b.disabled = true);
+        }
+
+        function nextQuestion() {
+            currentQ++;
+            if (currentQ < questions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById('question-container').innerHTML = `
+                        <h4 class='text-success mb-3'>Congratulations! Quiz Completed 🏆</h4>
+                        <p class='fs-5'>Final Score: <strong>${score} / ${questions.length * 10}</strong></p>
+                        <button class='btn btn-warning btn-lg mt-3' onclick='resetQuiz()'>Try Again</button>
+                    `;
+                document.getElementById('quiz-result').classList.add('d-none');
+            }
+        }
+
+        function resetQuiz() {
+            currentQ = 0; score = 0;
+            document.getElementById('score-badge').innerText = `Score: 0`;
+            document.getElementById('question-container').innerHTML = `
+                    <h5 class="mb-4" id="quiz-question"></h5>
+                    <div class="row g-3 max-w-600 mx-auto" id="quiz-options"></div>
+                `;
+            loadQuestion();
+        }
+
+        window.onload = function () { loadQuestion(); };
+    </script>
+</body>
+</html>
