@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منهاج الرياضيات التفاعلي - الصف السادس الابتدائي</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter / Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                        },
+                        accent: {
+                            orange: '#f97316',
+                            green: '#10b981',
+                            purple: '#8b5cf6',
+                            pink: '#ec4899',
+                            yellow: '#f59e0b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8fafc;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .gradient-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #0284c7 100%);
+        }
+        .card-glow {
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1), 0 8px 10px -6px rgba(59, 130, 246, 0.1);
+        }
+        .pulse-btn {
+            animation: pulse-animation 2s infinite;
+        }
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased flex flex-col md:flex-row min-h-screen">
+
+    <!-- القائمة الجانبية (Sidebar) -->
+    <aside id="sidebar" class="w-full md:w-80 bg-slate-900 text-white flex-shrink-0 flex flex-col justify-between transition-all duration-300 z-30 shadow-2xl">
+        <div>
+            <!-- شعار التطبيق -->
+            <div class="p-5 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white text-2xl font-black shadow-lg">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-extrabold text-lg leading-tight text-white">الرياضيات الممتعة</h1>
+                        <span class="text-xs text-blue-400 font-semibold">الصف السادس الابتدائي</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- روابط الملاحة -->
+            <nav class="p-4 space-y-2">
+                <p class="px-3 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">وحدات المنهاج الدراسية</p>
+                
+                <button onclick="switchTab('u1')" id="nav-u1" class="unit-nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition font-bold text-sm bg-blue-600 text-white shadow-md">
+                    <span class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center text-sm"><i class="fa-solid fa-chart-line"></i></span>
+                    <span>الوحدة 1: البيانات والأعداد</span>
+                </button>
+
+                <button onclick="switchTab('u2')" id="nav-u2" class="unit-nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition font-bold text-sm text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <span class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-sm"><i class="fa-solid fa-drafting-compass"></i></span>
+                    <span>الوحدة 2: الهندسة والزوايا</span>
+                </button>
+
+                <button onclick="switchTab('u3')" id="nav-u3" class="unit-nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition font-bold text-sm text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <span class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-sm"><i class="fa-solid fa-sitemap"></i></span>
+                    <span>الوحدة 3: ق.م.أ وم.م.أ والقوى</span>
+                </button>
+
+                <button onclick="switchTab('u4')" id="nav-u4" class="unit-nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition font-bold text-sm text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <span class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-sm"><i class="fa-solid fa-shapes"></i></span>
+                    <span>الوحدة 4: الأشكال الرباعية</span>
+                </button>
+
+                <button onclick="switchTab('u5')" id="nav-u5" class="unit-nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition font-bold text-sm text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <span class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-sm"><i class="fa-solid fa-pie-chart"></i></span>
+                    <span>الوحدة 5: الكسور والعشري والحجوم</span>
+                </button>
+
+                <div class="pt-4 border-t border-slate-800">
+                    <button onclick="switchTab('game')" id="nav-game" class="unit-nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition font-black text-sm bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg pulse-btn">
+                        <span class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center text-sm"><i class="fa-solid fa-gamepad"></i></span>
+                        <span>لعبة التحدي الشاملة 🏆</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+
+        <!-- معلمات سريعة -->
+        <div class="p-4 bg-slate-950 border-t border-slate-800 text-center">
+            <p class="text-xs text-slate-400">تطبيق تفاعلي مطور بالكامل بدون إنترنت</p>
+            <p class="text-xs text-emerald-400 font-bold mt-1">نسخة رائعة ومحدثة للعام الدراسي</p>
+        </div>
+    </aside>
+
+    <!-- المنطقة الرئيسية للأنشطة والمحتوى -->
+    <main class="flex-1 flex flex-col h-screen overflow-y-auto custom-scrollbar bg-slate-50">
+
+        <!-- الهيدر العلوي الترحيبي -->
+        <header class="gradient-header text-white p-6 md:p-8 rounded-b-3xl shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <span class="inline-block bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-blue-100 mb-2">منهاج الرياضيات التفاعلي المطور</span>
+                <h2 id="header-title" class="text-2xl md:text-3xl font-black">الوحدة الأولى: البيانات والأعداد الطبيعية</h2>
+                <p id="header-desc" class="text-blue-100 text-sm mt-1">تعلم ترتيب العمليات، القوى، وتفسير البيانات الإحصائية والرسوم البيانية.</p>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="openHelpModal()" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-2 transition">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>دليل الاستخدام</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- محتوى الوحدات التعليمية -->
+        <div class="p-4 md:p-8 space-y-8 flex-1">
+
+            <!-- ==================== الوحدة 1 ==================== -->
+            <section id="u1-content" class="unit-section space-y-6">
+                <!-- درس 1: البيانات -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 card-glow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-lg">1</span>
+                        <h3 class="text-xl font-bold text-slate-800">التمثيل البياني بالخطوط والنقاط</h3>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        يُستخدم التمثيل البياني بالخطوط لمتابعة التغيرات المستمرة عبر فترة زمنية معينة (مثل درجة الحرارة أو المبيعات أو الأطوال).
+                    </p>
+
+                    <!-- SVG رسم بياني تفاعلي -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">
+                        <h4 class="text-xs font-bold text-slate-500 mb-3">رسم بياني: درجات الحرارة المسجلة خلال أسبوع (مئوية)</h4>
+                        <div class="w-full overflow-x-auto flex justify-center">
+                            <svg width="450" height="200" viewBox="0 0 450 200" class="max-w-full">
+                                <!-- شبكة خلفية -->
+                                <line x1="50" y1="30" x2="420" y2="30" stroke="#e2e8f0" stroke-dasharray="4"/>
+                                <line x1="50" y1="70" x2="420" y2="70" stroke="#e2e8f0" stroke-dasharray="4"/>
+                                <line x1="50" y1="110" x2="420" y2="110" stroke="#e2e8f0" stroke-dasharray="4"/>
+                                <line x1="50" y1="150" x2="420" y2="150" stroke="#e2e8f0" stroke-dasharray="4"/>
+                                
+                                <!-- المحاور -->
+                                <line x1="50" y1="20" x2="50" y2="160" stroke="#475569" stroke-width="2"/>
+                                <line x1="50" y1="160" x2="420" y2="160" stroke="#475569" stroke-width="2"/>
+                                
+                                <!-- أرقام المحور الصادي -->
+                                <text x="35" y="35" font-size="10" font-weight="bold" fill="#64748b">30°</text>
+                                <text x="35" y="75" font-size="10" font-weight="bold" fill="#64748b">20°</text>
+                                <text x="35" y="115" font-size="10" font-weight="bold" fill="#64748b">10°</text>
+                                <text x="40" y="155" font-size="10" font-weight="bold" fill="#64748b">0°</text>
+                                
+                                <!-- خط البيانات -->
+                                <polyline fill="none" stroke="#2563eb" stroke-width="3" points="80,110 140,70 200,85 260,40 320,60 380,30"/>
+                                
+                                <!-- نقاط البيانات -->
+                                <circle cx="80" cy="110" r="5" fill="#f97316"/>
+                                <text x="75" y="100" font-size="10" font-weight="bold" fill="#1e293b">10°</text>
+                                
+                                <circle cx="140" cy="70" r="5" fill="#f97316"/>
+                                <text x="135" y="60" font-size="10" font-weight="bold" fill="#1e293b">20°</text>
+                                
+                                <circle cx="200" cy="85" r="5" fill="#f97316"/>
+                                <text x="195" y="75" font-size="10" font-weight="bold" fill="#1e293b">16°</text>
+                                
+                                <circle cx="260" cy="40" r="5" fill="#f97316"/>
+                                <text x="255" y="30" font-size="10" font-weight="bold" fill="#1e293b">28°</text>
+
+                                <circle cx="320" cy="60" r="5" fill="#f97316"/>
+                                <text x="315" y="50" font-size="10" font-weight="bold" fill="#1e293b">23°</text>
+
+                                <circle cx="380" cy="30" r="5" fill="#f97316"/>
+                                <text x="375" y="20" font-size="10" font-weight="bold" fill="#1e293b">30°</text>
+
+                                <!-- أيام الأسبوع -->
+                                <text x="70" y="180" font-size="11" font-weight="bold" fill="#334155">الأحد</text>
+                                <text x="130" y="180" font-size="11" font-weight="bold" fill="#334155">الإثنين</text>
+                                <text x="185" y="180" font-size="11" font-weight="bold" fill="#334155">الثلاثاء</text>
+                                <text x="245" y="180" font-size="11" font-weight="bold" fill="#334155">الأربعاء</text>
+                                <text x="305" y="180" font-size="11" font-weight="bold" fill="#334155">الخميس</text>
+                                <text x="365" y="180" font-size="11" font-weight="bold" fill="#334155">الجمعة</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- درس 2: ترتيب العمليات والقوى -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 card-glow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center font-bold text-lg">2</span>
+                        <h3 class="text-xl font-bold text-slate-800">ترتيب العمليات والقوى (الأسس)</h3>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-slate-800 text-sm mb-2 text-blue-600">سلم أولويات العمليات:</h4>
+                            <ol class="list-decimal list-inside text-sm space-y-1 text-slate-700 font-semibold">
+                                <li>الأقواس أولاً: <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded">( )</span></li>
+                                <li>القوى والأسس: <span class="bg-orange-100 text-orange-800 px-2 py-0.5 rounded">2³ = 8</span></li>
+                                <li>الضرب والقسمة (من اليمين إلى اليسار).</li>
+                                <li>الجمع والطرح (من اليمين إلى اليسار).</li>
+                            </ol>
+                        </div>
+
+                        <div class="bg-amber-50 p-4 rounded-xl border border-amber-200">
+                            <h4 class="font-bold text-amber-800 text-sm mb-2">مثال شارح بالتفصيل:</h4>
+                            <p class="text-sm font-bold text-slate-800 dir-ltr text-right mb-1">3 + 4 × (2³ - 3) = ?</p>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                1. فك القوة داخل القوس: <span class="font-bold text-blue-600">2³ = 8</span><br>
+                                2. طرح القوس: <span class="font-bold text-blue-600">(8 - 3) = 5</span><br>
+                                3. ضرب: <span class="font-bold text-blue-600">4 × 5 = 20</span><br>
+                                4. جمع: <span class="font-bold text-emerald-600">3 + 20 = 23</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <button onclick="openModal('m-u1')" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-sm transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        <span>عرض تمرين محلول إضافي خطوة بخطوة</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- ==================== الوحدة 2 ==================== -->
+            <section id="u2-content" class="unit-section hidden space-y-6">
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 card-glow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-lg">1</span>
+                        <h3 class="text-xl font-bold text-slate-800">تصنيف الزوايا الأربعة الأساسية</h3>
+                    </div>
+
+                    <!-- SVG الزوايا الأربعة مع التسميات الصحيحة ومربع القائمة -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+                            
+                            <!-- حادة -->
+                            <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm flex flex-col items-center">
+                                <svg width="120" height="100" viewBox="0 0 120 100">
+                                    <line x1="20" y1="80" x2="100" y2="80" stroke="#334155" stroke-width="3"/>
+                                    <line x1="20" y1="80" x2="70" y2="20" stroke="#2563eb" stroke-width="3"/>
+                                    <path d="M 40 80 A 20 20 0 0 0 35 60" fill="none" stroke="#f97316" stroke-width="2"/>
+                                    <text x="45" y="70" font-size="10" font-weight="bold" fill="#f97316">50°</text>
+                                </svg>
+                                <span class="font-bold text-sm text-blue-600 mt-2">زاوية حادة</span>
+                                <span class="text-xs text-slate-500">أكبر من 0° وأقل من 90°</span>
+                            </div>
+
+                            <!-- قائمة -->
+                            <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm flex flex-col items-center">
+                                <svg width="120" height="100" viewBox="0 0 120 100">
+                                    <line x1="20" y1="80" x2="100" y2="80" stroke="#334155" stroke-width="3"/>
+                                    <line x1="20" y1="80" x2="20" y2="20" stroke="#2563eb" stroke-width="3"/>
+                                    <!-- مربع الزاوية القائمة -->
+                                    <rect x="20" y="65" width="15" height="15" fill="none" stroke="#ef4444" stroke-width="2"/>
+                                </svg>
+                                <span class="font-bold text-sm text-red-600 mt-2">زاوية قائمة</span>
+                                <span class="text-xs text-slate-500">تساوي 90° تماماً</span>
+                            </div>
+
+                            <!-- منفرجة -->
+                            <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm flex flex-col items-center">
+                                <svg width="120" height="100" viewBox="0 0 120 100">
+                                    <line x1="40" y1="80" x2="110" y2="80" stroke="#334155" stroke-width="3"/>
+                                    <line x1="40" y1="80" x2="10" y2="30" stroke="#2563eb" stroke-width="3"/>
+                                    <path d="M 55 80 A 20 20 0 0 0 28 60" fill="none" stroke="#f97316" stroke-width="2"/>
+                                    <text x="42" y="65" font-size="10" font-weight="bold" fill="#f97316">130°</text>
+                                </svg>
+                                <span class="font-bold text-sm text-orange-600 mt-2">زاوية منفرجة</span>
+                                <span class="text-xs text-slate-500">أكبر من 90° وأقل من 180°</span>
+                            </div>
+
+                            <!-- مستقيمة -->
+                            <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm flex flex-col items-center">
+                                <svg width="120" height="100" viewBox="0 0 120 100">
+                                    <line x1="10" y1="70" x2="110" y2="70" stroke="#2563eb" stroke-width="3"/>
+                                    <circle cx="60" cy="70" r="4" fill="#ef4444"/>
+                                    <path d="M 75 70 A 15 15 0 0 0 45 70" fill="none" stroke="#f97316" stroke-width="2"/>
+                                    <text x="50" y="50" font-size="10" font-weight="bold" fill="#f97316">180°</text>
+                                </svg>
+                                <span class="font-bold text-sm text-emerald-600 mt-2">زاوية مستقيمة</span>
+                                <span class="text-xs text-slate-500">تساوي 180° تماماً</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المستقيمات المتوازية والمتعامدة -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 card-glow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-lg">2</span>
+                        <h3 class="text-xl font-bold text-slate-800">المستقيمات المتوازية والمتعامدة</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex items-center gap-4">
+                            <svg width="100" height="80" viewBox="0 0 100 80">
+                                <line x1="10" y1="25" x2="90" y2="25" stroke="#2563eb" stroke-width="3"/>
+                                <line x1="10" y1="55" x2="90" y2="55" stroke="#2563eb" stroke-width="3"/>
+                            </svg>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">مستقيمان متوازيان</h4>
+                                <p class="text-xs text-slate-600 mt-1">لا يلتقيان أبداً مهما امتدا، والبعد بينهما ثابت دائماً.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex items-center gap-4">
+                            <svg width="100" height="80" viewBox="0 0 100 80">
+                                <line x1="10" y1="40" x2="90" y2="40" stroke="#2563eb" stroke-width="3"/>
+                                <line x1="50" y1="10" x2="50" y2="70" stroke="#ef4444" stroke-width="3"/>
+                                <rect x="50" y="40" width="10" height="10" fill="none" stroke="#334155" stroke-width="1.5"/>
+                            </svg>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">مستقيمان متعامدان</h4>
+                                <p class="text-xs text-slate-600 mt-1">يتقاطعان وكيشكلان بينهما زوايا قائمة (90°).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== الوحدة 3 ==================== -->
+            <section id="u3-content" class="unit-section hidden space-y-6">
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 card-glow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center font-bold text-lg">1</span>
+                        <h3 class="text-xl font-bold text-slate-800">شجرة العوامل الأولية للعددين 12 و 18</h3>
+                    </div>
+
+                    <!-- SVG شجرة التحليل للعوامل الأولية -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
+                            
+                            <!-- شجرة 12 -->
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center">
+                                <h4 class="font-bold text-slate-800 mb-2">تحليل العدد 12</h4>
+                                <svg width="200" height="150" viewBox="0 0 200 150">
+                                    <!-- الجذر 12 -->
+                                    <circle cx="100" cy="25" r="18" fill="#3b82f6"/>
+                                    <text x="100" y="30" font-size="14" font-weight="bold" fill="white" text-anchor="middle">12</text>
+                                    
+                                    <!-- فروع 2 و 6 -->
+                                    <line x1="85" y1="40" x2="50" y2="70" stroke="#94a3b8" stroke-width="2"/>
+                                    <line x1="115" y1="40" x2="150" y2="70" stroke="#94a3b8" stroke-width="2"/>
+
+                                    <circle cx="50" cy="80" r="15" fill="#10b981"/>
+                                    <text x="50" y="85" font-size="12" font-weight="bold" fill="white" text-anchor="middle">2</text>
+
+                                    <circle cx="150" cy="80" r="15" fill="#f59e0b"/>
+                                    <text x="150" y="85" font-size="12" font-weight="bold" fill="white" text-anchor="middle">6</text>
+
+                                    <!-- فروع 6 إلى 2 و 3 -->
+                                    <line x1="140" y1="93" x2="120" y2="120" stroke="#94a3b8" stroke-width="2"/>
+                                    <line x1="160" y1="93" x2="180" y2="120" stroke="#94a3b8" stroke-width="2"/>
+
+                                    <circle cx="120" cy="130" r="14" fill="#10b981"/>
+                                    <text x="120" y="134" font-size="11" font-weight="bold" fill="white" text-anchor="middle">2</text>
+
+                                    <circle cx="180" cy="130" r="14" fill="#10b981"/>
+                                    <text x="180" y="134" font-size="11" font-weight="bold" fill="white" text-anchor="middle">3</text>
+                                </svg>
+                                <p class="text-xs font-bold text-slate-700 mt-2">12 = 2² × 3</p>
+                            </div>
+
+                            <!-- شجرة 18 -->
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center">
+                                <h4 class="font-bold text-slate-800 mb-2">تحليل العدد 18</h4>
+                                <svg width="200" height="150" viewBox="0 0 200 150">
+                                    <circle cx="100" cy="25" r="18" fill="#3b82f6"/>
+                                    <text x="100" y="30" font-size="14" font-weight="bold" fill="white" text-anchor="middle">18</text>
+
+                                    <line x1="85" y1="40" x2="50" y2="70" stroke="#94a3b8" stroke-width="2"/>
+                                    <line x1="115" y1="40" x2="150" y2="70" stroke="#94a3b8" stroke-width="2"/>
+
+                                    <circle cx="50" cy="80" r="15" fill="#10b981"/>
+                                    <text x="50" y="85" font-size="12" font-weight="bold" fill="white" text-anchor="middle">2</text>
+
+                                    <circle cx="150" cy="80" r="15" fill="#f59e0b"/>
+                                    <text x="150" y="85" font-size="12" font-weight="bold" fill="white" text-anchor="middle">9</text>
+
+                                    <line x1="140" y1="93" x2="120" y2="120" stroke="#94a3b8" stroke-width="2"/>
+                                    <line x1="160" y1="93" x2="180" y2="120" stroke="#94a3b8" stroke-width="2"/>
+
+                                    <circle cx="120" cy="130" r="14" fill="#10b981"/>
+                                    <text x="120" y="134" font-size="11" font-weight="bold" fill="white" text-anchor="middle">3</text>
+
+                                    <circle cx="180" cy="130" r="14" fill="#10b981"/>
+                                    <text x="180" y="134" font-size="11" font-weight="bold" fill="white" text-anchor="middle">3</text>
+                                </svg>
+                                <p class="text-xs font-bold text-slate-700 mt-2">18 = 2 × 3²</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- القاسم والمضاعف -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 card-glow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-lg">2</span>
+                        <h3 class="text-xl font-bold text-slate-800">حساب (ق.م.أ) و (م.م.أ) للعددين 12 و 18</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl">
+                            <h4 class="font-bold text-emerald-800 text-sm mb-1">القاسم المشترك الأكبر (ق.م.أ):</h4>
+                            <p class="text-xs text-slate-700 leading-relaxed mb-2">العوامل المشتركة بأصغر أس:</p>
+                            <div class="bg-white p-2 rounded border border-emerald-200 font-bold text-center text-sm text-emerald-900">
+                                ق.م.أ = 2¹ × 3¹ = <span class="text-emerald-600 text-lg">6</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-indigo-50 border border-indigo-200 p-4 rounded-xl">
+                            <h4 class="font-bold text-indigo-800 text-sm mb-1">المضاعف المشترك الأصغر (م.م.أ):</h4>
+                            <p class="text-xs text-slate-700 leading-relaxed mb-2">جميع العوامل الأولية بأكبر أس:</p>
+                            <div class="bg-white p-2 rounded border border-indigo-200 font-bold text-center text-sm text-indigo-900">
+                                م.م.أ = 2² × 3² = 4 × 9 = <span class="text-indigo-600 text-lg">36</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== الوحدة 4 ==================== -->
+            <section id="u4-content" class="unit-section hidden space-y-6">
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 card-glow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-lg">1</span>
+                        <h3 class="text-xl font-bold text-slate-800">عائلة الأشكال الرباعية وخصائصها الهندسيّة</h3>
+                    </div>
+
+                    <!-- رسومات تفصيلية كاملة للوحدة 4 مع الأقطار والخصائص -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        
+                        <!-- متوازي الأضلاع -->
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center">
+                            <h4 class="font-bold text-sm text-slate-800 mb-2">متوازي الأضلاع</h4>
+                            <svg width="180" height="110" viewBox="0 0 180 110">
+                                <polygon points="30,90 140,90 160,20 50,20" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+                                <!-- أقطار -->
+                                <line x1="30" y1="90" x2="160" y2="20" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3"/>
+                                <line x1="140" y1="90" x2="50" y2="20" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3"/>
+                            </svg>
+                            <ul class="text-xs text-slate-600 mt-2 space-y-1 text-right w-full">
+                                <li>• كل ضلعين متقابلين متوازيان ومتساويان.</li>
+                                <li>• الأقطار ينصف كل منهما الآخر.</li>
+                            </ul>
+                        </div>
+
+                        <!-- المستطيل -->
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center">
+                            <h4 class="font-bold text-sm text-slate-800 mb-2">المستطيل</h4>
+                            <svg width="180" height="110" viewBox="0 0 180 110">
+                                <rect x="30" y="25" width="120" height="65" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+                                <rect x="30" y="75" width="10" height="10" fill="none" stroke="#ef4444" stroke-width="1.5"/>
+                            </svg>
+                            <ul class="text-xs text-slate-600 mt-2 space-y-1 text-right w-full">
+                                <li>• متوازي أضلاع زواياه الأربعة قائمة.</li>
+                                <li>• قطراه متساويان في الطول.</li>
+                            </ul>
+                        </div>
+
+                        <!-- المربع -->
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center">
+                            <h4 class="font-bold text-sm text-slate-800 mb-2">المربع</h4>
+                            <svg width="180" height="110" viewBox="0 0 180 110">
+                                <rect x="55" y="20" width="70" height="70" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+                                <line x1="55" y1="90" x2="125" y2="20" stroke="#ef4444" stroke-width="1.5"/>
+                                <line x1="125" y1="90" x2="55" y2="20" stroke="#ef4444" stroke-width="1.5"/>
+                            </svg>
+                            <ul class="text-xs text-slate-600 mt-2 space-y-1 text-right w-full">
+                                <li>• أضلاعه الأربعة متساوية وزواياه قائمة.</li>
+                                <li>• قطراه متعامدان ومتساويان.</li>
+                            </ul>
+                        </div>
+
+                        <!-- المعين -->
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center">
+                            <h4 class="font-bold text-sm text-slate-800 mb-2">المعين</h4>
+                            <svg width="180" height="110" viewBox="0 0 180 110">
+                                <polygon points="90,15 150,55 90,95 30,55" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+                                <line x1="90" y1="15" x2="90" y2="95" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="3"/>
+                                <line x1="30" y1="55" x2="150" y2="55" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="3"/>
+                            </svg>
+                            <ul class="text-xs text-slate-600 mt-2 space-y-1 text-right w-full">
+                                <li>• متوازي أضلاع جميع أضلاعه متساوية.</li>
+                                <li>• قطراه متعامدان وينصفان زواياه.</li>
+                            </ul>
+                        </div>
+
+                        <!-- شبه المنحرف -->
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center col-span-1 sm:col-span-2 lg:col-span-2">
+                            <h4 class="font-bold text-sm text-slate-800 mb-2">شبه المنحرف</h4>
+                            <svg width="220" height="110" viewBox="0 0 220 110">
+                                <polygon points="40,90 180,90 140,25 70,25" fill="#ffe4e6" stroke="#e11d48" stroke-width="2"/>
+                                <line x1="70" y1="25" x2="140" y2="25" stroke="#2563eb" stroke-width="3"/>
+                                <line x1="40" y1="90" x2="180" y2="90" stroke="#2563eb" stroke-width="3"/>
+                            </svg>
+                            <p class="text-xs text-slate-600 mt-2 text-center">
+                                شكل رباعي فيه <span class="font-bold text-blue-600">ضلعان فقط متوازيان</span> يسمى كل منهما قاعدة شبه المنحرف.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== الوحدة 5 ==================== -->
+            <section id="u5-content" class="unit-section hidden space-y-6">
+                <!-- 1. نموذج الكسور -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 card-glow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-center font-bold text-lg">1</span>
+                        <h3 class="text-xl font-bold text-slate-800">التمثيل البصري للكسور العادية والنسبة</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- دائرية تمثل 3/4 -->
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center">
+                            <h4 class="font-bold text-slate-800 text-sm mb-2">الكسر العادي (3 / 4)</h4>
+                            <svg width="120" height="120" viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="50" fill="#e2e8f0" stroke="#475569" stroke-width="2"/>
+                                <!-- 3 أرباع ملونة -->
+                                <path d="M 60 60 L 60 10 A 50 50 0 1 1 10 60 Z" fill="#ec4899"/>
+                                <line x1="60" y1="10" x2="60" y2="110" stroke="#white" stroke-width="2"/>
+                                <line x1="10" y1="60" x2="110" y2="60" stroke="#white" stroke-width="2"/>
+                            </svg>
+                            <p class="text-xs font-bold text-pink-600 mt-2">ثلاثة أجزاء مظللة من أصل 4 = 75% = 0.75</p>
+                        </div>
+
+                        <!-- الشريط النسبة -->
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center justify-center">
+                            <h4 class="font-bold text-slate-800 text-sm mb-2">مفهوم التناسب (2 : 3)</h4>
+                            <svg width="220" height="60" viewBox="0 0 220 60">
+                                <rect x="10" y="15" width="40" height="30" fill="#3b82f6" stroke="#1d4ed8" stroke-width="2"/>
+                                <rect x="50" y="15" width="40" height="30" fill="#3b82f6" stroke="#1d4ed8" stroke-width="2"/>
+                                <rect x="90" y="15" width="40" height="30" fill="#f97316" stroke="#c2410c" stroke-width="2"/>
+                                <rect x="130" y="15" width="40" height="30" fill="#f97316" stroke="#c2410c" stroke-width="2"/>
+                                <rect x="170" y="15" width="40" height="30" fill="#f97316" stroke="#c2410c" stroke-width="2"/>
+                            </svg>
+                            <p class="text-xs font-bold text-slate-700 mt-2">مقارنة جزءين أزرقين إلى 3 أجزاء برتقالية</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. النموذج ثلاثي الأبعاد للحجم -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 card-glow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-lg">2</span>
+                        <h3 class="text-xl font-bold text-slate-800">حجم متوازي المستطيلات والمكعب</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex justify-center">
+                            <svg width="200" height="140" viewBox="0 0 200 140">
+                                <!-- متوازي مستطيلات 3D -->
+                                <polygon points="20,50 120,50 120,110 20,110" fill="#93c5fd" stroke="#1d4ed8" stroke-width="2"/>
+                                <polygon points="120,50 170,20 170,80 120,110" fill="#60a5fa" stroke="#1d4ed8" stroke-width="2"/>
+                                <polygon points="20,50 70,20 170,20 120,50" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2"/>
+                                
+                                <text x="65" y="128" font-size="11" font-weight="bold" fill="#1e293b">الطول (ل) = 5سم</text>
+                                <text x="145" y="100" font-size="11" font-weight="bold" fill="#1e293b">العرض (ض) = 3سم</text>
+                                <text x="5" y="80" font-size="11" font-weight="bold" fill="#1e293b">الارتفاع (ع) = 4سم</text>
+                            </svg>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                                <h4 class="font-bold text-blue-900 text-sm">قانون حجم متوازي المستطيلات:</h4>
+                                <p class="text-sm font-bold text-blue-700 mt-1">الحجم = الطول × العرض × الارتفاع</p>
+                                <p class="text-xs text-slate-600 mt-1">الحجم = 5 × 3 × 4 = <span class="font-bold text-emerald-600 text-sm">60 سم³</span></p>
+                            </div>
+
+                            <div class="bg-amber-50 p-3 rounded-lg border border-amber-200">
+                                <h4 class="font-bold text-amber-900 text-sm">قانون حجم المكعب:</h4>
+                                <p class="text-sm font-bold text-amber-700 mt-1">الحجم = طول الضلع × نفسه × نفسه (ل³)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== قسم اللعبة والتحدي الشامل ==================== -->
+            <section id="game-content" class="unit-section hidden space-y-6">
+                <div class="bg-white rounded-3xl p-6 md:p-8 shadow-xl border border-amber-100 card-glow relative overflow-hidden">
+                    
+                    <!-- الهيدر الخاص باللعبة -->
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-4 pb-6 border-b border-slate-100">
+                        <div class="flex items-center gap-3">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-500 flex items-center justify-center text-white text-3xl shadow-lg">
+                                🏆
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-black text-slate-800">لعبة أبطال الرياضيات التفاعلية</h3>
+                                <p class="text-xs text-slate-500 font-semibold">تحدى نفسك في كافة أسئلة منهاج الصف السادس</p>
+                            </div>
+                        </div>
+
+                        <!-- العداد والنقاط -->
+                        <div class="flex items-center gap-4 bg-slate-50 px-5 py-3 rounded-2xl border border-slate-200">
+                            <div class="text-center">
+                                <span class="text-xs text-slate-400 font-bold block">النقاط الحالية</span>
+                                <span id="game-score" class="text-xl font-black text-amber-500">0</span>
+                            </div>
+                            <div class="h-8 w-px bg-slate-300"></div>
+                            <div class="text-center">
+                                <span class="text-xs text-slate-400 font-bold block">السؤال الحالي</span>
+                                <span id="game-progress" class="text-xl font-black text-blue-600">1 / 8</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- منطقة عرض السؤال -->
+                    <div class="py-6" id="quiz-container">
+                        <div class="mb-4">
+                            <span id="quiz-category" class="inline-block bg-blue-100 text-blue-700 text-xs font-extrabold px-3 py-1 rounded-full mb-2">الوحدة الأولى</span>
+                            <h4 id="quiz-question" class="text-lg md:text-xl font-extrabold text-slate-800 leading-relaxed">
+                                جار تحميل السؤال...
+                            </h4>
+                        </div>
+
+                        <!-- خيارات الإجابة -->
+                        <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                            <!-- سيتم توليد الأزرار عبر JS -->
+                        </div>
+
+                        <!-- التغذية الراجعة والحل الشارح -->
+                        <div id="quiz-feedback" class="hidden mt-6 p-4 rounded-xl border transition-all">
+                            <div class="flex items-start gap-3">
+                                <span id="feedback-icon" class="text-2xl"></span>
+                                <div>
+                                    <h5 id="feedback-title" class="font-bold text-sm mb-1"></h5>
+                                    <p id="feedback-explanation" class="text-xs leading-relaxed"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- زر السؤال التالي -->
+                        <div class="mt-6 flex justify-end">
+                            <button id="next-btn" onclick="nextQuestion()" class="hidden px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-extrabold text-sm shadow-md transition flex items-center gap-2">
+                                <span>السؤال التالي</span>
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- شاشة انتهاء اللعبة -->
+                    <div id="game-over-container" class="hidden py-12 text-center space-y-4">
+                        <div class="w-24 h-24 bg-amber-100 rounded-full flex items-center justify-center text-5xl mx-auto mb-2 shadow-inner">
+                            🎉
+                        </div>
+                        <h4 class="text-2xl font-black text-slate-800">ألف مبروك! أتممت التحدي بنجاح</h4>
+                        <p class="text-slate-600 text-sm">حصلت على نتيجة: <span id="final-score" class="font-black text-amber-600 text-lg">0</span> من أصل 80 نقطة</p>
+                        <button onclick="restartGame()" class="px-8 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-black text-sm shadow-lg transition">
+                            إعادة التحدي من جديد 🔄
+                        </button>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Modal النوافذ المنبثقة للتوضيح والحلول -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative transform transition-all">
+            <button onclick="closeModal()" class="absolute top-4 left-4 w-8 h-8 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center text-slate-500 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modal-content" class="space-y-4">
+                <!-- محتوى متغيّر -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript الأساسي للتطبيق واللعبة -->
+    <script>
+        // عناوين وشروحات الهيدر حسب الوحدة
+        const headerData = {
+            'u1': {
+                title: 'الوحدة الأولى: البيانات والأعداد الطبيعية',
+                desc: 'تعلم ترتيب العمليات، القوى، وتفسير البيانات الإحصائية والرسوم البيانية.'
+            },
+            'u2': {
+                title: 'الوحدة الثانية: الهندسة والزوايا',
+                desc: 'استكشاف أنواع الزوايا الأربعة، والعلاقة بين المستقيمات المتوازية والمتعامدة.'
+            },
+            'u3': {
+                title: 'الوحدة الثالثة: نظرية الأعداد والقوى',
+                desc: 'حساب القاسم المشترك الأكبر (ق.م.أ) والمضاعف المشترك الأصغر (م.م.أ) عبر التحليل الشجري.'
+            },
+            'u4': {
+                title: 'الوحدة الرابعة: الأشكال الرباعية',
+                desc: 'دراسة خصائص متوازي الأضلاع، المستطيل، المربع، المعين، وشبه المنحرف.'
+            },
+            'u5': {
+                title: 'الوحدة الخامسة: الكسور العادية والعشرية والحجوم',
+                desc: 'التعرف على النسبة والكسور وحساب حجم متوازي المستطيلات والمكعب.'
+            },
+            'game': {
+                title: 'لعبة التحدي الرياضي الشاملة 🏆',
+                desc: 'اختبر مهاراتك الإدراكية والحسابية في جميع دروس المنهاج واجمع أقصى النقاط!'
+            }
+        };
+
+        // تغيير التبويب والوحدات
+        function switchTab(unitId) {
+            // إخفاء كل السكاشن
+            document.querySelectorAll('.unit-section').forEach(sec => sec.classList.add('hidden'));
+            
+            // إظهار السكشن المختار
+            document.getElementById(unitId + '-content').classList.remove('hidden');
+
+            // تحديث الأزرار في القائمة الجانبية
+            document.querySelectorAll('.unit-nav-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
+                btn.classList.add('text-slate-300', 'hover:bg-slate-800');
+            });
+
+            const activeBtn = document.getElementById('nav-' + unitId);
+            if (activeBtn && unitId !== 'game') {
+                activeBtn.classList.add('bg-blue-600', 'text-white', 'shadow-md');
+                activeBtn.classList.remove('text-slate-300', 'hover:bg-slate-800');
+            }
+
+            // تحديث نصوص الهيدر
+            if(headerData[unitId]) {
+                document.getElementById('header-title').innerText = headerData[unitId].title;
+                document.getElementById('header-desc').innerText = headerData[unitId].desc;
+            }
+
+            // إذا اخترنا اللعبة نبدأها تلقائياً إذا لم تبدأ
+            if(unitId === 'game') {
+                initGame();
+            }
+        }
+
+        // النوافذ المنبثقة Modal
+        function openModal(type) {
+            const backdrop = document.getElementById('modal-backdrop');
+            const content = document.getElementById('modal-content');
+
+            if(type === 'm-u1') {
+                content.innerHTML = `
+                    <div class="flex items-center gap-3 text-blue-600 mb-2">
+                        <i class="fa-solid fa-lightbulb text-2xl"></i>
+                        <h3 class="font-bold text-lg">تمرين إضافي محلول: ترتيب العمليات</h3>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 dir-ltr text-right">أوجد قيمة التعبير: 20 - 2 × (3² + 1)</p>
+                    <div class="bg-slate-50 p-4 rounded-xl text-xs space-y-2 border border-slate-200">
+                        <p class="font-bold text-blue-600">خطوات الحل التفصيلية:</p>
+                        <p>1. القوة داخل القوس أولاً: 3² = 9</p>
+                        <p>2. ما داخل القوس: (9 + 1) = 10</p>
+                        <p>3. إجراء عملية الضرب: 2 × 10 = 20</p>
+                        <p>4. الطرح النهائي: 20 - 20 = <span class="font-black text-emerald-600 text-sm">0</span></p>
+                    </div>
+                `;
+            }
+            backdrop.classList.remove('hidden');
+        }
+
+        function openHelpModal() {
+            const backdrop = document.getElementById('modal-backdrop');
+            const content = document.getElementById('modal-content');
+
+            content.innerHTML = `
+                <div class="flex items-center gap-3 text-blue-600 mb-2">
+                    <i class="fa-solid fa-circle-info text-2xl"></i>
+                    <h3 class="font-bold text-lg">دليل استخدام التطبيق التعليمي</h3>
+                </div>
+                <div class="text-xs text-slate-600 leading-relaxed space-y-2">
+                    <p>• استخدم القائمة الجانبية للتنقل بين كافة وحدات المنهاج الخمسة.</p>
+                    <p>• تحتوي كل وحدة على شرح مبسط مع رسومات هندسية SVG واضحة تمثل المفاهيم.</p>
+                    <p>• يمكنك الضغط على قسم <strong>"لعبة التحدي الشاملة"</strong> لاختبار معلوماتك وتجميع النقاط.</p>
+                </div>
+            `;
+            backdrop.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-backdrop').classList.add('hidden');
+        }
+
+        // ==================== محرك لعبة الأسئلة والتحدي ==================== //
+        const quizQuestions = [
+            {
+                unit: 'الوحدة 1',
+                question: 'ما هو حاصل ناتج العملية التالية مع مراعاة ترتيب العمليات: 5 + 3 × 2² ؟',
+                options: ['32', '17', '26', '16'],
+                correct: 1, // 17 (3 * 4 = 12 + 5 = 17)
+                explanation: 'نحسب القوة أولاً: 2² = 4، ثم نضرب: 3 × 4 = 12، وأخيراً نجمع: 5 + 12 = 17.'
+            },
+            {
+                unit: 'الوحدة 2',
+                question: 'زاوية قياسها 135° تصنف على أنها زاوية:',
+                options: ['حادة', 'قائمة', 'منفرجة', 'مستقيمة'],
+                correct: 2,
+                explanation: 'الزاوية المنفرجة هي الزاوية التي تكون أكبر من 90° وأقل من 180°.'
+            },
+            {
+                unit: 'الوحدة 2',
+                question: 'المستقيمان اللذان يتقاطعان ويشكلان زاوية قياسها 90° هما مستقيمان:',
+                options: ['متوازيان', 'متعامدان', 'متطابقان', 'متباعدان'],
+                correct: 1,
+                explanation: 'التعامد بين مستقيمين يُنتج زاوية قائمة مقاسها 90 درجة دائماً.'
+            },
+            {
+                unit: 'الوحدة 3',
+                question: 'ما هو القاسم المشترك الأكبر (ق.م.أ) للعددين 12 و 18 ؟',
+                options: ['3', '6', '12', '36'],
+                correct: 1,
+                explanation: 'العوامل الأولية المشتركة بأصغر أس للعددين هي 2¹ × 3¹ = 6.'
+            },
+            {
+                unit: 'الوحدة 3',
+                question: 'ما هو المضاعف المشترك الأصغر (م.م.أ) للعددين 12 و 18 ؟',
+                options: ['6', '24', '36', '72'],
+                correct: 2,
+                explanation: 'نأخذ العوامل الأولية بأكبر أس: 2² × 3² = 4 × 9 = 36.'
+            },
+            {
+                unit: 'الوحدة 4',
+                question: 'الشكل الرباعي الذي فيه ضلعان فقط متوازيان يسمى:',
+                options: ['مربع', 'متوازي أضلاع', 'شبه منحرف', 'معين'],
+                correct: 2,
+                explanation: 'شبه المنحرف يحتوي على ضلعين متوازيين فقط يسمى كل منهما قاعدة.'
+            },
+            {
+                unit: 'الوحدة 5',
+                question: 'الكسر العادي (3 / 4) يساوي في الصورة العشرية والنسبة المئوية:',
+                options: ['0.50 (50%)', '0.75 (75%)', '0.25 (25%)', '0.80 (80%)'],
+                correct: 1,
+                explanation: '3 قسمة 4 تحول إلى 0.75 وتكافئ النسبة المئوية 75%.'
+            },
+            {
+                unit: 'الوحدة 5',
+                question: 'متوازي مستطيلات أبعاده: الطول = 4سم، العرض = 3سم، الارتفاع = 2سم. حسابه لحجمه هو:',
+                options: ['9 سم³', '14 سم³', '24 سم³', '48 سم³'],
+                correct: 2,
+                explanation: 'قانون الحجم = الطول × العرض × الارتفاع = 4 × 3 × 2 = 24 سم³.'
+            }
+        ];
+
+        let currentQuestionIdx = 0;
+        let score = 0;
+        let answered = false;
+
+        function initGame() {
+            currentQuestionIdx = 0;
+            score = 0;
+            answered = false;
+            document.getElementById('game-score').innerText = score;
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('game-over-container').classList.add('hidden');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            answered = false;
+            const q = quizQuestions[currentQuestionIdx];
+
+            document.getElementById('game-progress').innerText = `${currentQuestionIdx + 1} / ${quizQuestions.length}`;
+            document.getElementById('quiz-category').innerText = q.unit;
+            document.getElementById('quiz-question').innerText = q.question;
+
+            // إخفاء الفيدباك وزر التالي
+            document.getElementById('quiz-feedback').classList.add('hidden');
+            document.getElementById('next-btn').classList.add('hidden');
+
+            // توليد الخيارات
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full p-4 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50 text-right font-bold text-slate-700 transition flex items-center justify-between group";
+                btn.onclick = () => checkAnswer(idx);
+                btn.innerHTML = `
+                    <span>${opt}</span>
+                    <span class="w-6 h-6 rounded-full border border-slate-300 group-hover:border-blue-500 flex items-center justify-center text-xs text-transparent group-hover:text-blue-500">✓</span>
+                `;
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIdx) {
+            if(answered) return;
+            answered = true;
+
+            const q = quizQuestions[currentQuestionIdx];
+            const feedbackEl = document.getElementById('quiz-feedback');
+            const iconEl = document.getElementById('feedback-icon');
+            const titleEl = document.getElementById('feedback-title');
+            const expEl = document.getElementById('feedback-explanation');
+            const optionsBtns = document.getElementById('quiz-options').children;
+
+            if(selectedIdx === q.correct) {
+                score += 10;
+                document.getElementById('game-score').innerText = score;
+
+                feedbackEl.className = "mt-6 p-4 rounded-xl border bg-emerald-50 border-emerald-200 text-emerald-900";
+                iconEl.innerText = "✅";
+                titleEl.innerText = "إجابة صحيحة! أحسنت صنعاً";
+                optionsBtns[selectedIdx].classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900');
+            } else {
+                feedbackEl.className = "mt-6 p-4 rounded-xl border bg-rose-50 border-rose-200 text-rose-900";
+                iconEl.innerText = "❌";
+                titleEl.innerText = "إجابة خاطئة! حاول التركيز أكثر";
+                optionsBtns[selectedIdx].classList.add('bg-rose-100', 'border-rose-500', 'text-rose-900');
+                optionsBtns[q.correct].classList.add('bg-emerald-100', 'border-emerald-500');
+            }
+
+            expEl.innerText = q.explanation;
+            feedbackEl.classList.remove('hidden');
+            document.getElementById('next-btn').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestionIdx++;
+            if(currentQuestionIdx < quizQuestions.length) {
+                loadQuestion();
+            } else {
+                // إظهار شاشة النهاية
+                document.getElementById('quiz-container').classList.add('hidden');
+                document.getElementById('game-over-container').classList.remove('hidden');
+                document.getElementById('final-score').innerText = score;
+            }
+        }
+
+        function restartGame() {
+            initGame();
+        }
+    </script>
+</body>
+</html>

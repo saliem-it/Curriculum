@@ -1,0 +1,182 @@
+﻿/* ===================================================
+تنسيقات التطبيق المخصصة مع الواجهة الجانبية المشرقة
+Assets/css/style.css
+=================================================== */
+
+:root {
+    --primary-color: #2b5c8f;
+    --sidebar-width: 280px;
+    --bg-light: #f4f7f6;
+    --card-bg: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-light);
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* القائمة الجانبية الثابتة */
+.app-sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px 12px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow-y: auto;
+    box-shadow: -3px 0 10px rgba(0,0,0,0.15);
+    z-index: 1000;
+}
+
+.sidebar-header {
+    text-align: center;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(255,255,255,0.15);
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .sidebar-nav li {
+        margin-bottom: 8px;
+    }
+
+.nav-item-link {
+    color: #ecf0f1;
+    text-decoration: none;
+    display: block;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+}
+
+    .nav-item-link:hover, .nav-item-link.active {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        font-weight: bold;
+    }
+
+.quiz-btn-link {
+    background-color: rgba(241, 196, 15, 0.2);
+    border: 1px dashed #f1c40f;
+}
+
+/* المحتوى الرئيسي للتطبيق */
+.app-main-content {
+    margin-right: var(--sidebar-width);
+    flex: 1;
+    padding: 30px;
+    max-width: 1100px;
+}
+
+.app-hero-header {
+    background: linear-gradient(135deg, #2b5c8f 0%, #3498db 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.alert-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 0.85rem;
+}
+
+/* كروت ووحدات المنهاج */
+.unit-card-view {
+    display: none;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+    .unit-card-view.active {
+        display: block;
+    }
+
+.unit-card-header {
+    padding: 18px 25px;
+}
+
+.unit-card-body {
+    padding: 25px;
+}
+
+.lesson-block {
+    margin-bottom: 25px;
+}
+
+.lesson-title {
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+}
+
+.example-box-custom {
+    background-color: #eef7ee;
+    border-right: 4px solid #27ae60;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+/* تأثير الرسومات القابلة للنقر */
+.clickable-svg {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 2px stroke transparent;
+}
+
+    .clickable-svg:hover {
+        transform: translateY(-3px) scale(1.01);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1) !important;
+        border-color: var(--primary-color) !important;
+    }
+
+.click-hint-tag {
+    font-size: 0.82rem;
+    color: var(--primary-color);
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+.max-w-600 {
+    max-width: 600px;
+}
+
+/* تحسينات الاستجابة للأجهزة المحمولة */
+@media (max-width: 991px) {
+    body {
+        flex-direction: column;
+    }
+
+    .app-sidebar {
+        width: 100%;
+        position: relative;
+        box-shadow: none;
+    }
+
+    .app-main-content {
+        margin-right: 0;
+        padding: 15px;
+    }
+}
