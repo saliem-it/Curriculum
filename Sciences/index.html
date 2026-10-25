@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موسوعة العلوم التفاعلية - الصف السادس الابتدائي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f0fdfa;
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --secondary: #0d9488;
+            --accent: #f59e0b;
+            --accent-pink: #ec4899;
+            --accent-purple: #8b5cf6;
+            --success: #10b981;
+            --danger: #ef4444;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #e2e8f0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* رأس الصفحة مشرق وجذاب */
+        header {
+            background: linear-gradient(135deg, #0ea5e9, #0d9488 50%, #6366f1 100%);
+            color: white;
+            padding: 1.8rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.25);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            margin-bottom: 0.3rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        /* الحاوية الأساسية */
+        .main-container {
+            display: flex;
+            flex: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 1.5rem auto;
+            padding: 0 1.2rem;
+            gap: 1.5rem;
+        }
+
+        /* القائمة الجانبية للتنقل */
+        aside {
+            width: 340px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 2px solid #e0f2fe;
+            height: calc(100vh - 160px);
+            position: sticky;
+            top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            padding-left: 2.5rem;
+            border: 2px solid #bae6fd;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+        }
+
+        .lessons-menu {
+            overflow-y: auto;
+            flex: 1;
+            padding-left: 0.3rem;
+        }
+
+        .lessons-menu::-webkit-scrollbar {
+            width: 6px;
+        }
+        .lessons-menu::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        .unit-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .unit-badge {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            margin-bottom: 0.4rem;
+            background: #e0f2fe;
+            color: var(--primary-dark);
+        }
+
+        .lesson-btn {
+            width: 100%;
+            text-align: right;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.4rem;
+            background: #f8fafc;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .lesson-btn:hover {
+            background: #f0f9ff;
+            border-color: #7dd3fc;
+            transform: translateX(-3px);
+        }
+
+        .lesson-btn.active {
+            background: linear-gradient(135deg, #0284c7, #0d9488);
+            color: white;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+        }
+
+        /* نافذة العرض الرئيسية للدرس */
+        main {
+            flex: 1;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.2rem;
+            box-shadow: var(--shadow);
+            border: 2px solid #e0f2fe;
+            overflow: hidden;
+        }
+
+        /* لوحة التحكم الصوتي المتقدمة */
+        .audio-bar {
+            background: linear-gradient(135deg, #f0fdf4, #ecfeff);
+            border: 2px solid #a7f3d0;
+            padding: 0.8rem 1.4rem;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.8rem;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .audio-status {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #065f46;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .audio-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-audio {
+            background: white;
+            border: 1px solid #cbd5e1;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.2s;
+        }
+
+        .btn-audio:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
+        }
+
+        .btn-audio.play { color: var(--success); border-color: #6ee7b7; }
+        .btn-audio.pause { color: var(--accent); border-color: #fde68a; }
+        .btn-audio.stop { color: var(--danger); border-color: #fca5a5; }
+
+        /* ترويسة الدرس */
+        .lesson-header {
+            margin-bottom: 1.8rem;
+        }
+
+        .lesson-header h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        /* الحاوية المخصصة للصور والشرح */
+        .lesson-hero {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 1.8rem;
+            align-items: start;
+            margin-bottom: 2rem;
+            background: #f8fafc;
+            padding: 1.4rem;
+            border-radius: 18px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .hero-intro {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        .image-wrapper {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #e2e8f0;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-caption {
+            background: #0f172a;
+            color: #f8fafc;
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 0.4rem 0.6rem;
+            font-weight: 600;
+        }
+
+        /* بطاقة بديلة ذكية في حال لم توجد الصورة */
+        .fallback-placeholder {
+            padding: 1.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, #dbeafe, #e0e7ff);
+            color: #1e3a8a;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .fallback-placeholder span {
+            font-size: 2rem;
+        }
+
+        /* أقسام الشرح المتعمق */
+        .deep-section {
+            margin-bottom: 2rem;
+        }
+
+        .deep-section h3 {
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-right: 4px solid var(--primary);
+            padding-right: 0.6rem;
+        }
+
+        .content-box {
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: #1e293b;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 1.4rem;
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            margin-bottom: 1rem;
+        }
+
+        /* شبكة الكروت التوضيحية */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin: 1.2rem 0;
+        }
+
+        .grid-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            transition: all 0.2s;
+        }
+
+        .grid-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .grid-card h4 {
+            color: var(--secondary);
+            margin-bottom: 0.4rem;
+            font-size: 1rem;
+        }
+
+        /* صناديق التجارب والمعلومات الإثرائية */
+        .fun-box {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border: 2px solid #fde68a;
+            padding: 1.2rem;
+            border-radius: 14px;
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .fun-box.experiment {
+            background: linear-gradient(135deg, #f3e8ff, #ede9fe);
+            border-color: #ddd6fe;
+        }
+
+        .fun-icon {
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .fun-title {
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: #92400e;
+        }
+
+        .fun-box.experiment .fun-title {
+            color: #6b21a8;
+        }
+
+        /* بنك المصطلحات */
+        .glossary-bar {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            margin: 1.2rem 0;
+        }
+
+        .glossary-bar strong {
+            color: #166534;
+        }
+
+        /* الاختبار التفاعلي */
+        .quiz-card {
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            border: 2px dashed #94a3b8;
+            padding: 1.8rem;
+            border-radius: 16px;
+            margin-top: 2rem;
+        }
+
+        .quiz-card h3 {
+            color: #0f172a;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin: 1rem 0;
+        }
+
+        .option-button {
+            text-align: right;
+            padding: 0.85rem 1.2rem;
+            background: white;
+            border: 2px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-button:hover:not(:disabled) {
+            background: #e0f2fe;
+            border-color: var(--primary);
+        }
+
+        .option-button.correct {
+            background: #dcfce7 !important;
+            border-color: var(--success) !important;
+            color: #15803d;
+        }
+
+        .option-button.wrong {
+            background: #fee2e2 !important;
+            border-color: var(--danger) !important;
+            color: #b91c1c;
+        }
+
+        .feedback-message {
+            padding: 1rem;
+            border-radius: 10px;
+            font-weight: 700;
+            margin-top: 1rem;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.2rem;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* التجاوب مع مختلف الشاشات */
+        @media (max-width: 992px) {
+            .main-container {
+                flex-direction: column;
+            }
+            aside {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+            }
+            .lesson-hero {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🔬 منصة العلوم التفاعلية الشاملة</h1>
+        <p>المنهاج المطور لكتاب العلوم العامة | الجمهورية العربية السورية - الصف السادس الابتدائي</p>
+    </header>
+
+    <div class="main-container">
+        <!-- القائمة الجانبية -->
+        <aside>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 ابحث في دروس المنهاج..." onkeyup="filterLessons()">
+            </div>
+            <div class="lessons-menu" id="lessonsMenu">
+                <!-- يتم توليد الدروس بواسطة JavaScript -->
+            </div>
+        </aside>
+
+        <!-- نافذة الشرح الممتدة -->
+        <main>
+            <!-- شريط التحكم الصوتي المتقدم -->
+            <div class="audio-bar">
+                <div class="audio-status" id="audioStatus">
+                    <span>📢</span> الشرح الصوتي جاهز للاستماع
+                </div>
+                <div class="audio-controls">
+                    <button class="btn-audio play" onclick="playVoice()">▶️ استمع</button>
+                    <button class="btn-audio pause" onclick="pauseVoice()">⏸️ إيقاف مؤقت</button>
+                    <button class="btn-audio stop" onclick="stopVoice()">⏹️ إيقاف</button>
+                </div>
+            </div>
+
+            <!-- معلومات الدرس -->
+            <div class="lesson-header">
+                <span class="unit-badge" id="currentUnitTag">الوحدة الدراسية</span>
+                <h2 id="currentLessonTitle">عنوان الدرس</h2>
+            </div>
+
+            <!-- قسم المقدمة والصورة التوضيحية -->
+            <div class="lesson-hero">
+                <div class="hero-intro" id="lessonIntro"></div>
+                <div class="image-wrapper" id="imageWrapper">
+                    <!-- الصورة التوضيحية مع مسار images/ وفحص الخطأ -->
+                </div>
+            </div>
+
+            <!-- الشرح المفصل -->
+            <div class="deep-section">
+                <h3>📖 الشرح المعمق والتفاصيل العلمية</h3>
+                <div class="content-box" id="lessonDeepText"></div>
+            </div>
+
+            <!-- بطاقات المفاهيم الفرعية -->
+            <div class="deep-section">
+                <h3>🧩 الركائز الأساسية والمكونات</h3>
+                <div class="grid-cards" id="conceptsGrid"></div>
+            </div>
+
+            <!-- صندوق النشاط والتجربة المنزلية -->
+            <div class="fun-box experiment" id="experimentBox">
+                <div class="fun-icon">🧪</div>
+                <div>
+                    <div class="fun-title">تجربة استكشافية ممتعة</div>
+                    <div id="experimentText"></div>
+                </div>
+            </div>
+
+            <!-- صندوق هل تعلم -->
+            <div class="fun-box" id="didYouKnowBox">
+                <div class="fun-icon">💡</div>
+                <div>
+                    <div class="fun-title">هل تعلم؟</div>
+                    <div id="didYouKnowText"></div>
+                </div>
+            </div>
+
+            <!-- المفردات العلمية -->
+            <div class="glossary-bar" id="glossaryBox"></div>
+
+            <!-- الاختبار التفاعلي لكل درس -->
+            <div class="quiz-card">
+                <h3>🎯 اختبر فهمك للدرس فورياً</h3>
+                <p id="quizQuestion" style="font-weight: 700; margin-bottom: 0.5rem;"></p>
+                <div class="quiz-options" id="quizOptions"></div>
+                <div class="feedback-message" id="quizFeedback"></div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        كافة حقوق المحتوى مطابقة لمنهاج وزارة التربية في الجمهورية العربية السورية | تصميم تقني تفاعلي حديث
+    </footer>
+
+    <script>
+        // قاعدة البيانات الشاملة لكامل وحدات ودروس منهاج الصف السادس السوري
+        const fullCurriculum = [
+            // الوحدة الأولى
+            {
+                id: "unit1_lesson1",
+                unit: "الوحدة 1: الخلية وتنوع الحياة",
+                title: "الخلية وحدة بناء الكائنات الحية",
+                imageFile: "images/cell_structure.jpg",
+                imageDesc: "مقارنة دقيقة بين الخلية النباتية والخلية الحيوانية",
+                intro: "الخلية هي أصغر وحدة بنائية ووظيفية في جسم الكائن الحي. سواء كان الكائن وحيد الخلية مثل البراميسيوم، أو عديد الخلايا كالإنسان والنبات، فالخلية تقوم بجميع مظاهر الحياة من تغذية وتنفس وتكاثر.",
+                deepExplanation: `
+                    تتشارك الخلايا الحية في ثلاثة أجزاء رئيسية:
+                    1. <b>الغشاء السيتوبلازمي:</b> غشاء رقيق ومرن يحيط بالخلية، وظيفته حمايتها وضبط حركة المواد الداخلة والخارجة منها بنفاذية اختيارية.
+                    2. <b>السيتوبلازم (الهيولى):</b> مادة شبه سائلة تملأ الخلية، تسبح فيها العضيات الخلوية الحيوية، وتحدث فيها معظم الأنشطة الاستقلابية.
+                    3. <b>النواة:</b> غرفة العمليات الخلوية؛ تحتوي المادة الوراثية (DNA) المسؤولة عن نقل الصفات وتنظيم انقسام الخلية.
+                    <br><br>
+                    <b>الفروق الجوهرية:</b>
+                    الخلية النباتية تحتوي على <b>جدار خلوي سيليلوزي صلب</b> يمنحها شكلاً هندسياً ثابتاً، و<b>صانعات خضراء (بلاستيدات)</b> لصنع السكر بواسطة التركيب الضوئي، وفجوة عصارية كبيرة. بينما تفتقر الخلية الحيوانية للجدار والصانعات الخضراء، وتحتوي بدلاً منها على <b>جسيم مركزي (سنتريول)</b> يساعد في انقسام الخلية.
+                `,
+                concepts: [
+                    { title: "الجدار الخلوي", desc: "دعامة سيليلوزية خارجية قوية توجد في الخلايا النباتية لحمايتها." },
+                    { title: "الصانعات الخضراء", desc: "مصانع الغذاء التي تحوي مادة اليخضور لامتصاص الضوء." },
+                    { title: "الفجوة العصارية", desc: "مستودع تخزين الماء والأملاح والمواد الغذائية داخل النبات." }
+                ],
+                experiment: "ضع قشرة رقيقة جداً من طبقة بصل داخل قطرة ماء على شريحة زجاجية، أضف قطرة يود، وافحصها بالمجهر لرؤية الخلايا النباتية وجدرانها وأنوية خلاياها بوضوح تام.",
+                didYouKnow: "يحتوي جسم الإنسان البالغ على ما يزيد عن 37 تريليون خلية تعمل جميعها في انسجام مذهل!",
+                glossary: "المجهر المركب، السيتوبلازم، الغشاء الخلوي، الصانعات الخضراء.",
+                quiz: {
+                    q: "ما هو التركيب الذي يمنح الخلية النباتية شكلاً منتظماً ودعامة قوية ولا يوجد في الخلية الحيوانية؟",
+                    options: ["الغشاء السيتوبلازمي", "الجدار الخلوي السيليلوزي", "النواة", "الميتوكوندريا"],
+                    correct: 1,
+                    feedback: "ممتاز! الجدار الخلوي السيليلوزي هو الدرع القوي الذي يميز الخلية النباتية."
+                }
+            },
+            {
+                id: "unit1_lesson2",
+                unit: "الوحدة 1: الخلية وتنوع الحياة",
+                title: "تصنيف الكائنات الحية والممالك الخمس",
+                imageFile: "images/five_kingdoms.jpg",
+                imageDesc: "مخطط تصنيف الكائنات الحية إلى خمس ممالك",
+                intro: "لتسهيل دراسة ملايين الكائنات الحية على كوكب الأرض، صنفها علماء الأحياء ضمن خمس ممالك رئيسية اعتماداً على صفات الخلية وطريقة التغذية والتركيب العضوي.",
+                deepExplanation: `
+                    الممالك الخمس المعتمدة في المنهاج هي:
+                    1. <b>مملكة البدائيات (الجراثيم):</b> وحيدة خلية، لا تحاط مادتها الوراثية بغلاف نووي، بل تسبح حرة في الهيولى.
+                    2. <b>مملكة الطلائعيات:</b> كائنات حية مجهرية وحيدة أو عديدة الخلايا حقيقية النواة مثل الأميبا، البراميسيوم، وطحلب الكلاميدوموناس.
+                    3. <b>مملكة الفطريات:</b> كائنات غير ذاتية التغذية (لا تصنع غذاءها بنفسها)، تمتص الغذاء من بقايا الكائنات الحية مثل فطر عيش الغراب وفطر البنسيليوم وخميرة الخبز.
+                    4. <b>مملكة النباتات:</b> كائنات ذاتية التغذية خضراء تصنع غذاءها بنفسها بالتركيب الضوئي.
+                    5. <b>مملكة الحيوانات:</b> كائنات عديدة الخلايا، غير ذاتية التغذية، قادرة على الحركة والانتقال من مكان لآخر.
+                `,
+                concepts: [
+                    { title: "البدائيات", desc: "خلايا بدون غلاف نووي يحيط بمادتها الوراثية مثل البكتيريا." },
+                    { title: "حقيقيات النواة", desc: "كائنات تحتوي خلاياها على نواة حقيقية محاطة بغشاء نووي." },
+                    { title: "الرميات", desc: "كائنات تتغذى على المواد العضوية المتحللة كالفطريات." }
+                ],
+                experiment: "ضع قطعة خبز مبللة قليلاً بالماء في كيس بلاستيكي مغلق بمكان دافئ ومظلم لعدة أيام، ولاحظ نمو عفن الخبز (فطريات) تحت العدسة المكبرة.",
+                didYouKnow: "فطر البنسيليوم الذي ينمو على الحمضيات المتعفنة استخرج منه العالم ألكسندر فلمنج أول مضاد حيوي أنقذ حياة الملايين!",
+                glossary: "البدائيات، الفطريات، الرميات، التغذية الذاتية.",
+                quiz: {
+                    q: "فطر عيش الغراب يصنف ضمن مملكة:",
+                    options: ["النباتات", "الطلائعيات", "الفطريات", "البدائيات"],
+                    correct: 2,
+                    feedback: "صحيح! الفطريات مملكة مستقلة لأنها لا تحتوي على يخضور ولا تصنع غذاءها بنفسها."
+                }
+            },
+
+            // الوحدة الثانية
+            {
+                id: "unit2_lesson1",
+                unit: "الوحدة 2: التغذية وأجهزة الجسم",
+                title: "التركيب الضوئي وصنع الغذاء عند النبات",
+                imageFile: "images/photosynthesis.jpg",
+                imageDesc: "عملية التركيب الضوئي وتبادل الغازات في ورقة النبات",
+                intro: "النباتات هي الرئة الخضراء للأرض ومصدر الطاقة لجميع الكائنات. بفضل عملية التركيب الضوئي، يتحول ضوء الشمس إلى طاقة كيميائية تُخزّن في السكريات.",
+                deepExplanation: `
+                    <b>شروط التركيب الضوئي:</b>
+                    - وجود <b>اليخضور (الكلوروفيل)</b> في الصانعات الخضراء.
+                    - امتصاص <b>ضوء الشمس</b>.
+                    - امتصاص <b>الماء والأملاح المعدنية</b> من التربة عبر الجذور (النسغ الناقص).
+                    - امتصاص <b>غاز ثنائي أكسيد الكربون (CO2)</b> من الهواء الجوي عبر مسامات دقيقة في الأوراق تدعى <b>الثغور</b>.
+                    <br><br>
+                    <b>نواتج العملية:</b>
+                    ينتج النبات <b>سكر الغلوكوز</b> (الذي يذوب في الماء ليشكل النسغ الكامل المغذي لجميع أجزاء النبات)، ويطلق غاز <b>الأكسجين (O2)</b> الضروري لتنفس الكائنات الحية.
+                `,
+                concepts: [
+                    { title: "النسغ الناقص", desc: "الماء والأملاح الممتصة من التربة، تصعد في الأوعية الخشبية نحو الأوراق." },
+                    { title: "النسغ الكامل", desc: "الغذاء المصنوع في الأوراق، ينتقل في الأوعية اللحائية لجميع أجزاء النبتة." },
+                    { title: "الثغور", desc: "فتحات دقيقة على سطح الورقة تتحكم في تبادل الغازات وعملية النتح." }
+                ],
+                experiment: "ضع نبات أيلوديا المائي في كأس ماء مقلوب فوقه قمع ومخبر زجاجي تحت ضوء الشمس المباشر، ستلاحظ تصاعد فقاعات من غاز الأكسجين دلالة على التركيب الضوئي.",
+                didYouKnow: "الغابات الاستوائية تنتج أكثر من 20% من مجمل الأكسجين الموجود في الغلاف الجوي للأرض!",
+                glossary: "اليخضور، النسغ الناقص، النسغ الكامل، الأوعية الخشبية واللحائية.",
+                quiz: {
+                    q: "ما هو الغاز الذي تطلقه النباتات الخضراء في الجو كناتج لعملية التركيب الضوئي؟",
+                    options: ["الأكسجين", "النيتروجين", "ثنائي أكسيد الكربون", "الهيدروجين"],
+                    correct: 0,
+                    feedback: "أحسنت! تطلق النباتات الأكسجين الذي نتنفسه وتستهلك غاز ثنائي أكسيد الكربون."
+                }
+            },
+            {
+                id: "unit2_lesson2",
+                unit: "الوحدة 2: التغذية وأجهزة الجسم",
+                title: "جهاز الهضم والدوران عند الإنسان",
+                imageFile: "images/digestive_circulatory.jpg",
+                imageDesc: "أعضاء جهاز الهضم والقلب والأوعية الدموية",
+                intro: "يعمل جهازا الهضم والدوران معاً كفريق متكامل؛ الأول يحلل الأغذية المعقدة إلى مغذيات بسيطة، والثاني يتولى مهمة شحنها ونقلها إلى كافة خلايا الجسم.",
+                deepExplanation: `
+                    <b>1. الجهاز الهضمي:</b>
+                    يبدأ من <b>الفم</b> (تقطيع بالأسنان ومزج باللعاب)، ثم <b>البلعوم</b> و<b>المريء</b> ليصل الغذاء إلى <b>المعدة</b> التي تفرز العصارات الهاضمة وحمض الهيدروكلوريك.
+                    ينتقل الطعام بعد ذلك إلى <b>الأمعاء الدقيقة</b> حيث يكتمل الهضم بمساعدة إفرازات الكبد (الصفراء) والبنكرياس، وتحدث أهم خطوة: <b>الامتصاص المعوي</b> عبر الزغابات المعوية إلى الدم.
+                    <br><br>
+                    <b>2. جهاز الدوران:</b>
+                    يتكون من <b>القلب</b> (عضلة مضخية مكونة من أذينتين وبطينين) و<b>الأوعية الدموية</b> (شرايين تنقل الدم المؤكسج، أوردة تعيد الدم، وشعيرات دقيقة)، و<b>الدم</b> الذي يتكون من كريات حمر (ناقلة للأكسجين)، كريات بيض (دفاعية)، صفائح دموية (تخثر الدم)، والمصورة (البلازما).
+                `,
+                concepts: [
+                    { title: "الزغابات المعوية", desc: "بروزات مجهرية تبطن الأمعاء تمتص الغذاء المهضوم وتنظمه إلى تيار الدم." },
+                    { title: "الشرايين والأوردة", desc: "الشرايين تحمل الدم المنطلق من القلب، والأوردة تعيده إلى القلب." },
+                    { title: "كريات الدم الحمر", desc: "خلايا مقعرة تحوي خضاب الدم (الهيموغلوبين) لحمل الأكسجين." }
+                ],
+                experiment: "قس نبضك في دقيقة واحدة عند المعصم أثناء الراحة، ثم قم بالجري في المكان لمدة دقيقة واحدة وأعد قياس النبض لتشاهد كيف تزداد ضربات القلب لضخ كميات أكبر من الأكسجين.",
+                didYouKnow: "ينبض قلب الإنسان العادي حوالي 100 ألف مرة يومياً دون توقف أو استراحة!",
+                glossary: "الامتصاص المعوي، الهيموغلوبين، الأذينات والبطينات، الصفيحات.",
+                quiz: {
+                    q: "تحدث عملية امتصاص المواد الغذائية المهضومة وانتقالها إلى الدم في:",
+                    options: ["المريء", "المعدة", "الأمعاء الدقيقة", "الأمعاء الغليظة"],
+                    correct: 2,
+                    feedback: "إجابة دقيقة! الأمعاء الدقيقة تحوي ملايين الزغابات المسؤولة عن امتصاص الغذاء."
+                }
+            },
+
+            // الوحدة الثالثة
+            {
+                id: "unit3_lesson1",
+                unit: "الوحدة 3: التنسيق العصبي والحواس",
+                title: "الجهاز العصبي وأعضاء الحواس",
+                imageFile: "images/nervous_system.jpg",
+                imageDesc: "مخطط الدماغ والنخاع الشوكي وأعضاء الحواس الخمس",
+                intro: "الجهاز العصبي هو شبكة الاتصالات والمعلومات الكبرى في الجسم، التي تتحكم في أفعالنا الواعية وغير الواعية، وتنقل إحساساتنا بالعالم الخارجي.",
+                deepExplanation: `
+                    <b>أقسام الجهاز العصبي:</b>
+                    - <b>الجهاز العصبي المركزي:</b> يضم <b>الدماغ</b> (المخ مركز الذكاء والذاكرة والحركات الإرادية، والمخيخ المسؤول عن توازن الجسم، والبصلة السيسائية المنظمة لضربات القلب والتنفس)، و<b>النخاع الشوكي</b> المسؤول عن الأفعال الانعكاسية اللاإرادية.
+                    - <b>الجهاز العصبي المحيطي:</b> شبكة الأعصاب التي تربط الدماغ والنخاع بجميع عضلات وأعضاء الجسم.
+                    <br><br>
+                    <b>المستقبلات الحسية:</b>
+                    - <b>العين:</b> تحوي الشبكية خلايا حساسة للضوء (عصي ومخاريط).
+                    - <b>الأذن:</b> تستقبل الذبذبات الصوتية عبر طبلة الأذن والعظيمات الثلاث ثم القوقعة والعصب السمعي.
+                    - <b>الجلد:</b> يستشعر الحرارة والبرودة والضغط واللمس والألم عبر جسيمات حسية متنوعة.
+                `,
+                concepts: [
+                    { title: "المخيخ", desc: "عضو يقع أسفل المخ وظيفته الأساسية ضبط التوازن الحركي أثناء المشي والركض." },
+                    { title: "المنعكس الشوكي", desc: "استجابة سريعة ومفاجئة لاإرادية لحماية الجسم (مثل سحب اليد فوراً عند لمس جسم ساخن)." },
+                    { title: "الشبكية", desc: "الطبقة الحساسة للضوء في قاع العين التي تلتقط الصورة وتنقلها للدماغ." }
+                ],
+                experiment: "اطلب من زميلك إغلاق عينيه، ثم المس أطراف أصابعه بقلم رصاص واحد أو قلمين في آن واحد؛ ستلاحظ أن أطراف الأصابع أكثر دقة في التمييز الحسي مقارنة بمناطق الذراع أو الظهر.",
+                didYouKnow: "تنتقل الإشارات العصبية في جسم الإنسان بسرعة مذهلة تصل إلى أكثر من 400 كيلومتر في الساعة!",
+                glossary: "المخ، المخيخ، البصلة السيسائية، النخاع الشوكي، الفعل المنعكس.",
+                quiz: {
+                    q: "أي قسم من أقسام الدماغ مسؤول بصورة رئيسية عن توازن الجسم وتناسق حركاته؟",
+                    options: ["المخ", "المخيخ", "البصلة السيسائية", "النخاع الشوكي"],
+                    correct: 1,
+                    feedback: "رائع! المخيخ هو ضابط التوازن والتناسق العضلي في الجسم."
+                }
+            },
+            {
+                id: "unit3_lesson2",
+                unit: "الوحدة 3: التنسيق العصبي والحواس",
+                title: "التكاثر الزهري والإعاشي عند النبات",
+                imageFile: "images/flower_reproduction.jpg",
+                imageDesc: "أجزاء الزهرة وتشكل البذرة والثمرة وطرق التكاثر الإعاشي",
+                intro: "التكاثر هو وسيلة الكائنات الحية لضمان استمرار نوعها وحمايته من الانقراض. وتتميز النباتات بقدرتها على التكاثر جنسياً بالأزهار أو لاجنسياً بأجزائها الخضرية.",
+                deepExplanation: `
+                    <b>1. التكاثر الزهري (الجنسي):</b>
+                    الزهرة هي عضو التكاثر في النباتات الزهرية:
+                    - <b>السداة (عضو التذكير):</b> تتألف من خيط ومتك ينتج <b>حبات الطلع</b>.
+                    - <b>المدقة (عضو التأنيث):</b> تتألف من مبيض يحوي بويضات، وقلم، وميسم يستقبل الطلع.
+                    - <b>التأبير:</b> انتقال حبات الطلع من المتك إلى الميسم بالرياح أو الحشرات.
+                    - <b>الإلقاح:</b> اندماج نواة حبة الطلع مع البويضة داخل المبيض؛ يتحول المبيض بعدها إلى <b>ثمرة</b> والبويضة الملقحة إلى <b>بذرة</b>.
+                    <br><br>
+                    <b>2. التكاثر الإعاشي (اللاجنسي):</b>
+                    إنتاج نباتات جديدة بدون بذور أو أزهار، ومن طرقه:
+                    - <b>الدرنات:</b> مثل درنة البطاطا عبر نمو البراعم.
+                    - <b>الأبصال:</b> مثل البصل والثوم وزنابق الزينة.
+                    - <b>العُقل والفسائل:</b> أخذ غصن وزراعته في التراب مثل التين والورد الجوري.
+                    - <b>التطعيم:</b> تثبيت طعم من شجرة جيدة على أصل شجرة قوية مثل الحمضيات.
+                `,
+                concepts: [
+                    { title: "التأبير الخلطي", desc: "انتقال حبات الطلع من زهرة إلى زهرة أخرى من نفس النوع بواسطة النحل أو الرياح." },
+                    { title: "التطعيم", desc: "دمج جزء من نبات مرغوب على ساق نبات أصيل يمتلك جذوراً قوية لمقاومة الأمراض." },
+                    { title: "الدرنة", desc: "ساق ترابية منتفخة مدخرة للغذاء تحمل براعم تنمو لتعطي نباتاً جديداً." }
+                ],
+                experiment: "خذ درنة بطاطا تحتوي على براعم (عيون)، اقطع جزءاً يحوي برعماً وازرعه في وعاء ترابي رطب؛ راقبه لأسبوعين وسترى نمو ساق جديدة وأوراق خضراء وجذور جديدة.",
+                didYouKnow: "النحل مسؤول عن تلقيح أكثر من ثلث المحاصيل الزراعية التي يعتمد عليها غذاء العالم بأسره!",
+                glossary: "السداة، المدقة، التأبير، الإلقاح، الدرنات، التطعيم.",
+                quiz: {
+                    q: "بعد حدوث عملية الإلقاح والإخصاب في الزهرة، يتحول مبيض الزهرة إلى:",
+                    options: ["بذرة", "ثمرة", "بتلة", "ساق"],
+                    correct: 1,
+                    feedback: "صحيح تماماً! يتحول المبيض إلى ثمرة ناضجة، وتتحول البويضات بداخلها إلى بذور."
+                }
+            },
+
+            // الوحدة الرابعة
+            {
+                id: "unit4_lesson1",
+                unit: "الوحدة 4: المادة والطاقة",
+                title: "المادة وتحولاتها والقوة والحركة",
+                imageFile: "images/matter_forces.jpg",
+                imageDesc: "حالات المادة الثلاث وقوى الاحتكاك والجاذبية الأرضية",
+                intro: "كل ما يشغل حيزاً في الفراغ وله كتلة هو مادة. تتواجد المادة في حالات فيزيائية ثلاث وتتغير حالتها باكتساب الحرارة أو فقدانها، وتتأثر حركتها بالقوى المختلفة.",
+                deepExplanation: `
+                    <b>1. تحولات المادة:</b>
+                    - <b>الانصهار:</b> تحول الصلب إلى سائل بالتسخين (مثل ذوبان الجليد).
+                    - <b>التجمد:</b> تحول السائل إلى صلب بالتبريد.
+                    - <b>التبخر:</b> تحول السائل إلى بخار غازي بالحرارة.
+                    - <b>التكاثف:</b> تحول الغاز إلى سائل بملامسة سطح بارد (مثل قطرات الندى).
+                    - <b>التسامي:</b> تحول الصلب مباشرة إلى غاز دون المرور بالحالة السائلة مثل النفتالين.
+                    <br><br>
+                    <b>2. القوى والحركة:</b>
+                    - <b>قوة الجاذبية (الوزن):</b> قوة جذب الأرض للأجسام نحو مركزها، ووحدتها النيوتن. الكتلة ثابتة لا تتغير بينما الوزن يتغير بتغير المكان والارتفاع.
+                    - <b>قوة الاحتكاك:</b> قوة تنشأ بين سطحين متلامسين وتعاكس جهة الحركة وتعمل على إبطائها.
+                `,
+                concepts: [
+                    { title: "الكتلة والوزن", desc: "الكتلة هي مقدار ما يحتويه الجسم من مادة (كغ)، والوزن هو قوة جذب الأرض للجسم (نيوتن)." },
+                    { title: "التسامي", desc: "تحول مباشر من الحالة الصلبة إلى الغازية دون تسييل المادة بالحرارة." },
+                    { title: "الاحتكاك المفيد", desc: "يمنع انزلاق أقدامنا أثناء المشي ويساعد مكابح السيارات على الوقوف بأمان." }
+                ],
+                experiment: "دحرج كرة زجاجية على بلاط ناعم ثم دحرجها بنفس القوة على سجادة صوفية خشنة؛ ستلاحظ أن الكرة تتوقف أسرع بكثير على السجادة بسبب كبر قوة الاحتكاك.",
+                didYouKnow: "وزنك على سطح القمر يعادل سدس (1/6) وزنك على الأرض تقريباً، لأن جاذبية القمر أضعف بكثير من جاذبية الأرض!",
+                glossary: "الانصهار، التبخر، التكاثف، التسامي، قوة الجاذبية، النيوتن.",
+                quiz: {
+                    q: "التحول الفيزيائي الذي تتحول فيه المادة مباشرة من الحالة الصلبة إلى الغازية يسمى:",
+                    options: ["الانصهار", "التكاثف", "التسامي", "التجمد"],
+                    correct: 2,
+                    feedback: "إجابة عبقرية! التسامي هو القفز مباشرة من الحالة الصلبة إلى الغازية."
+                }
+            },
+            {
+                id: "unit4_lesson2",
+                unit: "الوحدة 4: المادة والطاقة",
+                title: "الكهرباء والمغناطيس والدارات الكهربائية",
+                imageFile: "images/electricity_magnetism.jpg",
+                imageDesc: "دارة كهربائية بسيطة وطرق التوصيل على التسلسل والتفرع",
+                intro: "الكهرباء والمغناطيس وجهان لعملة فيزيائية واحدة، وقد أحدث فهم هذه الظواهر ثورة في عالم الصناعة والإضاءة والاتصالات.",
+                deepExplanation: `
+                    <b>1. الدارة الكهربائية البسيطة:</b>
+                    تتألف من:
+                    - <b>منبع الطاقة (البطارية):</b> يدفع الشحنات الكهربائية.
+                    - <b>القاطعة (المفتاح):</b> لفتح وإغلاق الدارة والتحكم بمرور التيار.
+                    - <b>المصباح (أو المستقبل):</b> يحول الطاقة الكهربائية إلى ضوئية.
+                    - <b>أسلاك التوصيل:</b> أسلاك نحاسية ناقلة معزولة بالبلاستيك.
+                    <br><br>
+                    <b>2. طرق التوصيل:</b>
+                    - <b>الوصل على التسلسل:</b> تكون المصابيح متتالية في حلقة واحدة؛ إذا انطفأ أو فُك أحد المصابيح تنطفئ باقي المصابيح وتقل شدة الإضاءة كلما زاد عددها.
+                    - <b>الوصل على التفرع:</b> لكل مصباح دارته المستقلة؛ إذا تلف مصباح تبقى البقية مضاءة وتظل الإضاءة قوية (وهي الطريقة المتبعة في إنارة المنازل).
+                    <br><br>
+                    <b>3. المغناطيس:</b>
+                    له قطبان: شمالي (N) وجنوبي (S). الأقطاب المتماثلة تتنافر، والأقطاب المختلفة تتجاذب.
+                `,
+                concepts: [
+                    { title: "التوصيل على التفرع", desc: "طريقة توصيل تجعل كل جهاز يعمل بشكل مستقل دون التأثر بانطفاء الأجهزة الأخرى." },
+                    { title: "المواد الناقلة", desc: "مواد تسمح بمرور الإلكترونات بحرية مثل النحاس والألمنيوم والحديد." },
+                    { title: "المواد العازلة", desc: "مواد تمنع سريان التيار وتحمينا من الصعق مثل الزجاج والمطاط والبلاستيك." }
+                ],
+                experiment: "اصنع مغناطيساً كهربائياً: لف سلكاً نحاسياً معزولاً حول مسمار حديدي كبير 50 لفة، ثم صل طرفي السلك ببطارية جافة صغيرة، وقرّب المسمار من مشابك الورق ولاحظ كيف يجذبها بقوة!",
+                didYouKnow: "كوكب الأرض نفسه عبارة عن مغناطيس عملاق بفضل حركة الحديد المنصهر في باطنه!",
+                glossary: "دارة مغلقة، دارة مفتوحة، توصيل تسلسلي، توصيل تفرعي، المغناطيس الكهربائي.",
+                quiz: {
+                    q: "لماذا توصل المصابيح والأجهزة الكهربائية في المنازل على التفرع وليس على التسلسل؟",
+                    options: [
+                        "لتوفير الأسلاك فقط",
+                        "حتى إذا انطفأ مصباح تظل بقية المصابيح تعمل بصورة طبيعية",
+                        "لتقليل استهلاك البطاريات",
+                        "لجعل المصابيح خافتة"
+                    ],
+                    correct: 1,
+                    feedback: "صحيح مئة بالمئة! التوصيل على التفرع يضمن استقلالية عمل كل جهاز في المنزل."
+                }
+            },
+            {
+                id: "unit4_lesson3",
+                unit: "الوحدة 4: المادة والطاقة",
+                title: "الضوء وخصائصه: الانعكاس والانكسار والعدسات",
+                imageFile: "images/light_lenses.jpg",
+                imageDesc: "انكسار الضوء في الموشور والعدسات المحدبة والمقعرة",
+                intro: "الضوء شكل من أشكال الطاقة ينتشر في الأوساط الشفافة المتجانسة بخطوط مستقيمة، وتعتمد عليه رؤيتنا للعالم عبر ظاهرتي الانعكاس والانكسار.",
+                deepExplanation: `
+                    <b>1. انتشار الضوء وانعكاسه:</b>
+                    يسير الضوء بخطوط مستقيمة، وعندما يصطدم بسطح عاكس مصقول (مثل المرآة المستوية)، يرتد وفق قانون الانعكاس (زاوية الورود تساوي زاوية الانعكاس).
+                    <br><br>
+                    <b>2. انكسار الضوء:</b>
+                    هو انحراف مسار الشعاع الضوئي عند انتقاله بين وسطين شفافين مختلفين في الكثافة الضوئية (مثل الانتقال من الهواء إلى الماء أو الزجاج)، ولهذا يبدو القلم مكسوراً عند وضعه في كأس ماء.
+                    <br><br>
+                    <b>3. العدسات:</b>
+                    - <b>العدسة المحدبة (المجمعة):</b> سميكة من الوسط ورقيقة من الأطراف، تجمع الأشعة الضوئية في نقطة تسمى المحرق وتستخدم لتكبير الأشياء وتصحيح مد البصر.
+                    - <b>العدسة المقعرة (المفرقة):</b> رقيقة من الوسط وسميكة من الأطراف، تفرق الأشعة وتستخدم في تصحيح قصر البصر.
+                `,
+                concepts: [
+                    { title: "العدسة المحدبة", desc: "عدسة مجمعة للضوء تكبر الصور، ومحرقها حقيقي." },
+                    { title: "انكسار الضوء", desc: "تغير في سرعة الضوء واتجاه مساره بين وسطين مختلفين كالماء والهواء." },
+                    { title: "الموشور الزجاجي", desc: "أداة تفكك الضوء الأبيض الشمسي إلى ألوان الطيف السبعة." }
+                ],
+                experiment: "ضع قلماً داخل كأس ماء شفاف وانظر إليه من الجانب؛ ستشاهد القلم وكأنه مكسور تماماً عند الحد الفاصل بين الهواء والماء نتيجة انكسار الأشعة الضوئية.",
+                didYouKnow: "قوس قزح يتشكل عندما تقوم قطرات المطر العالقة في الجو بدور موشورات زجاجية تكسر ضوء الشمس وتشتته إلى ألوانه السبعة!",
+                glossary: "انعكاس، انكسار، عدسة محدبة، عدسة مقعرة، المحرق، ألوان الطيف.",
+                quiz: {
+                    q: "العدسة التي تكون سميكة في وسطها ورقيقة عند حوافها وتقوم بتجميع الأشعة الضوئية هي:",
+                    options: ["العدسة المقعرة", "المرآة المستوية", "العدسة المحدبة", "اللوح الزجاجي المستوي"],
+                    correct: 2,
+                    feedback: "رائع! العدسة المحدبة تسمى بالعدسة المجمعة وتعمل على تكبير الأجسام."
+                }
+            },
+
+            // الوحدة الخامسة
+            {
+                id: "unit5_lesson1",
+                unit: "الوحدة 5: كوكب الأرض والبيئة والفضاء",
+                title: "بنية الأرض والبيئة والنظام الشمسي",
+                imageFile: "images/earth_space.jpg",
+                imageDesc: "طبقات الأرض والسلسلة الغذائية وحركة الكواكب حول الشمس",
+                intro: "كوكبنا الأزرق هو واحة الحياة الوحيدة المعروفة في النظام الشمسي. يتميز ببنية طبقية دقيقة، وتوازن بيئي محكم يربط جميع الكائنات في شبكات غذائية حيوية.",
+                deepExplanation: `
+                    <b>1. بنية الكرة الأرضية:</b>
+                    - <b>القشرة الأرضية:</b> الطبقة السطحية الرقيقة التي نعيش عليها وتضم القارات وقيعان المحيطات.
+                    - <b>الوشاح (الرداء):</b> طبقة سميكة صخرية تحت القشرة، تتحرك فيها الصخور المنصهرة (الماغما).
+                    - <b>النواة (اللب):</b> مركز الأرض، وتنقسم إلى نواة خارجية سائلة ونواة داخلية صلبة غنية بالحديد والنيكل.
+                    <br><br>
+                    <b>2. السلاسل والشبكات الغذائية:</b>
+                    تبدأ كل سلسلة غذائية بكائن <b>منتج</b> (نبات أخضر يصنع غذاءه)، يليه <b>مستهلك أول</b> (عاشب كالأرنب)، ثم <b>مستهلك ثانٍ</b> (لاحم كالثعلب)، وتتولى <b>المفككات</b> (الجراثيم والفطريات) تحليل البقايا لإعادة العناصر للتربة.
+                    <br><br>
+                    <b>3. حركات الأرض في الفضاء:</b>
+                    - <b>دوران الأرض حول محورها (24 ساعة):</b> يسبب تعاقب الليل والنهار.
+                    - <b>دوران الأرض حول الشمس (365 يوماً وربع) مع ميلان محورها:</b> يسبب تعاقب الفصول الأربعة (صيف، خريف، شتاء، ربيع).
+                `,
+                concepts: [
+                    { title: "الكائنات المنتجة", desc: "النباتات الخضراء التي تبدأ بها كل السلاسل الغذائية على الأرض." },
+                    { title: "المفككات", desc: "عمال النظافة البيئية؛ تحلل الجثث والفضلات وتغذي التربة بالمعادن." },
+                    { title: "ميلان محور الأرض", desc: "السبب الحقيقي في اختلاف زاوية سقوط أشعة الشمس وحدوث الفصول الأربعة." }
+                ],
+                experiment: "استعمل كرة تمثل الأرض ومصباحاً يدوياً يمثل الشمس في غرفة مظلمة؛ وجه المصباح نحو الكرة ودوّرها حول نفسها لتشاهد عملياً كيف يتشكل الليل في نصف الكرة بينما يكون النصف الآخر نهاراً مشرقاً.",
+                didYouKnow: "تبعد الشمس عن الأرض حوالي 150 مليون كيلومتر، ويستغرق ضوؤها 8 دقائق و20 ثانية فقط ليصل إلينا!",
+                glossary: "القشرة الأرضية، الوشاح، النواة، السلسلة الغذائية، المنتجات، المستهلكات، الفصول الأربعة.",
+                quiz: {
+                    q: "السبب المباشر لتعاقب الفصول الأربعة على كوكب الأرض هو:",
+                    options: [
+                        "اقتراب وابتعاد الأرض عن الشمس",
+                        "دوران الأرض حول الشمس مع ميلان محور دورانها",
+                        "دوران القمر حول الأرض",
+                        "حركة السحب والرياح"
+                    ],
+                    correct: 1,
+                    feedback: "إجابة عبقرية! دوران الأرض السنوي حول الشمس وثبات ميلان محورها هو السر في حدوث الفصول الأربعة."
+                }
+            }
+        ];
+
+        let currentIndex = 0;
+        let speechSynth = window.speechSynthesis;
+        let currentUtterance = null;
+        let isSpeaking = false;
+        let isPaused = false;
+
+        // تهيئة التطبيق عند فتح الصفحة
+        function initApp() {
+            renderSidebar(fullCurriculum);
+            loadLesson(0);
+        }
+
+        // بناء قائمة الدروس بالجانب
+        function renderSidebar(lessons) {
+            const menu = document.getElementById('lessonsMenu');
+            menu.innerHTML = '';
+
+            let currentUnitTitle = '';
+            let groupDiv = null;
+
+            lessons.forEach((lesson, index) => {
+                if (lesson.unit !== currentUnitTitle) {
+                    currentUnitTitle = lesson.unit;
+                    groupDiv = document.createElement('div');
+                    groupDiv.className = 'unit-group';
+                    groupDiv.innerHTML = `<span class="unit-badge">${currentUnitTitle}</span>`;
+                    menu.appendChild(groupDiv);
+                }
+
+                const btn = document.createElement('button');
+                btn.className = `lesson-btn ${index === currentIndex ? 'active' : ''}`;
+                btn.id = `btn-${lesson.id}`;
+                btn.innerHTML = `<span>${lesson.title}</span> <span>←</span>`;
+                btn.onclick = () => selectLesson(fullCurriculum.findIndex(l => l.id === lesson.id));
+                groupDiv.appendChild(btn);
+            });
+        }
+
+        // البحث والتصفية بين الدروس
+        function filterLessons() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const filtered = fullCurriculum.filter(l => 
+                l.title.toLowerCase().includes(query) || 
+                l.unit.toLowerCase().includes(query) ||
+                l.deepExplanation.toLowerCase().includes(query)
+            );
+            renderSidebar(filtered);
+        }
+
+        // اختيار درس معين
+        function selectLesson(idx) {
+            stopVoice();
+            currentIndex = idx;
+            document.querySelectorAll('.lesson-btn').forEach(b => b.classList.remove('active'));
+            const activeBtn = document.getElementById(`btn-${fullCurriculum[idx].id}`);
+            if (activeBtn) activeBtn.classList.add('active');
+            loadLesson(idx);
+        }
+
+        // تحميل وتوزيع تفاصيل الدرس
+        function loadLesson(idx) {
+            const data = fullCurriculum[idx];
+
+            document.getElementById('currentUnitTag').textContent = data.unit;
+            document.getElementById('currentLessonTitle').textContent = data.title;
+            document.getElementById('lessonIntro').textContent = data.intro;
+
+            // إعداد الصورة ومسار images/ مع الحماية الذكية
+            const imageWrapper = document.getElementById('imageWrapper');
+            imageWrapper.innerHTML = `
+                <img src="${data.imageFile}" alt="${data.title}" 
+                     onerror="handleImageError(this, '${data.title}', '${data.imageFile}')">
+                <div class="image-caption">${data.imageDesc}</div>
+            `;
+
+            // الشرح والمفاهيم
+            document.getElementById('lessonDeepText').innerHTML = data.deepExplanation;
+            
+            const conceptsGrid = document.getElementById('conceptsGrid');
+            conceptsGrid.innerHTML = '';
+            data.concepts.forEach(c => {
+                const card = document.createElement('div');
+                card.className = 'grid-card';
+                card.innerHTML = `<h4>🔹 ${c.title}</h4><p style="font-size: 0.95rem; color: #475569;">${c.desc}</p>`;
+                conceptsGrid.appendChild(card);
+            });
+
+            // التجربة وصندوق هل تعلم
+            document.getElementById('experimentText').innerHTML = data.experiment;
+            document.getElementById('didYouKnowText').innerHTML = data.didYouKnow;
+            document.getElementById('glossaryBox').innerHTML = `<strong>📚 مصطلحات الدرس الهامة:</strong> ${data.glossary}`;
+
+            // تجهيز الاختبار
+            renderQuiz(data.quiz);
+
+            // تحديث حالة الصوت
+            updateAudioStatus("📢 الشرح الصوتي جاهز للاستماع", "#065f46");
+        }
+
+        // معالجة ذكية في حال لم تكن الصورة موجودة بعد في مجلد images/
+        function handleImageError(imgElement, title, filePath) {
+            const wrapper = imgElement.parentElement;
+            wrapper.innerHTML = `
+                <div class="fallback-placeholder">
+                    <span>🖼️</span>
+                    <strong>صورة توضيحية للدرس</strong>
+                    <p style="font-size: 0.8rem; margin-top: 4px;">احفظ الصورة المطلوبة باسم:<br><code style="background:#fff; padding:2px 4px; border-radius:4px; font-weight:bold;">${filePath}</code></p>
+                </div>
+                <div class="image-caption">${title}</div>
+            `;
+        }
+
+        // توليد الاختبار التفاعلي للدرس
+        function renderQuiz(quiz) {
+            document.getElementById('quizQuestion').textContent = quiz.q;
+            const optionsBox = document.getElementById('quizOptions');
+            const feedbackBox = document.getElementById('quizFeedback');
+            optionsBox.innerHTML = '';
+            feedbackBox.style.display = 'none';
+
+            quiz.options.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-button';
+                btn.textContent = opt;
+                btn.onclick = () => checkQuizAnswer(i, quiz.correct, quiz.feedback);
+                optionsBox.appendChild(btn);
+            });
+        }
+
+        function checkQuizAnswer(selected, correct, msg) {
+            const buttons = document.querySelectorAll('.option-button');
+            const feedbackBox = document.getElementById('quizFeedback');
+
+            buttons.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === correct) btn.classList.add('correct');
+                if (idx === selected && selected !== correct) btn.classList.add('wrong');
+            });
+
+            feedbackBox.style.display = 'block';
+            if (selected === correct) {
+                feedbackBox.style.backgroundColor = '#ecfdf5';
+                feedbackBox.style.color = '#065f46';
+                feedbackBox.innerHTML = `✅ ${msg}`;
+            } else {
+                feedbackBox.style.backgroundColor = '#fef2f2';
+                feedbackBox.style.color = '#991b1b';
+                feedbackBox.innerHTML = `❌ إجابة غير صحيحة! راجع فقرات الشرح في الأعلى وجرب مرة أخرى.`;
+            }
+        }
+
+        // =======================
+        // نظام التحكم الصوتي الكامل
+        // =======================
+        function updateAudioStatus(text, color) {
+            const status = document.getElementById('audioStatus');
+            status.innerHTML = text;
+            status.style.color = color;
+        }
+
+        function playVoice() {
+            if (!('speechSynthesis' in window)) {
+                alert("للأسف، متصفحك الحالي لا يدعم تقنية قراءة النصوص الصوتية.");
+                return;
+            }
+
+            if (isPaused) {
+                speechSynth.resume();
+                isPaused = false;
+                isSpeaking = true;
+                updateAudioStatus("▶️ تم استئناف الشرح الصوتي...", "#0284c7");
+                return;
+            }
+
+            stopVoice();
+
+            const data = fullCurriculum[currentIndex];
+            // تنظيف النص من علامات HTML لضمان قراءة نقية
+            const cleanDeep = data.deepExplanation.replace(/<[^>]*>?/gm, ' ');
+            let fullText = `${data.title}. ${data.intro}. ${cleanDeep}. هل تعلم؟ ${data.didYouKnow}`;
+
+            currentUtterance = new SpeechSynthesisUtterance(fullText);
+            currentUtterance.lang = 'ar-SA';
+            currentUtterance.rate = 0.9; // سرعة هادئة ومناسبة لطلاب الابتدائي
+
+            currentUtterance.onstart = () => {
+                isSpeaking = true;
+                isPaused = false;
+                updateAudioStatus("🔊 جاري قراءة الدرس بصوت واضح...", "#0d9488");
+            };
+
+            currentUtterance.onend = () => {
+                isSpeaking = false;
+                isPaused = false;
+                updateAudioStatus("✅ انتهت قراءة الدرس بنجاح.", "#15803d");
+            };
+
+            currentUtterance.onerror = () => {
+                isSpeaking = false;
+                isPaused = false;
+                updateAudioStatus("⚠️ توقفت القراءة الصوتية.", "#b91c1c");
+            };
+
+            speechSynth.speak(currentUtterance);
+        }
+
+        function pauseVoice() {
+            if (speechSynth.speaking && !isPaused) {
+                speechSynth.pause();
+                isPaused = true;
+                updateAudioStatus("⏸️ القراءة متوقفة مؤقتاً (اضغط 'استمع' للاستئناف)", "#d97706");
+            }
+        }
+
+        function stopVoice() {
+            if (speechSynth.speaking || isPaused) {
+                speechSynth.cancel();
+                isSpeaking = false;
+                isPaused = false;
+                updateAudioStatus("⏹️ تم إيقاف الشرح الصوتي.", "#64748b");
+            }
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>
