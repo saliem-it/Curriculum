@@ -6,52 +6,51 @@
     <title>عالم الرياضيات - الصف السادس الابتدائي (الفصل الأول)</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- مكتبة MathJax لعرض المعادلات الرياضية بشكل احترافي -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
             --primary-color: #4f46e5;
             --secondary-color: #06b6d4;
             --accent-color: #f59e0b;
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
         }
         body {
-            background: var(--bg-gradient);
+            background: var(--bg-light);
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, sans-serif;
-            color: #fff;
+            color: var(--text-dark);
             padding-bottom: 50px;
         }
         .navbar-custom {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: #ffffff;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            border-bottom: 1px solid #e2e8f0;
         }
         .card-custom {
-            background: rgba(255, 255, 255, 0.07);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: var(--card-bg);
+            border: 1px solid #e2e8f0;
             border-radius: 20px;
-            color: #fff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             transition: 0.3s;
         }
         .card-custom:hover {
-            border-color: var(--secondary-color);
-            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.1);
+            border-color: var(--primary-color);
         }
         .nav-pills .nav-link {
-            color: #cbd5e1;
+            color: #64748b;
             border-radius: 12px;
             font-weight: 600;
-            margin: 0 4px;
+            margin: 0 3px;
             transition: 0.3s;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
         .nav-pills .nav-link.active {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: #fff;
-            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
         }
         .btn-custom {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -67,11 +66,18 @@
             transform: translateY(-2px);
             color: white;
         }
+        .hero-banner {
+            background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+            border-radius: 24px;
+            color: white;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.2);
+        }
         .game-box {
-            background: rgba(0, 0, 0, 0.35);
+            background: #f1f5f9;
             border-radius: 15px;
             padding: 20px;
-            border: 2px dashed rgba(255,255,255,0.2);
+            border: 2px dashed #cbd5e1;
         }
     </style>
 </head>
@@ -80,14 +86,18 @@
     <!-- شريط التنقل العلوي -->
     <nav class="navbar navbar-expand-lg navbar-custom sticky-top py-3 mb-4">
         <div class="container">
-            <a class="navbar-brand text-white fw-bold fs-4" href="#">
-                <i class="fas fa-calculator text-info ms-2"></i> عالم الرياضيات <span class="badge bg-info text-dark fs-6">السادس الابتدائي</span>
+            <a class="navbar-brand text-dark fw-bold fs-4 d-flex align-items-center gap-2" href="#">
+                <span class="bg-primary text-white p-2 rounded-3 fs-5"><i class="fas fa-square-root-variable"></i></span>
+                <div>
+                    عالم الرياضيات <br>
+                    <span class="fs-6 text-muted fw-normal">الصف السادس الابتدائي - الفصل الأول</span>
+                </div>
             </a>
             <div class="d-flex align-items-center gap-3">
-                <span class="badge bg-warning text-dark px-3 py-2 fs-6 rounded-pill">
+                <span class="badge bg-warning text-dark px-3 py-2 fs-6 rounded-pill shadow-sm">
                     <i class="fas fa-star ms-1"></i> <span id="score-val">0</span> نقطة
                 </span>
-                <span class="badge bg-success px-3 py-2 fs-6 rounded-pill">
+                <span class="badge bg-success px-3 py-2 fs-6 rounded-pill shadow-sm">
                     <i class="fas fa-trophy ms-1"></i> <span id="badges-val">0</span> وسام
                 </span>
             </div>
@@ -95,16 +105,19 @@
     </nav>
 
     <div class="container">
-        <!-- التبويبات الرئيسية -->
-        <ul class="nav nav-pills justify-content-center mb-4 pb-2" id="pills-tab" role="tablist">
+        <!-- التبويبات الرئيسية (مطابقة تماماً للشكل الأصلي) -->
+        <ul class="nav nav-pills justify-content-center mb-4 pb-2 bg-white p-2 rounded-pill shadow-sm" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-lessons" type="button"><i class="fas fa-book-open ms-1"></i>الشروحات</button>
+                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-home" type="button"><i class="fas fa-home ms-1"></i>الرئيسية</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-lessons" type="button"><i class="fas fa-book-open ms-1"></i>الشرح البصري</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-exercises" type="button"><i class="fas fa-tasks ms-1"></i>بنك التمارين</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-games" type="button"><i class="fas fa-gamepad ms-1"></i>الألعاب (5 ألعاب)</button>
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-games" type="button"><i class="fas fa-gamepad ms-1"></i>الألعاب التفاعلية</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-challenge" type="button"><i class="fas fa-users ms-1"></i>التحدي الجماعي</button>
@@ -116,47 +129,96 @@
 
         <div class="tab-content" id="pills-tabContent">
             
-            <!-- 1. الشروحات والرسومات البصرية -->
-            <div class="tab-pane fade show active" id="tab-lessons">
+            <!-- 0. الرئيسية -->
+            <div class="tab-pane fade show active" id="tab-home">
+                <div class="hero-banner text-center mb-5">
+                    <span class="badge bg-light text-primary mb-3 px-3 py-2 rounded-pill fw-bold">أهلاً بك يا بطل الرياضيات ✨</span>
+                    <h1 class="fw-bold mb-3 display-6">جاهز لاكتشاف عالم الأعداد والهندسة؟</h1>
+                    <p class="text-white-50 fs-5 mb-4">استمتع بتعلم منهج الفصل الدراسي الأول كاملاً من خلال الشروحات البصرية الممتعة، والتمارين المتدرجة، والتحديات التنافسية بين الأصدقاء!</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <button class="btn btn-light text-primary fw-bold px-4 py-2 rounded-pill" onclick="document.querySelector('[data-bs-target=\'#tab-lessons\']').click()">استعرض الدروس 📚</button>
+                        <button class="btn btn-outline-light fw-bold px-4 py-2 rounded-pill" onclick="document.querySelector('[data-bs-target=\'#tab-challenge\']').click()">ابدأ التحدي الجماعي 🏆</button>
+                    </div>
+                </div>
+
+                <h3 class="fw-bold mb-4 text-dark">وحدات المنهاج الدراسي</h3>
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="card-custom p-4 h-100 text-center">
+                            <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-4 fs-2 d-inline-block mb-3"><i class="fas fa-calculator"></i></div>
+                            <span class="badge bg-primary bg-opacity-10 text-primary mb-2">الوحدة 01</span>
+                            <h5 class="fw-bold mb-2">الأعداد الطبيعية والقوى</h5>
+                            <p class="text-muted small m-0">القوى والأسس، الجذور الرئيسية، والقاسم والمضاعف المشترك.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card-custom p-4 h-100 text-center">
+                            <div class="bg-success bg-opacity-10 text-success p-3 rounded-4 fs-2 d-inline-block mb-3"><i class="fas fa-chart-pie"></i></div>
+                            <span class="badge bg-success bg-opacity-10 text-success mb-2">الوحدة 02</span>
+                            <h5 class="fw-bold mb-2">الكسور العادية والعشرية</h5>
+                            <p class="text-muted small m-0">ضرب وقسمة الكسور العادية، والعمليات على الكسور العشرية.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card-custom p-4 h-100 text-center">
+                            <div class="bg-warning bg-opacity-10 text-warning p-3 rounded-4 fs-2 d-inline-block mb-3"><i class="fas fa-percentage"></i></div>
+                            <span class="badge bg-warning bg-opacity-10 text-warning mb-2">الوحدة 03</span>
+                            <h5 class="fw-bold mb-2">النسب والتناسب والمئوية</h5>
+                            <p class="text-muted small m-0">مفهوم النسبة والتناسب، ومقياس الرسم، والتطبيقات المئوية.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card-custom p-4 h-100 text-center">
+                            <div class="bg-danger bg-opacity-10 text-danger p-3 rounded-4 fs-2 d-inline-block mb-3"><i class="fas fa-shapes"></i></div>
+                            <span class="badge bg-danger bg-opacity-10 text-danger mb-2">الوحدة 04</span>
+                            <h5 class="fw-bold mb-2">الهندسة والقياس</h5>
+                            <p class="text-muted small m-0">مساحات المتوازي والمثلث وشبه المنحرف والمحيط والمساحات.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1. الشرح البصري -->
+            <div class="tab-pane fade" id="tab-lessons">
                 <div class="row g-4">
                     <div class="col-md-6">
                         <div class="card-custom p-4 h-100">
-                            <h4 class="text-info fw-bold mb-3"><i class="fas fa-atom ms-2"></i>1. القوى والأسس</h4>
-                            <p class="text-white-50">القوة هي تكرار ضرب العدد في نفسه. الأساس هو العدد المضروب، والأس هو عدد مرات التكرار.</p>
-                            <div class="bg-dark p-3 rounded-3 text-center my-3 border border-secondary">
-                                <span class="fs-4 text-warning">$$5^3 = 5 \times 5 \times 5 = 125$$</span>
+                            <h4 class="text-primary fw-bold mb-3"><i class="fas fa-atom ms-2"></i>1. القوى والأسس</h4>
+                            <p class="text-muted">القوة هي تكرار ضرب العدد في نفسه. الأساس هو العدد المضروب، والأس هو عدد مرات التكرار.</p>
+                            <div class="bg-light p-3 rounded-3 text-center my-3 border">
+                                <span class="fs-4 text-primary fw-bold">5<sup>3</sup> = 5 × 5 × 5 = 125</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="card-custom p-4 h-100">
-                            <h4 class="text-info fw-bold mb-3"><i class="fas fa-balance-scale ms-2"></i>2. التناسب والنسبة</h4>
-                            <p class="text-white-50">التناسب هو تساوي نسبتين أو أكثر، ونستخدم الضرب التبادلي لإيجاد الحد المجهول.</p>
-                            <div class="bg-dark p-3 rounded-3 text-center my-3 border border-secondary">
-                                <span class="fs-5 text-warning">إذا كانت $$\frac{2}{3} = \frac{x}{6}$$ فإن $$x = \frac{2 \times 6}{3} = 4$$</span>
+                            <h4 class="text-primary fw-bold mb-3"><i class="fas fa-balance-scale ms-2"></i>2. التناسب والنسبة</h4>
+                            <p class="text-muted">التناسب هو تساوي نسبتين أو أكثر، ونستخدم الضرب التبادلي لإيجاد الحد المجهول.</p>
+                            <div class="bg-light p-3 rounded-3 text-center my-3 border">
+                                <span class="fs-5 text-primary fw-bold">إذا كانت 2 / 3 = x / 6 فإن x = (2 × 6) / 3 = 4</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="card-custom p-4 h-100">
-                            <h4 class="text-info fw-bold mb-3"><i class="fas fa-shapes ms-2"></i>3. مساحة متوازي الأضلاع</h4>
-                            <p class="text-white-50">مساحة متوازي الأضلاع تساوي حاصل ضرب طول القاعدة في الارتفاع المناظر لها.</p>
+                            <h4 class="text-primary fw-bold mb-3"><i class="fas fa-shapes ms-2"></i>3. مساحة متوازي الأضلاع</h4>
+                            <p class="text-muted">مساحة متوازي الأضلاع تساوي حاصل ضرب طول القاعدة في الارتفاع المناظر لها.</p>
                             <div class="text-center my-2">
                                 <svg width="180" height="90" viewBox="0 0 200 100">
-                                    <polygon points="40,80 160,80 180,20 60,20" fill="none" stroke="#38bdf8" stroke-width="3"/>
+                                    <polygon points="40,80 160,80 180,20 60,20" fill="none" stroke="#4f46e5" stroke-width="3"/>
                                     <line x1="60" y1="20" x2="60" y2="80" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4"/>
-                                    <text x="90" y="95" fill="#fff" font-size="14">القاعدة</text>
-                                    <text x="25" y="55" fill="#f43f5e" font-size="14">الارتفاع</text>
+                                    <text x="90" y="95" fill="#1e293b" font-size="14" font-weight="bold">القاعدة</text>
+                                    <text x="25" y="55" fill="#f43f5e" font-size="14" font-weight="bold">الارتفاع</text>
                                 </svg>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="card-custom p-4 h-100">
-                            <h4 class="text-info fw-bold mb-3"><i class="fas fa-percentage ms-2"></i>4. النسبة المئوية</h4>
-                            <p class="text-white-50">النسبة المئوية هي نسبة حدها الثاني (مقامها) يساوي 100 ويرمز لها بالرمز (%).</p>
-                            <div class="bg-dark p-3 rounded-3 text-center my-3 border border-secondary">
-                                <span class="fs-4 text-warning">$$25\% = \frac{25}{100} = \frac{1}{4}$$</span>
+                            <h4 class="text-primary fw-bold mb-3"><i class="fas fa-percentage ms-2"></i>4. النسبة المئوية</h4>
+                            <p class="text-muted">النسبة المئوية هي نسبة حدها الثاني (مقامها) يساوي 100 ويرمز لها بالرمز (%).</p>
+                            <div class="bg-light p-3 rounded-3 text-center my-3 border">
+                                <span class="fs-4 text-primary fw-bold">25% = 25 / 100 = 1 / 4</span>
                             </div>
                         </div>
                     </div>
@@ -166,58 +228,58 @@
             <!-- 2. بنك التمارين -->
             <div class="tab-pane fade" id="tab-exercises">
                 <div class="card-custom p-4 text-center">
-                    <h3 class="fw-bold mb-4 text-warning">بنك الأسئلة والتدريبات الشاملة</h3>
+                    <h3 class="fw-bold mb-4 text-primary">بنك الأسئلة والتدريبات الشاملة</h3>
                     <div class="game-box my-3">
-                        <h5 id="ex-question" class="mb-3">ما هو ناتج حساب القوة: $$3^3$$ ؟</h5>
+                        <h5 id="ex-question" class="mb-3">ما هو ناتج حساب القوة: 3<sup>3</sup> ؟</h5>
                         <div class="d-flex justify-content-center gap-3 mb-3">
-                            <input type="number" id="ex-answer" class="form-control w-25 text-center fs-4" placeholder="أدخل الناتج">
+                            <input type="number" id="ex-answer" class="form-control w-25 text-center fs-4 bg-white" placeholder="أدخل الناتج">
                             <button class="btn btn-custom" onclick="checkExercise()">تحقق من الإجابة</button>
                         </div>
                         <div id="ex-feedback" class="fw-bold"></div>
                     </div>
-                    <button class="btn btn-outline-light btn-sm mt-2" onclick="nextExercise()">سؤال تدريبي آخر</button>
+                    <button class="btn btn-outline-secondary btn-sm mt-2" onclick="nextExercise()">سؤال تدريبي آخر 🔄</button>
                 </div>
             </div>
 
             <!-- 3. الألعاب التفاعلية (5 ألعاب) -->
             <div class="tab-pane fade" id="tab-games">
                 <div class="card-custom p-4">
-                    <h3 class="fw-bold text-center mb-4 text-info"><i class="fas fa-gamepad ms-2"></i>ألعاب التحدي الذكية</h3>
+                    <h3 class="fw-bold text-center mb-4 text-primary"><i class="fas fa-gamepad ms-2"></i>ألعاب التحدي الذكية</h3>
                     
                     <ul class="nav nav-tabs justify-content-center mb-4" id="gamesSubTab" role="tablist">
-                        <li class="nav-item"><button class="nav-link active text-dark fw-bold" data-bs-toggle="tab" data-bs-target="#game-prop">⚖️ ميزان التناسب</button></li>
-                        <li class="nav-item"><button class="nav-link text-dark fw-bold" data-bs-toggle="tab" data-bs-target="#game-prime">🚀 الأعداد الأولية</button></li>
-                        <li class="nav-item"><button class="nav-link text-dark fw-bold" data-bs-toggle="tab" data-bs-target="#game-frac">🧩 الكسور المتكافئة</button></li>
-                        <li class="nav-item"><button class="nav-link text-dark fw-bold" data-bs-toggle="tab" data-bs-target="#game-area">📐 مساحة الأشكال</button></li>
-                        <li class="nav-item"><button class="nav-link text-dark fw-bold" data-bs-toggle="tab" data-bs-target="#game-shop">🛒 المتسوق الذكي</button></li>
+                        <li class="nav-item"><button class="nav-link active fw-bold" data-bs-toggle="tab" data-bs-target="#game-prop">⚖️ ميزان التناسب</button></li>
+                        <li class="nav-item"><button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#game-prime">🚀 الأعداد الأولية</button></li>
+                        <li class="nav-item"><button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#game-frac">🧩 الكسور المتكافئة</button></li>
+                        <li class="nav-item"><button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#game-area">📐 مساحة الأشكال</button></li>
+                        <li class="nav-item"><button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#game-shop">🛒 المتسوق الذكي</button></li>
                     </ul>
 
                     <div class="tab-content">
-                        <!-- لعبة 1: ميزان التناسب -->
+                        <!-- لعبة 1: ميزان التناسب (مصلحة ومضمونة) -->
                         <div class="tab-pane fade show active text-center p-3" id="game-prop">
-                            <h5 class="text-warning mb-3">أوجد القيمة المجهولة (x) ليبقى الميزان في حالة توازن تام:</h5>
+                            <h5 class="text-primary mb-3">أوجد القيمة المجهولة (x) ليبقى الميزان في حالة توازن تام:</h5>
                             <div class="game-box my-3 p-4">
-                                <div class="fs-2 fw-bold mb-3 text-info" id="proportion-display">
-                                    $$\frac{3}{4} = \frac{x}{12}$$
+                                <div class="fs-2 fw-bold mb-3 text-dark" id="proportion-display">
+                                    3 / 4 = x / 12
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center gap-3">
                                     <span class="fs-4">قيمة x =</span>
-                                    <input type="number" id="proportion-input" class="form-control w-25 text-center fs-4" placeholder="اكتب الناتج">
+                                    <input type="number" id="proportion-input" class="form-control w-25 text-center fs-4 bg-white" placeholder="اكتب الناتج">
                                     <button class="btn btn-custom" onclick="checkProportionGame()">وزن الميزان ⚖️</button>
                                 </div>
                                 <div id="proportion-feedback" class="mt-3 fs-5 fw-bold"></div>
                             </div>
-                            <button class="btn btn-outline-light btn-sm" onclick="initProportionGame()">سؤال توازن جديد 🔄</button>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="initProportionGame()">سؤال توازن جديد 🔄</button>
                         </div>
 
                         <!-- لعبة 2: الأعداد الأولية -->
                         <div class="tab-pane fade text-center p-3" id="game-prime">
-                            <h5 class="text-warning mb-3">حدد هل العدد التالي عدد أولي أم لا؟</h5>
+                            <h5 class="text-primary mb-3">حدد هل العدد التالي عدد أولي أم لا؟</h5>
                             <div class="game-box my-3 p-4">
-                                <div class="fs-1 fw-bold mb-4 text-info" id="prime-num-display">17</div>
+                                <div class="fs-1 fw-bold mb-4 text-primary" id="prime-num-display">17</div>
                                 <div class="d-flex justify-content-center gap-4">
-                                    <button class="btn btn-success px-4 py-2 fs-5" onclick="checkPrime(true)">عدد أولي ✅</button>
-                                    <button class="btn btn-danger px-4 py-2 fs-5" onclick="checkPrime(false)">ليس أولي ❌</button>
+                                    <button class="btn btn-success px-4 py-2 fs-5 shadow-sm" onclick="checkPrime(true)">عدد أولي ✅</button>
+                                    <button class="btn btn-danger px-4 py-2 fs-5 shadow-sm" onclick="checkPrime(false)">ليس أولي ❌</button>
                                 </div>
                                 <div id="prime-feedback" class="mt-3 fs-5 fw-bold"></div>
                             </div>
@@ -225,9 +287,9 @@
 
                         <!-- لعبة 3: الكسور المتكافئة -->
                         <div class="tab-pane fade text-center p-3" id="game-frac">
-                            <h5 class="text-warning mb-3">اختر الكسر المكافئ للكسر المعطى:</h5>
+                            <h5 class="text-primary mb-3">اختر الكسر المكافئ للكسر المعطى:</h5>
                             <div class="game-box my-3 p-4">
-                                <div class="fs-2 fw-bold mb-4 text-info" id="frac-target">$$\frac{1}{2} = ?$$</div>
+                                <div class="fs-2 fw-bold mb-4 text-primary" id="frac-target">1 / 2 = ?</div>
                                 <div class="row g-3 justify-content-center" id="frac-options"></div>
                                 <div id="frac-feedback" class="mt-3 fs-5 fw-bold"></div>
                             </div>
@@ -235,11 +297,11 @@
 
                         <!-- لعبة 4: مساحة الأشكال -->
                         <div class="tab-pane fade text-center p-3" id="game-area">
-                            <h5 class="text-warning mb-3">احسب مساحة متوازي الأضلاع:</h5>
+                            <h5 class="text-primary mb-3">احسب مساحة متوازي الأضلاع:</h5>
                             <div class="game-box my-3 p-4">
-                                <div id="area-shape-desc" class="fs-4 mb-3 text-info">القاعدة = 8 سم، الارتفاع = 5 سم</div>
+                                <div id="area-shape-desc" class="fs-4 mb-3 text-dark">القاعدة = 8 سم، الارتفاع = 5 سم</div>
                                 <div class="d-flex justify-content-center align-items-center gap-3">
-                                    <input type="number" id="user-area-input" class="form-control w-25 text-center fs-4" placeholder="المساحة">
+                                    <input type="number" id="user-area-input" class="form-control w-25 text-center fs-4 bg-white" placeholder="المساحة">
                                     <button class="btn btn-custom" onclick="checkAreaAns()">تحقق 📐</button>
                                 </div>
                                 <div id="area-feedback" class="mt-3 fs-5 fw-bold"></div>
@@ -248,11 +310,11 @@
 
                         <!-- لعبة 5: المتسوق الذكي -->
                         <div class="tab-pane fade text-center p-3" id="game-shop">
-                            <h5 class="text-warning mb-3">احسب السعر النهائي بعد الخصم!</h5>
+                            <h5 class="text-primary mb-3">احسب السعر النهائي بعد الخصم!</h5>
                             <div class="game-box my-3 p-4">
-                                <div id="shop-item-desc" class="fs-4 mb-3 text-info">حقيبة مدرسية سعرها 100 وخصم 20%</div>
+                                <div id="shop-item-desc" class="fs-4 mb-3 text-dark">حقيبة مدرسية سعرها 100 وخصم 20%</div>
                                 <div class="d-flex justify-content-center align-items-center gap-3">
-                                    <input type="number" id="user-shop-input" class="form-control w-25 text-center fs-4" placeholder="السعر النهائي">
+                                    <input type="number" id="user-shop-input" class="form-control w-25 text-center fs-4 bg-white" placeholder="السعر النهائي">
                                     <button class="btn btn-custom" onclick="checkShopAns()">شراء 🛒</button>
                                 </div>
                                 <div id="shop-feedback" class="mt-3 fs-5 fw-bold"></div>
@@ -265,22 +327,22 @@
             <!-- 4. التحدي الجماعي -->
             <div class="tab-pane fade" id="tab-challenge">
                 <div class="card-custom p-4">
-                    <h3 class="fw-bold text-center mb-4 text-warning"><i class="fas fa-users ms-2"></i>ساحة التحدي الجماعي للأبطال</h3>
+                    <h3 class="fw-bold text-center mb-4 text-primary"><i class="fas fa-users ms-2"></i>ساحة التحدي الجماعي للأبطال</h3>
                     <div id="challenge-setup" class="text-center">
-                        <p class="text-white-50">أدخل أسماء الأبطال المتنافسين:</p>
+                        <p class="text-muted">أدخل أسماء الأبطال المتنافسين (من 2 إلى 4 لاعبين):</p>
                         <div class="row justify-content-center g-3 mb-4">
-                            <div class="col-md-3"><input type="text" id="p1-name" class="form-control text-center" placeholder="اسم البطل 1" value="أحمد"></div>
-                            <div class="col-md-3"><input type="text" id="p2-name" class="form-control text-center" placeholder="اسم البطل 2" value="سارة"></div>
+                            <div class="col-md-3"><input type="text" id="p1-name" class="form-control text-center bg-light" placeholder="اسم البطل 1" value="أحمد"></div>
+                            <div class="col-md-3"><input type="text" id="p2-name" class="form-control text-center bg-light" placeholder="اسم البطل 2" value="سارة"></div>
                         </div>
-                        <button class="btn btn-custom btn-lg" onclick="startChallenge()">بدء التحدي الحماسي 🚀</button>
+                        <button class="btn btn-custom btn-lg px-5" onclick="startChallenge()">بدء التحدي الحماسي 🚀</button>
                     </div>
 
                     <div id="challenge-play" class="d-none text-center">
-                        <h4 id="turn-indicator" class="text-info mb-3">دور البطل: </h4>
+                        <h4 id="turn-indicator" class="text-primary mb-3">دور البطل: </h4>
                         <div class="game-box my-3">
-                            <h5 id="chall-q" class="mb-3">السؤال هنا</h5>
+                            <h5 id="chall-q" class="mb-3 text-dark">السؤال هنا</h5>
                             <div class="d-flex justify-content-center gap-3">
-                                <input type="number" id="chall-ans" class="form-control w-25 text-center fs-4" placeholder="الإجابة">
+                                <input type="number" id="chall-ans" class="form-control w-25 text-center fs-4 bg-white" placeholder="الإجابة">
                                 <button class="btn btn-custom" onclick="submitChallengeAnswer()">إرسال الإجابة</button>
                             </div>
                             <div id="chall-feedback" class="mt-3 fw-bold"></div>
@@ -288,9 +350,9 @@
                     </div>
 
                     <div id="challenge-results" class="d-none text-center">
-                        <h2 class="text-warning mb-3">🏆 انتهى التحدي بفوز البطل!</h2>
-                        <h3 id="winner-text" class="text-info mb-4"></h3>
-                        <button class="btn btn-custom" onclick="resetChallenge()">تحدي جديد 🔄</button>
+                        <h2 class="text-success mb-3">🏆 انتهى التحدي بفوز البطل!</h2>
+                        <h3 id="winner-text" class="text-primary mb-4"></h3>
+                        <button class="btn btn-custom px-5" onclick="resetChallenge()">تحدي جديد 🔄</button>
                     </div>
                 </div>
             </div>
@@ -298,11 +360,11 @@
             <!-- 5. عجلة الحظ -->
             <div class="tab-pane fade" id="tab-wheel">
                 <div class="card-custom p-4 text-center">
-                    <h3 class="fw-bold mb-3 text-warning"><i class="fas fa-dharmachakra ms-2"></i>عجلة الحظ والمفاجآت اليومية</h3>
-                    <p class="text-white-50">أدر العجلة واربح نقاطاً إضافية وأوسمة مميزة!</p>
-                    <div class="game-box my-4 py-5">
-                        <div id="wheel-result" class="fs-2 fw-bold text-info mb-3">اضغط الدوران لاختبار حظك! 🎡</div>
-                        <button class="btn btn-custom btn-lg" onclick="spinWheel()">دوران العجلة الآن ✨</button>
+                    <h3 class="fw-bold mb-3 text-primary"><i class="fas fa-dharmachakra ms-2"></i>عجلة الحظ والمفاجآت اليومية</h3>
+                    <p class="text-muted">أدر العجلة واربح نقاطاً إضافية وأوسمة مميزة!</p>
+                    <div class="game-box my-4 py-5 shadow-sm">
+                        <div id="wheel-result" class="fs-2 fw-bold text-primary mb-3">اضغط الدوران لاختبار حظك! 🎡</div>
+                        <button class="btn btn-custom btn-lg px-5 shadow" onclick="spinWheel()">دوران العجلة الآن ✨</button>
                     </div>
                 </div>
             </div>
@@ -327,8 +389,8 @@
 
         // بنك التمارين
         let exercisesList = [
-            {q: 'ما هو ناتج حساب القوة: $$3^3$$ ؟', ans: 27, hint: '$$3 \\times 3 \\times 3 = 27$$'},
-            {q: 'ما هو ناتج حساب القوة: $$2^4$$ ؟', ans: 16, hint: '$$2 \\times 2 \\times 2 \\times 2 = 16$$'},
+            {q: 'ما هو ناتج حساب القوة: 3<sup>3</sup> ؟', ans: 27, hint: '3 × 3 × 3 = 27'},
+            {q: 'ما هو ناتج حساب القوة: 2<sup>4</sup> ؟', ans: 16, hint: '2 × 2 × 2 × 2 = 16'},
             {q: 'إذا كانت مساحة متوازي أضلاع قاعدته 10 وارتفاعه 4، فكم مساحته؟', ans: 40, hint: 'المساحة = القاعدة × الارتفاع'},
             {q: 'كم تساوي نسبة 50% من العدد 80؟', ans: 40, hint: '50% تعني النصف'}
         ];
@@ -341,7 +403,6 @@
                 addPoints(10);
             } else {
                 fb.innerHTML = `<span class="text-danger">إجابة خاطئة. تذكر: ${exercisesList[currentExIdx].hint}</span>`;
-                if(window.MathJax) MathJax.typeset();
             }
         }
         function nextExercise() {
@@ -349,10 +410,9 @@
             document.getElementById('ex-question').innerHTML = exercisesList[currentExIdx].q;
             document.getElementById('ex-answer').value = '';
             document.getElementById('ex-feedback').innerText = '';
-            if(window.MathJax) MathJax.typeset();
         }
 
-        // لعبة 1: ميزان التناسب
+        // لعبة 1: ميزان التناسب (مصلحة ومضمونة 100%)
         let propA = 3, propB = 4, propX = 9, targetB = 12;
         function initProportionGame() {
             propA = Math.floor(Math.random() * 4) + 2;
@@ -361,10 +421,9 @@
             targetB = propB * multiplier;
             propX = propA * multiplier;
             
-            document.getElementById('proportion-display').innerHTML = `$$\\frac{${propA}}{${propB}} = \\frac{x}{${targetB}}$$`;
+            document.getElementById('proportion-display').innerText = `${propA} / ${propB} = x / ${targetB}`;
             document.getElementById('proportion-input').value = '';
             document.getElementById('proportion-feedback').innerText = '';
-            if(window.MathJax) MathJax.typeset();
         }
 
         function checkProportionGame() {
@@ -414,15 +473,14 @@
 
         // لعبة 3: الكسور المتكافئة
         function initFracGame() {
-            document.getElementById('frac-target').innerHTML = "$$\\frac{1}{2} = ?$$";
+            document.getElementById('frac-target').innerText = "1 / 2 = ?";
             const container = document.getElementById('frac-options');
             container.innerHTML = `
-                <div class="col-md-3"><button class="btn btn-outline-light w-100 py-2 fs-5" onclick="checkFrac(2, 4)">$$\\frac{2}{4}$$ ✅</button></div>
-                <div class="col-md-3"><button class="btn btn-outline-light w-100 py-2 fs-5" onclick="checkFrac(1, 3)">$$\\frac{1}{3}$$ ❌</button></div>
-                <div class="col-md-3"><button class="btn btn-outline-light w-100 py-2 fs-5" onclick="checkFrac(3, 8)">$$\\frac{3}{8}$$ ❌</button></div>
+                <div class="col-md-3"><button class="btn btn-outline-dark w-100 py-2 fs-5 bg-white shadow-sm" onclick="checkFrac(2, 4)">2 / 4 ✅</button></div>
+                <div class="col-md-3"><button class="btn btn-outline-dark w-100 py-2 fs-5 bg-white shadow-sm" onclick="checkFrac(1, 3)">1 / 3 ❌</button></div>
+                <div class="col-md-3"><button class="btn btn-outline-dark w-100 py-2 fs-5 bg-white shadow-sm" onclick="checkFrac(3, 8)">3 / 8 ❌</button></div>
             `;
             document.getElementById('frac-feedback').innerText = '';
-            if(window.MathJax) MathJax.typeset();
         }
         function checkFrac(num, den) {
             const fb = document.getElementById('frac-feedback');
@@ -487,11 +545,10 @@
             document.getElementById('turn-indicator').innerText = `دور البطل: ${players[currentPlayerIdx].name} (الجولة ${Math.floor(currentRound/2) + 1})`;
             let a = Math.floor(Math.random() * 8) + 2;
             let b = Math.floor(Math.random() * 8) + 2;
-            challData = {q: `كم ناتج ضرب $${a} \\times ${b}$ ؟`, ans: a * b};
-            document.getElementById('chall-q').innerHTML = challData.q;
+            challData = {q: `كم ناتج ضرب ${a} × ${b} ؟`, ans: a * b};
+            document.getElementById('chall-q').innerText = challData.q;
             document.getElementById('chall-ans').value = '';
             document.getElementById('chall-feedback').innerText = '';
-            if(window.MathJax) MathJax.typeset();
         }
 
         function submitChallengeAnswer() {
