@@ -51,7 +51,6 @@
             background: #94A3B8;
             border-radius: 10px;
         }
-        /* Style for exponents to prevent layout overlap */
         .math-power {
             display: inline-flex;
             align-items: baseline;
@@ -129,7 +128,7 @@
                 </button>
                 <button onclick="switchTab('games')" id="tab-btn-games" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs sm:text-sm whitespace-nowrap transition-all text-slate-600 hover:bg-slate-100">
                     <i class="fa-solid fa-gamepad text-purple-500"></i>
-                    الألعاب التفاعلية
+                    الألعاب التفاعلية (10 ألعاب 🎮)
                 </button>
                 <button onclick="switchTab('multiplayer')" id="tab-btn-multiplayer" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs sm:text-sm whitespace-nowrap transition-all text-pink-600 bg-pink-50 hover:bg-pink-100 border border-pink-200">
                     <i class="fa-solid fa-users text-pink-500"></i>
@@ -149,14 +148,14 @@
                     <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-extrabold">أهلاً بك يا بطل الرياضيات 🚀</span>
                     <h2 class="text-2xl sm:text-4xl font-black leading-tight">جاهز لاكتشاف عالم الأعداد والهندسة؟</h2>
                     <p class="text-blue-100 text-xs sm:text-base leading-relaxed">
-                        استمتع بتعلم منهج الفصل الدراسي الأول كاملاً من خلال الشروحات البصرية الممتعة، والتمارين المتدرجة، والتحديات التنافسية بين الأصدقاء!
+                        استمتع بتعلم منهج الفصل الدراسي الأول كاملاً من خلال الشروحات البصرية الممتعة، والتمارين المتدرجة، و10 ألعاب تفاعلية مذهلة!
                     </p>
                     <div class="pt-2 flex flex-wrap gap-3">
-                        <button onclick="switchTab('multiplayer')" class="bg-amber-400 hover:bg-amber-300 text-slate-900 font-extrabold px-5 py-2.5 rounded-xl shadow-lg transition-all text-xs sm:text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-users"></i> ابدأ التحدي الجماعي
+                        <button onclick="switchTab('games')" class="bg-amber-400 hover:bg-amber-300 text-slate-900 font-extrabold px-5 py-2.5 rounded-xl shadow-lg transition-all text-xs sm:text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-gamepad"></i> العب ألعاب الرياضيات
                         </button>
-                        <button onclick="switchTab('lessons')" class="bg-white/20 hover:bg-white/30 backdrop-blur-md text-white font-bold px-5 py-2.5 rounded-xl transition-all text-xs sm:text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-book-open"></i> استعرض الدروس
+                        <button onclick="switchTab('multiplayer')" class="bg-white/20 hover:bg-white/30 backdrop-blur-md text-white font-bold px-5 py-2.5 rounded-xl transition-all text-xs sm:text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-users"></i> التحدي الجماعي
                         </button>
                     </div>
                 </div>
@@ -223,8 +222,8 @@
         <!-- ==================== GAMES TAB ==================== -->
         <section id="tab-games" class="hidden space-y-6">
             <div class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-3xl p-6 shadow-lg">
-                <h2 class="text-2xl font-black">ألعاب الرياضيات التفاعلية 🎮</h2>
-                <p class="text-purple-100 text-xs sm:text-sm mt-1">اختر لعبة وطور مهاراتك الذهنية بسرعة والمرح!</p>
+                <h2 class="text-2xl font-black">ألعاب الرياضيات التفاعلية الشاملة (10 ألعاب) 🎮</h2>
+                <p class="text-purple-100 text-xs sm:text-sm mt-1">اختر اللعبة المناسبة وطور مهاراتك في كافة فصول المنهج بمتعة وسرعة!</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -234,7 +233,7 @@
                         <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl font-black">
                             <i class="fa-solid fa-rocket"></i>
                         </div>
-                        <h3 class="text-lg font-extrabold text-slate-800">سباق الأعداد الأولية</h3>
+                        <h3 class="text-lg font-extrabold text-slate-800">1. سباق الأعداد الأولية</h3>
                         <p class="text-slate-500 text-xs">حدد هل العدد أولي أم غير أولي قبل انتهاء الوقت!</p>
                     </div>
                     <button onclick="startGame('prime-race')" class="mt-6 w-full bg-amber-500 hover:bg-amber-600 text-white font-extrabold py-2.5 rounded-xl text-xs transition-colors">
@@ -248,8 +247,8 @@
                         <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-black">
                             <i class="fa-solid fa-puzzle-piece"></i>
                         </div>
-                        <h3 class="text-lg font-extrabold text-slate-800">مطابقة الكسور المتكافئة</h3>
-                        <p class="text-slate-500 text-xs">طابق بين الكسر العادي والعشري المكافئ له.</p>
+                        <h3 class="text-lg font-extrabold text-slate-800">2. مطابقة الكسور المكافئة</h3>
+                        <p class="text-slate-500 text-xs">طابق بين الكسر العادي والكسر العشري المكافئ له.</p>
                     </div>
                     <button onclick="startGame('fractions-match')" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-2.5 rounded-xl text-xs transition-colors">
                         ابدأ اللعبة <i class="fa-solid fa-play"></i>
@@ -262,7 +261,7 @@
                         <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl font-black">
                             <i class="fa-solid fa-scale-balanced"></i>
                         </div>
-                        <h3 class="text-lg font-extrabold text-slate-800">ميزان التناسب</h3>
+                        <h3 class="text-lg font-extrabold text-slate-800">3. ميزان التناسب</h3>
                         <p class="text-slate-500 text-xs">أوجد القيمة المجهولة (x) لتحقيق التناسب والتوازن التام.</p>
                     </div>
                     <button onclick="startGame('balance-game')" class="mt-6 w-full bg-purple-600 hover:bg-purple-700 text-white font-extrabold py-2.5 rounded-xl text-xs transition-colors">
@@ -276,8 +275,8 @@
                         <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl font-black">
                             <i class="fa-solid fa-draw-polygon"></i>
                         </div>
-                        <h3 class="text-lg font-extrabold text-slate-800">كاشف المساحات الهندسية</h3>
-                        <p class="text-slate-500 text-xs">احسب مساحات الأشكال الهندسية المعروضة أمامك.</p>
+                        <h3 class="text-lg font-extrabold text-slate-800">4. كاشف المساحات الهندسية</h3>
+                        <p class="text-slate-500 text-xs">احسب مساحات المتوازي، المثلث، وشبه المنحرف بدقة.</p>
                     </div>
                     <button onclick="startGame('area-finder')" class="mt-6 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-2.5 rounded-xl text-xs transition-colors">
                         ابدأ اللعبة <i class="fa-solid fa-play"></i>
@@ -290,10 +289,80 @@
                         <div class="w-12 h-12 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center text-xl font-black">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </div>
-                        <h3 class="text-lg font-extrabold text-slate-800">المتسوق الذكي</h3>
+                        <h3 class="text-lg font-extrabold text-slate-800">5. المتسوق الذكي (النسبة المئوية)</h3>
                         <p class="text-slate-500 text-xs">احسب السعر النهائي للسلع بعد تطبيق نسبة الخصم.</p>
                     </div>
                     <button onclick="startGame('shopping-spree')" class="mt-6 w-full bg-pink-600 hover:bg-pink-700 text-white font-extrabold py-2.5 rounded-xl text-xs transition-colors">
+                        ابدأ اللعبة <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+                <!-- Game 6 (New) -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl font-black">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-slate-800">6. تحدي القوى والأسس</h3>
+                        <p class="text-slate-500 text-xs">احسب ناتج القوى والأسس (مثل 3 أس 3 أو 2 أس 4) بسرعة.</p>
+                    </div>
+                    <button onclick="startGame('powers-challenge')" class="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold py-2.5 rounded-xl text-xs transition-colors">
+                        ابدأ اللعبة <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+                <!-- Game 7 (New) -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center text-xl font-black">
+                            <i class="fa-solid fa-divide"></i>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-slate-800">7. ملك القواسم والمضاعفات</h3>
+                        <p class="text-slate-500 text-xs">أوجد القاسم المشترك الأكبر (ق.م.أ) والمضاعف (م.م.أ).</p>
+                    </div>
+                    <button onclick="startGame('gcd-lcm-game')" class="mt-6 w-full bg-teal-600 hover:bg-teal-700 text-white font-extrabold py-2.5 rounded-xl text-xs transition-colors">
+                        ابدأ اللعبة <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+                <!-- Game 8 (New) -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl font-black">
+                            <i class="fa-solid fa-map"></i>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-slate-800">8. مغامرة مقياس الرسم</h3>
+                        <p class="text-slate-500 text-xs">احسب المسافات الحقيقية على الخرائط باستخدام مقياس الرسم.</p>
+                    </div>
+                    <button onclick="startGame('scale-adventure')" class="mt-6 w-full bg-amber-600 hover:bg-amber-700 text-white font-extrabold py-2.5 rounded-xl text-xs transition-colors">
+                        ابدأ اللعبة <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+                <!-- Game 9 (New) -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl font-black">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-slate-800">9. بطل العمليات العشرية</h3>
+                        <p class="text-slate-500 text-xs">أجرِ عمليات ضرب وقسمة الكسور العشرية بدقة فائقة.</p>
+                    </div>
+                    <button onclick="startGame('decimals-master')" class="mt-6 w-full bg-rose-600 hover:bg-rose-700 text-white font-extrabold py-2.5 rounded-xl text-xs transition-colors">
+                        ابدأ اللعبة <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+                <!-- Game 10 (New) -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-cyan-100 text-cyan-700 flex items-center justify-center text-xl font-black">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-slate-800">10. صائد المعادلات الجبرية</h3>
+                        <p class="text-slate-500 text-xs">حل المعادلات البسيطة ذات الخطوة الواحدة واكتشف قيم المتغيرات.</p>
+                    </div>
+                    <button onclick="startGame('algebra-hunter')" class="mt-6 w-full bg-cyan-600 hover:bg-cyan-700 text-white font-extrabold py-2.5 rounded-xl text-xs transition-colors">
                         ابدأ اللعبة <i class="fa-solid fa-play"></i>
                     </button>
                 </div>
@@ -455,7 +524,7 @@
 
         const EXERCISES_DATA = [
             { id: 'ex1', unit: 1, question: 'ما هو حاصل حساب القوة التالي: 2⁴ ؟', options: ['8', '16', '12', '64'], correct: 1, explanation: '2⁴ تعني ضرب العدد 2 في نفسه 4 مرات: 2 × 2 × 2 × 2 = 16.' },
-            { id: 'ex2', unit: 1, question: 'أوجد القاسم المشترك الأكبر (Q.M.A) للعددين 15 و 25:', options: ['3', '5', '15', '75'], correct: 1, explanation: 'قواسم 15: {1,3,5,15} وقواسم 25: {1,5,25}. القاسم المشترك الأكبر هو 5.' },
+            { id: 'ex2', unit: 1, question: 'أوجد القاسم المشترك الأكبر (ق.م.أ) للعددين 15 و 25:', options: ['3', '5', '15', '75'], correct: 1, explanation: 'قواسم 15: {1,3,5,15} وقواسم 25: {1,5,25}. القاسم المشترك الأكبر هو 5.' },
             { id: 'ex3', unit: 2, question: 'أوجد ناتج جمع الكسرين: (1/5) + (2/5) = ؟', options: ['3/10', '3/5', '2/25', '1/5'], correct: 1, explanation: 'المقامات متساوية، نجمع البسطين مباشرة: 1+2 = 3/5.' },
             { id: 'ex4', unit: 2, question: 'أوجد ناتج ضرب: 0.25 × 0.4 = ؟', options: ['0.1', '0.01', '1.0', '0.125'], correct: 0, explanation: '25 × 4 = 100. نضع الفاصلة بعد 3 منازل عشرية: 0.100 = 0.1.' },
             { id: 'ex5', unit: 3, question: 'اكتب الكسر العشري 0.75 على صورة نسبة مئوية:', options: ['7.5%', '75%', '0.75%', '750%'], correct: 1, explanation: 'نضرب الكسر العشري في 100: 0.75 × 100 = 75%.' },
@@ -741,7 +810,7 @@
             document.getElementById('mp-winner-box').classList.add('hidden');
         }
 
-        // ==================== GAMES SYSTEM ==================== //
+        // ==================== GAMES SYSTEM (10 GAMES) ==================== //
         let gameTimer = null;
 
         function startGame(gameType) {
@@ -757,6 +826,11 @@
             else if (gameType === 'balance-game') initBalanceGame(area);
             else if (gameType === 'area-finder') initAreaFinderGame(area);
             else if (gameType === 'shopping-spree') initShoppingSpreeGame(area);
+            else if (gameType === 'powers-challenge') initPowersChallengeGame(area);
+            else if (gameType === 'gcd-lcm-game') initGcdLcmGame(area);
+            else if (gameType === 'scale-adventure') initScaleAdventureGame(area);
+            else if (gameType === 'decimals-master') initDecimalsMasterGame(area);
+            else if (gameType === 'algebra-hunter') initAlgebraHunterGame(area);
             
             container.scrollIntoView({ behavior: 'smooth' });
         }
@@ -766,6 +840,7 @@
             document.getElementById('active-game-container').classList.add('hidden');
         }
 
+        // Game 1: Prime Race
         function initPrimeRaceGame(area) {
             let score = 0, currentNum = 7, timeLeft = 20;
             const isPrime = n => { for(let i=2; i*i<=n; i++) if(n%i===0) return false; return n>1; };
@@ -805,6 +880,7 @@
             }, 1000);
         }
 
+        // Game 2: Fractions Match
         function initFractionsMatchGame(area) {
             const cards = [
                 { val: '1/2', m: '0.5' }, { val: '0.5', m: '1/2' },
@@ -814,7 +890,7 @@
             let sel = [];
             area.innerHTML = `
                 <div class="text-center space-y-4 max-w-sm w-full">
-                    <h3 class="font-extrabold text-sm">طابق الكسر العادي والعشري المكافئ له</h3>
+                    <h3 class="font-extrabold text-sm text-blue-800">طابق الكسر العادي والكسر العشري المكافئ له</h3>
                     <div class="grid grid-cols-2 gap-3">
                         ${cards.map(c => `<button onclick="selFrac(this, '${c.val}', '${c.m}')" class="bg-slate-100 py-3 rounded-xl font-black text-base border-2 border-slate-200">${c.val}</button>`).join('')}
                     </div>
@@ -841,12 +917,8 @@
             };
         }
 
-        // ==================== إصلاح لعبة ميزان التناسب ==================== //
+        // Game 3: Balance Game
         function initBalanceGame(area) {
-            // نحدد معادلة تناسب صحيحة: مثلاً 2 / 3 = x / 6 (القيمة الصحيحة لـ x هي 4)
-            let a = 2, b = 3, targetX = 4, denominator = 6;
-            
-            // اختيار عشوائي لتنوع المسائل
             const options = [
                 {a: 2, b: 3, den: 6, ans: 4},
                 {a: 1, b: 2, den: 4, ans: 2},
@@ -854,12 +926,12 @@
                 {a: 2, b: 5, den: 10, ans: 4}
             ];
             const chosen = options[Math.floor(Math.random() * options.length)];
-            a = chosen.a; b = chosen.b; denominator = chosen.den; targetX = chosen.ans;
+            let a = chosen.a, b = chosen.b, denominator = chosen.den, targetX = chosen.ans;
 
             area.innerHTML = `
                 <div class="text-center space-y-4 max-w-md w-full">
                     <h3 class="font-black text-base text-purple-700">⚖️ لعبة ميزان التناسب</h3>
-                    <p class="text-xs text-slate-500">أوجد القيمة المجهولة (x) لتحقيق التناسب والتوازن التام بين النسبتين:</p>
+                    <p class="text-xs text-slate-500">أوجد القيمة المجهولة (x) لتحقيق التناسب والتوازن التام:</p>
                     
                     <div class="p-5 bg-purple-50 border-2 border-purple-200 rounded-2xl text-center">
                         <div class="text-2xl font-black text-slate-800 tracking-wider mb-3">
@@ -890,39 +962,166 @@
             };
         }
 
+        // Game 4: Area Finder
         function initAreaFinderGame(area) {
-            const b = 8, h = 5;
             area.innerHTML = `
                 <div class="text-center space-y-4 max-w-sm w-full">
-                    <h3 class="font-extrabold text-sm">احسب مساحة متوازي أضلاع قاعدته 8 سم وارتفاعه 5 سم</h3>
-                    <input type="number" id="area-ans" placeholder="الناتج..." class="p-2 border rounded-xl text-center font-bold text-sm">
-                    <button onclick="ansArea(40)" class="bg-emerald-600 text-white font-extrabold px-4 py-2 rounded-xl text-xs">تحقق</button>
+                    <h3 class="font-extrabold text-sm text-emerald-800">📐 حساب المساحات الهندسية</h3>
+                    <p class="text-xs text-slate-500">احسب مساحة متوازي أضلاع قاعدته 8 سم وارتفاعه 5 سم:</p>
+                    <input type="number" id="area-ans" placeholder="الناتج بالـ سم²..." class="w-full p-2.5 border rounded-xl text-center font-bold text-sm">
+                    <button onclick="ansArea(40)" class="w-full bg-emerald-600 text-white font-extrabold py-2.5 rounded-xl text-xs">تحقق الإجابة</button>
                     <p id="area-fb" class="font-bold text-xs"></p>
                 </div>
             `;
             window.ansArea = (target) => {
                 const v = parseFloat(document.getElementById('area-ans').value);
                 const fb = document.getElementById('area-fb');
-                if (v === target) { addPoints(20); fb.innerText = '✨ ممتازة! +20 نقطة'; }
-                else { fb.innerText = '❌ إجابة خاطئة!'; }
+                if (v === target) { addPoints(20); fb.innerHTML = '<span class="text-emerald-600">✨ إجابة ممتازة! +20 نقطة</span>'; }
+                else { fb.innerHTML = '<span class="text-red-500">❌ تذكر: مساحة متوازي الأضلاع = القاعدة × الارتفاع</span>'; }
             };
         }
 
+        // Game 5: Shopping Spree
         function initShoppingSpreeGame(area) {
             area.innerHTML = `
                 <div class="text-center space-y-4 max-w-sm w-full">
-                    <h3 class="font-extrabold text-sm">حقيبة بسعر 100 ريال عليها خصم 20%</h3>
-                    <p class="text-xs text-slate-500">احسب السعر النهائي بالريال:</p>
-                    <input type="number" id="shop-ans" placeholder="السعر الجديد..." class="p-2 border rounded-xl text-center font-bold text-sm">
-                    <button onclick="ansShop(80)" class="bg-pink-600 text-white font-extrabold px-4 py-2 rounded-xl text-xs">شراء</button>
+                    <h3 class="font-extrabold text-sm text-pink-700">🛍️ المتسوق الذكي (التطبيقات المئوية)</h3>
+                    <p class="text-xs text-slate-500">حقيبة ثمنها 100 ريال وعليها خصم بنسبة 20%، كم يصبح سعرها النهائي؟</p>
+                    <input type="number" id="shop-ans" placeholder="السعر الجديد..." class="w-full p-2.5 border rounded-xl text-center font-bold text-sm">
+                    <button onclick="ansShop(80)" class="w-full bg-pink-600 text-white font-extrabold py-2.5 rounded-xl text-xs">شراء الآن</button>
                     <p id="shop-fb" class="font-bold text-xs"></p>
                 </div>
             `;
             window.ansShop = (target) => {
                 const v = parseFloat(document.getElementById('shop-ans').value);
                 const fb = document.getElementById('shop-fb');
-                if (v === target) { addPoints(25); fb.innerText = '🛒 أحسنت! +25 نقطة'; }
-                else { fb.innerText = '❌ الناتج الصحيح 80 ريال'; }
+                if (v === target) { addPoints(25); fb.innerHTML = '<span class="text-emerald-600">🛒 أحسنت! السعر بعد الخصم 80 ريال (+25 نقطة)</span>'; }
+                else { fb.innerHTML = '<span class="text-red-500">❌ مقدار الخصم = 100 × 0.20 = 20 ريال. إذن السعر = 80</span>'; }
+            };
+        }
+
+        // Game 6: Powers Challenge (New)
+        function initPowersChallengeGame(area) {
+            const challenges = [
+                { q: '3²', val: 9 },
+                { q: '2³', val: 8 },
+                { q: '10²', val: 100 },
+                { q: '5²', val: 25 }
+            ];
+            const ch = challenges[Math.floor(Math.random() * challenges.length)];
+
+            area.innerHTML = `
+                <div class="text-center space-y-4 max-w-sm w-full">
+                    <h3 class="font-extrabold text-sm text-indigo-700">⚡ تحدي القوى والأسس</h3>
+                    <p class="text-xs text-slate-500">ما هو ناتج حساب القوة التالية:</p>
+                    <div class="text-3xl font-black text-indigo-600 my-2">${ch.q} = ؟</div>
+                    <input type="number" id="pow-ans" placeholder="الناتج..." class="w-full p-2.5 border rounded-xl text-center font-bold text-sm">
+                    <button onclick="checkPow(${ch.val})" class="w-full bg-indigo-600 text-white font-extrabold py-2.5 rounded-xl text-xs">تحقق</button>
+                    <p id="pow-fb" class="font-bold text-xs"></p>
+                </div>
+            `;
+
+            window.checkPow = (correctVal) => {
+                const val = parseFloat(document.getElementById('pow-ans').value);
+                const fb = document.getElementById('pow-fb');
+                if (val === correctVal) {
+                    addPoints(20);
+                    fb.innerHTML = '<span class="text-emerald-600">🎉 إجابة صحيحة ومبهرة! (+20 نقطة)</span>';
+                } else {
+                    fb.innerHTML = '<span class="text-red-500">❌ حاول مرة أخرى، تذكر تكرار ضرب الأساس في نفسه.</span>';
+                }
+            };
+        }
+
+        // Game 7: GCD & LCM Game (New)
+        function initGcdLcmGame(area) {
+            area.innerHTML = `
+                <div class="text-center space-y-4 max-w-sm w-full">
+                    <h3 class="font-extrabold text-sm text-teal-700">🧩 ملك القواسم والمضاعفات</h3>
+                    <p class="text-xs text-slate-500">ما هو المضاعف المشترك الأصغر (م.م.أ) للعددين 4 و 6 ؟</p>
+                    <input type="number" id="lcm-ans" placeholder="الناتج..." class="w-full p-2.5 border rounded-xl text-center font-bold text-sm">
+                    <button onclick="checkLcm(12)" class="w-full bg-teal-600 text-white font-extrabold py-2.5 rounded-xl text-xs">تحقق</button>
+                    <p id="lcm-fb" class="font-bold text-xs"></p>
+                </div>
+            `;
+            window.checkLcm = (target) => {
+                const v = parseFloat(document.getElementById('lcm-ans').value);
+                const fb = document.getElementById('lcm-fb');
+                if (v === target) {
+                    addPoints(25);
+                    fb.innerHTML = '<span class="text-emerald-600">✨ ممتاز! مضاعفات 4 (4,8,12) ومضاعفات 6 (6,12). (+25 نقطة)</span>';
+                } else {
+                    fb.innerHTML = '<span class="text-red-500">❌ إجابة خاطئة. حاول كتابة مضاعفات العددين.</span>';
+                }
+            };
+        }
+
+        // Game 8: Scale Adventure (New)
+        function initScaleAdventureGame(area) {
+            area.innerHTML = `
+                <div class="text-center space-y-4 max-w-sm w-full">
+                    <h3 class="font-extrabold text-sm text-amber-700">🗺️ مغامرة مقياس الرسم</h3>
+                    <p class="text-xs text-slate-500">إذا كان مقياس الرسم على خريطة هو 1 سم لكل 5 كم، وكانت المسافة على الخريطة 3 سم، فما المسافة الحقيقية بالكم؟</p>
+                    <input type="number" id="scale-ans" placeholder="المسافة بالحقيقة..." class="w-full p-2.5 border rounded-xl text-center font-bold text-sm">
+                    <button onclick="checkScale(15)" class="w-full bg-amber-600 text-white font-extrabold py-2.5 rounded-xl text-xs">تحقق</button>
+                    <p id="scale-fb" class="font-bold text-xs"></p>
+                </div>
+            `;
+            window.checkScale = (target) => {
+                const v = parseFloat(document.getElementById('scale-ans').value);
+                const fb = document.getElementById('scale-fb');
+                if (v === target) {
+                    addPoints(25);
+                    fb.innerHTML = '<span class="text-emerald-600">🎉 صحيح! 3 × 5 = 15 كم. (+25 نقطة)</span>';
+                } else {
+                    fb.innerHTML = '<span class="text-red-500">❌ اضرب المسافة على الخريطة في قيمة مقياس الرسم.</span>';
+                }
+            };
+        }
+
+        // Game 9: Decimals Master (New)
+        function initDecimalsMasterGame(area) {
+            area.innerHTML = `
+                <div class="text-center space-y-4 max-w-sm w-full">
+                    <h3 class="font-extrabold text-sm text-rose-700">🔢 بطل العمليات العشرية</h3>
+                    <p class="text-xs text-slate-500">أوجد ناتج ضرب: 0.5 × 0.2 = ؟</p>
+                    <input type="text" id="dec-ans" placeholder="الناتج العشري..." class="w-full p-2.5 border rounded-xl text-center font-bold text-sm">
+                    <button onclick="checkDec('0.1')" class="w-full bg-rose-600 text-white font-extrabold py-2.5 rounded-xl text-xs">تحقق</button>
+                    <p id="dec-fb" class="font-bold text-xs"></p>
+                </div>
+            `;
+            window.checkDec = (target) => {
+                const v = document.getElementById('dec-ans').value.trim();
+                const fb = document.getElementById('dec-fb');
+                if (v === target || v === '0.10') {
+                    addPoints(20);
+                    fb.innerHTML = '<span class="text-emerald-600">✨ أحسنت! 5 × 2 = 10 والمنزلتان بعد الفاصلة تعطي 0.1 (+20 نقطة)</span>';
+                } else {
+                    fb.innerHTML = '<span class="text-red-500">❌ الناتج الصحيح هو 0.1</span>';
+                }
+            };
+        }
+
+        // Game 10: Algebra Hunter (New)
+        function initAlgebraHunterGame(area) {
+            area.innerHTML = `
+                <div class="text-center space-y-4 max-w-sm w-full">
+                    <h3 class="font-extrabold text-sm text-cyan-700">🎯 صائد المعادلات الجبرية</h3>
+                    <p class="text-xs text-slate-500">حل المعادلة التالية واكتشف قيمة المتغير x:<br><b>x + 7 = 15</b></p>
+                    <input type="number" id="alg-ans" placeholder="قيمة x..." class="w-full p-2.5 border rounded-xl text-center font-bold text-sm">
+                    <button onclick="checkAlg(8)" class="w-full bg-cyan-600 text-white font-extrabold py-2.5 rounded-xl text-xs">تحقق</button>
+                    <p id="alg-fb" class="font-bold text-xs"></p>
+                </div>
+            `;
+            window.checkAlg = (target) => {
+                const v = parseFloat(document.getElementById('alg-ans').value);
+                const fb = document.getElementById('alg-fb');
+                if (v === target) {
+                    addPoints(25);
+                    fb.innerHTML = '<span class="text-emerald-600">🎉 رائع! x = 15 - 7 = 8 (+25 نقطة)</span>';
+                } else {
+                    fb.innerHTML = '<span class="text-red-500">❌ اطرح 7 من الطرفين للحصول على قيمة x.</span>';
+                }
             };
         }
 
