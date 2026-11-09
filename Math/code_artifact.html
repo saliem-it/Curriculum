@@ -263,7 +263,7 @@
                             <i class="fa-solid fa-scale-balanced"></i>
                         </div>
                         <h3 class="text-lg font-extrabold text-slate-800">ميزان التناسب</h3>
-                        <p class="text-slate-500 text-xs">حرك المؤشر لتحقيق التناسق والتوازن بين النسبتين.</p>
+                        <p class="text-slate-500 text-xs">أوجد القيمة المجهولة (x) لتحقيق التناسب والتوازن التام.</p>
                     </div>
                     <button onclick="startGame('balance-game')" class="mt-6 w-full bg-purple-600 hover:bg-purple-700 text-white font-extrabold py-2.5 rounded-xl text-xs transition-colors">
                         ابدأ اللعبة <i class="fa-solid fa-play"></i>
@@ -314,7 +314,7 @@
                 <div>
                     <span class="bg-white/20 text-xs px-3 py-1 rounded-full font-extrabold">تحدي أبطال الفصل 🏆</span>
                     <h2 class="text-2xl sm:text-3xl font-black mt-1">ساحة التحدي الجماعي (2 - 4 أطفال)</h2>
-                    <p class="text-pink-100 text-xs sm:text-sm mt-1">ادخلوا أسطر أسماءكم وتنافسوا في حل أسئلة الرياضيات بالإجابة الأسرع!</p>
+                    <p class="text-pink-100 text-xs sm:text-sm mt-1">ادخلوا أسماءكم وتنافسوا في حل أسئلة الرياضيات بالإجابة الأسرع!</p>
                 </div>
             </div>
 
@@ -329,9 +329,7 @@
                     </div>
                 </div>
 
-                <div class="space-y-3" id="mp-names-inputs">
-                    <!-- Dynamic inputs based on player count -->
-                </div>
+                <div class="space-y-3" id="mp-names-inputs"></div>
 
                 <button onclick="startMultiplayerGame()" class="w-full bg-gradient-to-r from-pink-500 to-rose-600 hover:opacity-90 text-white font-extrabold py-3.5 rounded-2xl shadow-lg transition-all text-sm flex items-center justify-center gap-2">
                     <i class="fa-solid fa-gamepad"></i> ابدأ التحدي الآن
@@ -340,10 +338,8 @@
 
             <!-- Active Multiplayer Match -->
             <div id="mp-match-box" class="hidden bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xl space-y-6">
-                <!-- Scoreboard Header -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="mp-scoreboard"></div>
 
-                <!-- Current Player Turn Banner -->
                 <div class="bg-amber-50 border border-amber-200 p-4 rounded-2xl flex items-center justify-between">
                     <div class="flex items-center gap-2 font-extrabold text-amber-800 text-sm">
                         <i class="fa-solid fa-circle-user text-amber-600 text-lg"></i>
@@ -354,7 +350,6 @@
                     </div>
                 </div>
 
-                <!-- Question Area -->
                 <div class="bg-slate-50 p-6 rounded-3xl border border-slate-200 space-y-4">
                     <h3 id="mp-question-text" class="text-lg font-black text-slate-800 text-center"></h3>
                     <div id="mp-options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2"></div>
@@ -407,7 +402,6 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Global State
         let appState = {
             score: 0,
             completedExercises: []
@@ -470,7 +464,6 @@
             { id: 'ex8', unit: 4, question: 'احسب مساحة متوازي أضلاع قاعدته 8 سم وارتفاعه 5 سم:', options: ['40 سم²', '20 سم²', '13 سم²', '26 سم²'], correct: 0, explanation: 'المساحة = القاعدة × الارتفاع = 8 × 5 = 40 سم².' }
         ];
 
-        // Initialization
         window.onload = function () {
             loadSavedState();
             renderDashboard();
@@ -689,7 +682,6 @@
                 return;
             }
 
-            // Scoreboard update
             const sb = document.getElementById('mp-scoreboard');
             sb.innerHTML = '';
             mpPlayers.forEach((p, idx) => {
@@ -734,7 +726,6 @@
             document.getElementById('mp-match-box').classList.add('hidden');
             document.getElementById('mp-winner-box').classList.remove('hidden');
 
-            // Find winner
             let winner = mpPlayers[0];
             mpPlayers.forEach(p => {
                 if (p.score > winner.score) winner = p;
@@ -850,23 +841,53 @@
             };
         }
 
+        // ==================== إصلاح لعبة ميزان التناسب ==================== //
         function initBalanceGame(area) {
-            let val = 1;
-            const render = () => {
-                const bal = parseInt(val) === 6;
-                area.innerHTML = `
-                    <div class="text-center space-y-4 max-w-sm w-full">
-                        <h3 class="font-black text-sm">ميزان التناسب: 2 / 4 = 3 / ؟</h3>
-                        <div class="p-4 bg-slate-50 border rounded-2xl text-center font-black text-lg">
-                            2/4 ${bal ? '=' : '≠'} 3/${val}
+            // نحدد معادلة تناسب صحيحة: مثلاً 2 / 3 = x / 6 (القيمة الصحيحة لـ x هي 4)
+            let a = 2, b = 3, targetX = 4, denominator = 6;
+            
+            // اختيار عشوائي لتنوع المسائل
+            const options = [
+                {a: 2, b: 3, den: 6, ans: 4},
+                {a: 1, b: 2, den: 4, ans: 2},
+                {a: 3, b: 4, den: 8, ans: 6},
+                {a: 2, b: 5, den: 10, ans: 4}
+            ];
+            const chosen = options[Math.floor(Math.random() * options.length)];
+            a = chosen.a; b = chosen.b; denominator = chosen.den; targetX = chosen.ans;
+
+            area.innerHTML = `
+                <div class="text-center space-y-4 max-w-md w-full">
+                    <h3 class="font-black text-base text-purple-700">⚖️ لعبة ميزان التناسب</h3>
+                    <p class="text-xs text-slate-500">أوجد القيمة المجهولة (x) لتحقيق التناسب والتوازن التام بين النسبتين:</p>
+                    
+                    <div class="p-5 bg-purple-50 border-2 border-purple-200 rounded-2xl text-center">
+                        <div class="text-2xl font-black text-slate-800 tracking-wider mb-3">
+                            <span class="text-brand-blue">${a}</span> / <span class="text-brand-blue">${b}</span> 
+                            = 
+                            <span class="text-pink-600 font-extrabold underline">x</span> / <span class="text-brand-blue">${denominator}</span>
                         </div>
-                        <input type="range" min="1" max="10" value="${val}" oninput="val=this.value; render();" class="w-full">
-                        ${bal ? '<button onclick="addPoints(25); closeGame();" class="w-full bg-emerald-500 text-white font-extrabold py-2 rounded-xl text-xs">متوازن! تأكيد ✨</button>' : ''}
+                        <div class="flex items-center justify-center gap-3 mt-4">
+                            <span class="font-extrabold text-sm">قيمة x =</span>
+                            <input type="number" id="balance-user-ans" placeholder="أدخل x..." class="w-28 p-2.5 border-2 border-purple-300 rounded-xl text-center font-black text-lg focus:outline-none focus:border-purple-600">
+                            <button onclick="checkBalanceAns(${targetX})" class="bg-purple-600 hover:bg-purple-700 text-white font-extrabold px-5 py-2.5 rounded-xl text-xs shadow-md transition-all">تحقق التوازن ⚖️</button>
+                        </div>
+                        <p id="balance-fb" class="font-bold text-xs mt-3"></p>
                     </div>
-                `;
+                </div>
+            `;
+
+            window.checkBalanceAns = (correctVal) => {
+                const userInp = parseFloat(document.getElementById('balance-user-ans').value);
+                const fb = document.getElementById('balance-fb');
+                if (userInp === correctVal) {
+                    addPoints(25);
+                    fb.innerHTML = '<span class="text-emerald-600 text-sm font-extrabold">🎉 توازن مثالي! إجابة صحيحة (+25 نقطة)</span>';
+                    try { confetti({ particleCount: 40, spread: 60 }); } catch(e){}
+                } else {
+                    fb.innerHTML = '<span class="text-red-500 text-sm font-extrabold">❌ الميزان غير مائل، حاول استخدام الضرب التبادلي!</span>';
+                }
             };
-            window.render = render;
-            render();
         }
 
         function initAreaFinderGame(area) {
