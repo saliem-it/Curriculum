@@ -21,7 +21,7 @@
             padding-bottom: 50px;
         }
         .navbar-custom {
-            background: rgba(15, 23, 42, 0.9);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
@@ -41,8 +41,9 @@
             color: #cbd5e1;
             border-radius: 12px;
             font-weight: 600;
-            margin: 0 5px;
+            margin: 0 4px;
             transition: 0.3s;
+            font-size: 0.95rem;
         }
         .nav-pills .nav-link.active {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -64,7 +65,7 @@
             color: white;
         }
         .game-box {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.35);
             border-radius: 15px;
             padding: 20px;
             border: 2px dashed rgba(255,255,255,0.2);
@@ -79,7 +80,7 @@
             <a class="navbar-brand text-white fw-bold fs-4" href="#">
                 <i class="fas fa-calculator text-info ms-2"></i> عالم الرياضيات <span class="badge bg-info text-dark fs-6">السادس الابتدائي</span>
             </a>
-            <div class="d-flex align-items: center gap-3">
+            <div class="d-flex align-items-center gap-3">
                 <span class="badge bg-warning text-dark px-3 py-2 fs-6 rounded-pill">
                     <i class="fas fa-star ms-1"></i> <span id="score-val">0</span> نقطة
                 </span>
@@ -91,45 +92,68 @@
     </nav>
 
     <div class="container">
-        <!-- تبويبات التطبيق -->
+        <!-- التبويبات الرئيسية -->
         <ul class="nav nav-pills justify-content-center mb-4 pb-2" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-lessons" type="button"><i class="fas fa-book-open ms-2"></i>الشروحات</button>
+                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-lessons" type="button"><i class="fas fa-book-open ms-1"></i>الشروحات</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-exercises" type="button"><i class="fas fa-tasks ms-2"></i>بنك التمارين</button>
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-exercises" type="button"><i class="fas fa-tasks ms-1"></i>بنك التمارين</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-games" type="button"><i class="fas fa-gamepad ms-2"></i>الألعاب التفاعلية</button>
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-games" type="button"><i class="fas fa-gamepad ms-1"></i>الألعاب (5 ألعاب)</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-challenge" type="button"><i class="fas fa-users ms-2"></i>التحدي الجماعي</button>
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-challenge" type="button"><i class="fas fa-users ms-1"></i>التحدي الجماعي</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-wheel" type="button"><i class="fas fa-dharmachakra ms-2"></i>عجلة الحظ</button>
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-wheel" type="button"><i class="fas fa-dharmachakra ms-1"></i>عجلة الحظ</button>
             </li>
         </ul>
 
         <div class="tab-content" id="pills-tabContent">
             
-            <!-- 1. الشروحات -->
+            <!-- 1. الشروحات والرسومات البصرية -->
             <div class="tab-pane fade show active" id="tab-lessons">
                 <div class="row g-4">
                     <div class="col-md-6">
                         <div class="card-custom p-4 h-100">
                             <h4 class="text-info fw-bold mb-3"><i class="fas fa-atom ms-2"></i>1. القوى والأسس</h4>
-                            <p class="text-white-50">القوة هي تكرار ضرب العدد في نفسه. يسمى العدد المضروب بالأساس، وعدد مرات التكرار بالأس.</p>
+                            <p class="text-white-50">القوة هي تكرار ضرب العدد في نفسه. الأساس هو العدد المضروب، والأس هو عدد مرات التكرار.</p>
                             <div class="bg-dark p-3 rounded-3 text-center my-3 border border-secondary">
-                                <span class="fs-4 text-warning"> $5^3$ = 5 × 5 × 5 = 125</span>
+                                <span class="fs-4 text-warning">5³ = 5 × 5 × 5 = 125</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="card-custom p-4 h-100">
-                            <h4 class="text-info fw-bold mb-3"><i class="fas fa-balance-scale ms-2"></i>2. التناسب والنسبة</h4>
-                            <p class="text-white-50">التناسب هو تساوٍ بين نسبتين أو أكثر، ويمكننا استخدام الضرب التبادلي لإيجاد المجهول.</p>
+                            <h4 class="text-info fw-bold mb-3"><i class="fas fa-balance-scale ms-2"></i>2. النسبة والتناسب</h4>
+                            <p class="text-white-50">التناسب هو تساوي نسبتين أو أكثر، ونستخدم الضرب التبادلي لإيجاد الحد المجهول.</p>
                             <div class="bg-dark p-3 rounded-3 text-center my-3 border border-secondary">
-                                <span class="fs-4 text-warning">إذا كانت $\frac{2}{3} = \frac{x}{6}$ فإن $x = \frac{2 \times 6}{3} = 4$</span>
+                                <span class="fs-4 text-warning">إذا كانت 2/3 = x/6 فإن x = (2×6)/3 = 4</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-custom p-4 h-100">
+                            <h4 class="text-info fw-bold mb-3"><i class="fas fa-shapes ms-2"></i>3. مساحة متوازي الأضلاع</h4>
+                            <p class="text-white-50">مساحة متوازي الأضلاع تساوي حاصل ضرب طول القاعدة في الارتفاع المناظر لها.</p>
+                            <div class="text-center my-2">
+                                <svg width="180" height="90" viewBox="0 0 200 100">
+                                    <polygon points="40,80 160,80 180,20 60,20" fill="none" stroke="#38bdf8" stroke-width="3"/>
+                                    <line x1="60" y1="20" x2="60" y2="80" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4"/>
+                                    <text x="100" y="95" fill="#fff" font-size="14">القاعدة</text>
+                                    <text x="35" y="55" fill="#f43f5e" font-size="14">الارتفاع</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-custom p-4 h-100">
+                            <h4 class="text-info fw-bold mb-3"><i class="fas fa-percentage ms-2"></i>4. النسبة المئوية</h4>
+                            <p class="text-white-50">النسبة المئوية هي نسبة حدها الثاني (مقامها) يساوي 100 ويرمز لها بالرمز (%).</p>
+                            <div class="bg-dark p-3 rounded-3 text-center my-3 border border-secondary">
+                                <span class="fs-4 text-warning">25% = 25 / 100 = 1 / 4</span>
                             </div>
                         </div>
                     </div>
@@ -139,36 +163,99 @@
             <!-- 2. بنك التمارين -->
             <div class="tab-pane fade" id="tab-exercises">
                 <div class="card-custom p-4 text-center">
-                    <h3 class="fw-bold mb-4 text-warning">اختبر معلوماتك في الرياضيات</h3>
-                    <div id="exercise-container" class="game-box my-3">
-                        <h5 id="ex-question" class="mb-3">ما هو ناتج: $3^3$ ؟</h5>
+                    <h3 class="fw-bold mb-4 text-warning">بنك الأسئلة والتدريبات الشاملة</h3>
+                    <div class="game-box my-3">
+                        <h5 id="ex-question" class="mb-3">ما هو ناتج حساب القوة: 3³ ؟</h5>
                         <div class="d-flex justify-content-center gap-3 mb-3">
                             <input type="number" id="ex-answer" class="form-control w-25 text-center fs-4" placeholder="أدخل الناتج">
                             <button class="btn btn-custom" onclick="checkExercise()">تحقق من الإجابة</button>
                         </div>
                         <div id="ex-feedback" class="fw-bold"></div>
                     </div>
+                    <button class="btn btn-outline-light btn-sm mt-2" onclick="nextExercise()">سؤال تدريبي آخر</button>
                 </div>
             </div>
 
-            <!-- 3. الألعاب التفاعلية -->
+            <!-- 3. الألعاب التفاعلية (5 ألعاب) -->
             <div class="tab-pane fade" id="tab-games">
-                <div class="card-custom p-4 text-center">
-                    <h3 class="fw-bold mb-3 text-info"><i class="fas fa-balance-scale ms-2"></i>لعبة ميزان التناسب التفاعلي</h3>
-                    <p class="text-white-50">أوجد القيمة المجهولة ($x$) ليبقى الميزان في حالة توازن تام:</p>
+                <div class="card-custom p-4">
+                    <h3 class="fw-bold text-center mb-4 text-info"><i class="fas fa-gamepad ms-2"></i>ألعاب التحدي الذكية</h3>
                     
-                    <div class="game-box my-4 p-4">
-                        <div class="fs-3 fw-bold mb-3 text-warning" id="proportion-display">
-                            $\frac{3}{4} = \frac{x}{12}$
+                    <ul class="nav nav-tabs justify-content-center mb-4" id="gamesSubTab" role="tablist">
+                        <li class="nav-item"><button class="nav-link active text-dark fw-bold" data-bs-toggle="tab" data-bs-target="#game-prop">⚖️ ميزان التناسب</button></li>
+                        <li class="nav-item"><button class="nav-link text-dark fw-bold" data-bs-toggle="tab" data-bs-target="#game-prime">🚀 الأعداد الأولية</button></li>
+                        <li class="nav-item"><button class="nav-link text-dark fw-bold" data-bs-toggle="tab" data-bs-target="#game-frac">🧩 الكسور المتكافئة</button></li>
+                        <li class="nav-item"><button class="nav-link text-dark fw-bold" data-bs-toggle="tab" data-bs-target="#game-area">📐 مساحة الأشكال</button></li>
+                        <li class="nav-item"><button class="nav-link text-dark fw-bold" data-bs-toggle="tab" data-bs-target="#game-shop">🛒 المتسوق الذكي</button></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <!-- لعبة 1: ميزان التناسب (المصلحة) -->
+                        <div class="tab-pane fade show active text-center p-3" id="game-prop">
+                            <h5 class="text-warning mb-3">أوجد القيمة المجهولة (x) ليبقى الميزان في حالة توازن تام:</h5>
+                            <div class="game-box my-3 p-4">
+                                <div class="fs-2 fw-bold mb-3 text-info" id="proportion-display">
+                                    3 / 4 = x / 12
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center gap-3">
+                                    <span class="fs-4">قيمة x =</span>
+                                    <input type="number" id="proportion-input" class="form-control w-25 text-center fs-4" placeholder="اكتب الناتج">
+                                    <button class="btn btn-custom" onclick="checkProportionGame()">وزن الميزان ⚖️</button>
+                                </div>
+                                <div id="proportion-feedback" class="mt-3 fs-5 fw-bold"></div>
+                            </div>
+                            <button class="btn btn-outline-light btn-sm" onclick="initProportionGame()">سؤال توازن جديد 🔄</button>
                         </div>
-                        <div class="d-flex justify-content-center align-items-center gap-3">
-                            <span class="fs-4">قيمة $x$ =</span>
-                            <input type="number" id="proportion-input" class="form-control w-25 text-center fs-4" placeholder="اكتب الناتج">
-                            <button class="btn btn-custom" onclick="checkProportionGame()">وزن الميزان ⚖️</button>
+
+                        <!-- لعبة 2: الأعداد الأولية -->
+                        <div class="tab-pane fade text-center p-3" id="game-prime">
+                            <h5 class="text-warning mb-3">حدد هل العدد التالي عدد أولي أم لا؟</h5>
+                            <div class="game-box my-3 p-4">
+                                <div class="fs-1 fw-bold mb-4 text-info" id="prime-num-display">17</div>
+                                <div class="d-flex justify-content-center gap-4">
+                                    <button class="btn btn-success px-4 py-2 fs-5" onclick="checkPrime(true)">عدد أولي ✅</button>
+                                    <button class="btn btn-danger px-4 py-2 fs-5" onclick="checkPrime(false)">ليس أولي ❌</button>
+                                </div>
+                                <div id="prime-feedback" class="mt-3 fs-5 fw-bold"></div>
+                            </div>
                         </div>
-                        <div id="proportion-feedback" class="mt-3 fs-5 fw-bold"></div>
+
+                        <!-- لعبة 3: الكسور المتكافئة -->
+                        <div class="tab-pane fade text-center p-3" id="game-frac">
+                            <h5 class="text-warning mb-3">اختر الكسر المكافئ للكسر المعطى:</h5>
+                            <div class="game-box my-3 p-4">
+                                <div class="fs-2 fw-bold mb-4 text-info" id="frac-target">1 / 2 = ?</div>
+                                <div class="row g-3 justify-content-center" id="frac-options"></div>
+                                <div id="frac-feedback" class="mt-3 fs-5 fw-bold"></div>
+                            </div>
+                        </div>
+
+                        <!-- لعبة 4: مساحة الأشكال -->
+                        <div class="tab-pane fade text-center p-3" id="game-area">
+                            <h5 class="text-warning mb-3">احسب مساحة متوازي الأضلاع:</h5>
+                            <div class="game-box my-3 p-4">
+                                <div id="area-shape-desc" class="fs-4 mb-3 text-info">القاعدة = 8 سم، الارتفاع = 5 سم</div>
+                                <div class="d-flex justify-content-center align-items-center gap-3">
+                                    <input type="number" id="user-area-input" class="form-control w-25 text-center fs-4" placeholder="المساحة">
+                                    <button class="btn btn-custom" onclick="checkAreaAns()">تحقق 📐</button>
+                                </div>
+                                <div id="area-feedback" class="mt-3 fs-5 fw-bold"></div>
+                            </div>
+                        </div>
+
+                        <!-- لعبة 5: المتسوق الذكي -->
+                        <div class="tab-pane fade text-center p-3" id="game-shop">
+                            <h5 class="text-warning mb-3">احسب السعر النهائي بعد الخصم!</h5>
+                            <div class="game-box my-3 p-4">
+                                <div id="shop-item-desc" class="fs-4 mb-3 text-info">حقيبة مدرسية سعرها 100 وخصم 20%</div>
+                                <div class="d-flex justify-content-center align-items-center gap-3">
+                                    <input type="number" id="user-shop-input" class="form-control w-25 text-center fs-4" placeholder="السعر النهائي">
+                                    <button class="btn btn-custom" onclick="checkShopAns()">شراء 🛒</button>
+                                </div>
+                                <div id="shop-feedback" class="mt-3 fs-5 fw-bold"></div>
+                            </div>
+                        </div>
                     </div>
-                    <button class="btn btn-outline-light btn-sm" onclick="initProportionGame()">سؤال توازن جديد</button>
                 </div>
             </div>
 
@@ -177,7 +264,7 @@
                 <div class="card-custom p-4">
                     <h3 class="fw-bold text-center mb-4 text-warning"><i class="fas fa-users ms-2"></i>ساحة التحدي الجماعي للأبطال</h3>
                     <div id="challenge-setup" class="text-center">
-                        <p class="text-white-50">أدخل أسماء الأبطال المشاركين في التحدي (من 2 إلى 4 لاعبين):</p>
+                        <p class="text-white-50">أدخل أسماء الأبطال المتنافسين:</p>
                         <div class="row justify-content-center g-3 mb-4">
                             <div class="col-md-3"><input type="text" id="p1-name" class="form-control text-center" placeholder="اسم البطل 1" value="أحمد"></div>
                             <div class="col-md-3"><input type="text" id="p2-name" class="form-control text-center" placeholder="اسم البطل 2" value="سارة"></div>
@@ -200,7 +287,7 @@
                     <div id="challenge-results" class="d-none text-center">
                         <h2 class="text-warning mb-3">🏆 انتهى التحدي بفوز البطل!</h2>
                         <h3 id="winner-text" class="text-info mb-4"></h3>
-                        <button class="btn btn-custom" onclick="resetChallenge()">تحدي جديد</button>
+                        <button class="btn btn-custom" onclick="resetChallenge()">تحدي جديد 🔄</button>
                     </div>
                 </div>
             </div>
@@ -209,7 +296,7 @@
             <div class="tab-pane fade" id="tab-wheel">
                 <div class="card-custom p-4 text-center">
                     <h3 class="fw-bold mb-3 text-warning"><i class="fas fa-dharmachakra ms-2"></i>عجلة الحظ والمفاجآت اليومية</h3>
-                    <p class="text-white-50">أدارة العجلة واربح نقاطاً إضافية وأوسمة تميز!</p>
+                    <p class="text-white-50">أدر العجلة واربح نقاطاً إضافية وأوسمة مميزة!</p>
                     <div class="game-box my-4 py-5">
                         <div id="wheel-result" class="fs-2 fw-bold text-info mb-3">اضغط الدوران لاختبار حظك! 🎡</div>
                         <button class="btn btn-custom btn-lg" onclick="spinWheel()">دوران العجلة الآن ✨</button>
@@ -236,53 +323,143 @@
         }
 
         // بنك التمارين
-        let currentExAns = 27;
+        let exercisesList = [
+            {q: 'ما هو ناتج حساب القوة: 3³ ؟', ans: 27, hint: '3 × 3 × 3 = 27'},
+            {q: 'ما هو ناتج حساب القوة: 2⁴ ؟', ans: 16, hint: '2 × 2 × 2 × 2 = 16'},
+            {q: 'إذا كانت مساعدة متوازي أضلاع قاعدته 10 وارتفاعه 4، فكم مساحته؟', ans: 40, hint: 'المساحة = القاعدة × الارتفاع'},
+            {q: 'كم تساوي نسبة 50% من العدد 80؟', ans: 40, hint: '50% تعني النصف'}
+        ];
+        let currentExIdx = 0;
         function checkExercise() {
             const val = parseFloat(document.getElementById('ex-answer').value);
             const fb = document.getElementById('ex-feedback');
-            if(val === currentExAns) {
+            if(val === exercisesList[currentExIdx].ans) {
                 fb.innerHTML = '<span class="text-success">إجابة صحيحة وممتازة! ✨ (+10 نقاط)</span>';
                 addPoints(10);
             } else {
-                fb.innerHTML = '<span class="text-danger">إجابة خاطئة. حاول مرة أخرى! تذكر: $3^3 = 3 \times 3 \times 3$</span>';
+                fb.innerHTML = `<span class="text-danger">إجابة خاطئة. تذكر: ${exercisesList[currentExIdx].hint}</span>`;
             }
         }
+        function nextExercise() {
+            currentExIdx = (currentExIdx + 1) % exercisesList.length;
+            document.getElementById('ex-question').innerText = exercisesList[currentExIdx].q;
+            document.getElementById('ex-answer').value = '';
+            document.getElementById('ex-feedback').innerText = '';
+        }
 
-        // لعبة ميزان التناسب
-        let propX = 6;
-        let propA = 2, propB = 3, propC = 4;
+        // لعبة 1: ميزان التناسب (المصلحة والحل المحسن)
+        let propA = 3, propB = 4, propX = 9, targetB = 12;
         function initProportionGame() {
             propA = Math.floor(Math.random() * 4) + 2;
             propB = Math.floor(Math.random() * 4) + 3;
             let multiplier = Math.floor(Math.random() * 3) + 2;
-            let targetB = propB * multiplier;
+            targetB = propB * multiplier;
             propX = propA * multiplier;
             
-            document.getElementById('proportion-display').innerHTML = `\\(\\frac{${propA}}{${propB}} = \\frac{x}{${targetB}}\\)`;
+            document.getElementById('proportion-display').innerText = `${propA} / ${propB} = x / ${targetB}`;
             document.getElementById('proportion-input').value = '';
-            document.getElementById('proportion-feedback').innerHTML = '';
-            window.targetPropVal = propX;
+            document.getElementById('proportion-feedback').innerText = '';
         }
 
         function checkProportionGame() {
             const userVal = parseFloat(document.getElementById('proportion-input').value);
             const fb = document.getElementById('proportion-feedback');
-            if(userVal === window.targetPropVal) {
+            if(isNaN(userVal)) {
+                fb.innerHTML = '<span class="text-warning">الرجاء إدخال رقم صحيح!</span>';
+                return;
+            }
+            if(userVal === propX) {
                 fb.innerHTML = '<span class="text-success">⚖️ توازن مثالي! إجابة صحيحة (+15 نقطة)</span>';
                 addPoints(15);
                 setTimeout(initProportionGame, 2000);
             } else {
-                fb.innerHTML = '<span class="text-danger">❌ الميزان مائل! جرب استخدام الضرب التبادلي.</span>';
+                fb.innerHTML = `<span class="text-danger">❌ الميزان مائل! القيمة الصحيحة هي x = ${propX}. جرب استخدام الضرب التبادلي.</span>`;
             }
         }
-        // تشغيل أولي للعبة الميزان عند التحميل
         initProportionGame();
+
+        // لعبة 2: الأعداد الأولية
+        let currentPrimeNum = 17;
+        let isPrimeAns = true;
+        function initPrimeGame() {
+            const primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
+            const composites = [4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21];
+            if(Math.random() > 0.5) {
+                currentPrimeNum = primes[Math.floor(Math.random() * primes.length)];
+                isPrimeAns = true;
+            } else {
+                currentPrimeNum = composites[Math.floor(Math.random() * composites.length)];
+                isPrimeAns = false;
+            }
+            document.getElementById('prime-num-display').innerText = currentPrimeNum;
+            document.getElementById('prime-feedback').innerText = '';
+        }
+        function checkPrime(userChoice) {
+            const fb = document.getElementById('prime-feedback');
+            if(userChoice === isPrimeAns) {
+                fb.innerHTML = '<span class="text-success">إجابة دقيقة وصحيحة! 🌟 (+10 نقاط)</span>';
+                addPoints(10);
+                setTimeout(initPrimeGame, 1500);
+            } else {
+                fb.innerHTML = '<span class="text-danger">خطأ! تذكر أن العدد الأولي يقبل القسمة على نفسه وعلى 1 فقط.</span>';
+            }
+        }
+        initPrimeGame();
+
+        // لعبة 3: الكسور المتكافئة
+        function initFracGame() {
+            document.getElementById('frac-target').innerText = "1 / 2 = ?";
+            const container = document.getElementById('frac-options');
+            container.innerHTML = `
+                <div class="col-md-3"><button class="btn btn-outline-light w-100 py-2 fs-5" onclick="checkFrac(2, 4)">2 / 4 ✅</button></div>
+                <div class="col-md-3"><button class="btn btn-outline-light w-100 py-2 fs-5" onclick="checkFrac(1, 3)">1 / 3 ❌</button></div>
+                <div class="col-md-3"><button class="btn btn-outline-light w-100 py-2 fs-5" onclick="checkFrac(3, 8)">3 / 8 ❌</button></div>
+            `;
+            document.getElementById('frac-feedback').innerText = '';
+        }
+        function checkFrac(num, den) {
+            const fb = document.getElementById('frac-feedback');
+            if(num === 2 && den === 4) {
+                fb.innerHTML = '<span class="text-success">ممتاز! كسر مكافئ صحيح (+10 نقاط)</span>';
+                addPoints(10);
+                setTimeout(initFracGame, 1500);
+            } else {
+                fb.innerHTML = '<span class="text-danger">ليس مكافئاً، حاول مرة أخرى!</span>';
+            }
+        }
+        initFracGame();
+
+        // لعبة 4: مساحة الأشكال
+        let areaVal = 40;
+        function checkAreaAns() {
+            const val = parseFloat(document.getElementById('user-area-input').value);
+            const fb = document.getElementById('area-feedback');
+            if(val === areaVal) {
+                fb.innerHTML = '<span class="text-success">إجابة صحيحة! المساحة مضبوطة (+15 نقطة)</span>';
+                addPoints(15);
+            } else {
+                fb.innerHTML = '<span class="text-danger">خطأ! تذكر القانون: المساحة = القاعدة × الارتفاع</span>';
+            }
+        }
+
+        // لعبة 5: المتسوق الذكي
+        let shopFinal = 80;
+        function checkShopAns() {
+            const val = parseFloat(document.getElementById('user-shop-input').value);
+            const fb = document.getElementById('shop-feedback');
+            if(val === shopFinal) {
+                fb.innerHTML = '<span class="text-success">حساب رائع! أنت متسوق ذكي (+15 نقطة)</span>';
+                addPoints(15);
+            } else {
+                fb.innerHTML = '<span class="text-danger">خطأ! احسب قيمة الخصم أولاً ثم اطرحه من السعر الأصلي.</span>';
+            }
+        }
 
         // التحدي الجماعي
         let players = [];
         let currentPlayerIdx = 0;
         let currentRound = 0;
-        let challData = {q: 'ما هو مساحة مستطيل طوله 5 وعرضه 3؟', ans: 15};
+        let challData = {q: '', ans: 0};
 
         function startChallenge() {
             const p1 = document.getElementById('p1-name').value || 'البطل 1';
@@ -327,7 +504,7 @@
             document.getElementById('challenge-play').classList.add('d-none');
             document.getElementById('challenge-results').classList.remove('d-none');
             let winner = players[0].score > players[1].score ? players[0] : (players[1].score > players[0].score ? players[1] : null);
-            let wText = winner ? `الفائز هو ${winner} برصيد ${winner.score} نقطة! 🏆` : `تعادل البطلان بنتيجة متساوية! 🤝`;
+            let wText = winner ? `الفائز هو ${winner.name} برصيد ${winner.score} نقطة! 🏆` : `تعادل البطلان بنتيجة متساوية! 🤝`;
             document.getElementById('winner-text').innerText = wText;
         }
 
@@ -338,7 +515,7 @@
 
         // عجلة الحظ
         function spinWheel() {
-            const prizes = [10, 20, 50, 5, 15, 30];
+            const prizes = [10, 20, 50, 15, 30, 25];
             const prize = prizes[Math.floor(Math.random() * prizes.length)];
             document.getElementById('wheel-result').innerHTML = `🎉 مبروك! ربحت ${prize} نقطة إضافية!`;
             addPoints(prize);
